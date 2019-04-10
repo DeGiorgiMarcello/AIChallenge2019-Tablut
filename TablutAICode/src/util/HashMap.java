@@ -6,7 +6,7 @@ import domain.State;
 import domain.State.Pawn;
 
 public class HashMap {
-private static HashMap instance;
+	private static HashMap instance;
 	
 	private Map<Position, PawnClass> map = new java.util.HashMap<Position, PawnClass>();
 	
@@ -44,6 +44,15 @@ private static HashMap instance;
 	public void printMap() {
 		map.forEach((position, pawn) -> System.out.println(pawn.toString() + "In position "+position.toString()));
 	}
+	
+	public Map<Position, PawnClass> getMap() {
+		return map;
+	}
+
+	public void setMap(Map<Position, PawnClass> map) {
+		this.map = map;
+	}
+	
 	
 	
 }
