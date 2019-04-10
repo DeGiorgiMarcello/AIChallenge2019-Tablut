@@ -16,7 +16,7 @@ public class TablutAIClient extends TablutClient {
 	//per lanciarlo inserire giocatore e nome come argomenti
 	public static void main(String args[]) throws UnknownHostException, IOException{
 		if(args.length < 2 ) {
-			System.out.println("Errore. Giocatore e/o nome non inseriti.");
+			System.out.println("Error. Player/name not inserted.");
 			System.exit(-1);
 		}
 		
@@ -30,7 +30,7 @@ public class TablutAIClient extends TablutClient {
 		System.out.println("You are player " + this.getPlayer().toString() + "!");
 		String actionStringFrom = "";
 		String actionStringTo = "";
-		String[] mossa = new String[2];
+		String[] move = new String[2];
 		Action action;
 		try {
 			this.declareName();
@@ -49,12 +49,12 @@ public class TablutAIClient extends TablutClient {
 					System.out.println(this.getCurrentState().toString());
 					*/
 					if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITE)) {
-						System.out.println("Mossa di "+this.getPlayer().toString()+ ".");
+						System.out.println("Player "+this.getPlayer().toString()+ " is moving.");
 						//Map.getInstance().createMap(this.getCurrentState());  -> inserire nel metodo un controllo se l'hashmap è già stato creato.
-						//Strategia strategia = Stragegia.getInstance();
-						//mossa = strategia.calcolaMossa(this.player); -> array di due stringhe
-						//actionStringFrom = mossa[0];
-						//actionStringTo = mossa[1];
+						//Strategy strategy = Stragegy.getInstance();
+						//move = strategy.getMove(this.player); -> array di due stringhe
+						//actionStringFrom = move[0];
+						//actionStringTo = move[1];
 						action = new Action(actionStringFrom, actionStringTo, this.getPlayer());
 						this.write(action);  // la mossa viene mandata al server
 					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
@@ -69,6 +69,8 @@ public class TablutAIClient extends TablutClient {
 						System.out.println("DRAW!");
 						System.exit(0);
 					}
+
+					this.read();  //read per leggere lo stato modificato dal bianco
 					
 					
 				} catch (ClassNotFoundException | IOException e) {
@@ -86,12 +88,12 @@ public class TablutAIClient extends TablutClient {
 				//System.out.println(this.getCurrentState().toString());
 				
 				if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
-					System.out.println("Mossa di "+this.getPlayer().toString()+ ".");
-					//Map.getInstance().createMap(this.getCurrentState());
-					//Strategia strategia = Stragegia.getInstance();
-					//mossa = strategia.calcolaMossa(this.player); -> array di due stringhe
-					//actionStringFrom = mossa[0];
-					//actionStringTo = mossa[1];
+					System.out.println("Player \"+this.getPlayer().toString()+ \" is moving");
+					//Map.getInstance().createMap(this.getCurrentState());  -> inserire nel metodo un controllo se l'hashmap è già stato creato.
+					//Strategy strategy = Stragegy.getInstance();
+					//move = strategy.getMove(this.player); -> array di due stringhe
+					//actionStringFrom = move[0];
+					//actionStringTo = move[1];
 					action = new Action(actionStringFrom, actionStringTo, this.getPlayer());
 					this.write(action);  // la mossa viene mandata al server
 				} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
@@ -106,6 +108,8 @@ public class TablutAIClient extends TablutClient {
 					System.out.println("DRAW!");
 					System.exit(0);
 				}
+
+				this.read();  //read per leggere l'aggiornamento del nero
 				
 				
 			} catch (ClassNotFoundException | IOException e) {
