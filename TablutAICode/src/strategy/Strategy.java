@@ -1,14 +1,12 @@
 package strategy;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
+import java.util.Set;
 
 import javax.swing.text.Position;
 
+import util.Node;
 import util.PawnClass;
 
 public class Strategy {
@@ -27,5 +25,32 @@ public class Strategy {
 	}
 	
 	/*A partire dalla mappa, per ogni pedina bianca calcola tutte le possibili mosse*/
+	
+	public String[] getMove(String player) {
+		String[] move = new String[2];
+		Node root = new Node();
+		Map<Position,PawnClass> initState = root.getState();
+		if(player.equals("white")) {
+			for(Map.Entry<Position, PawnClass> entry : initState.entrySet()) {
+			
+			}
+			
+			
+			
+		
+			
+			
+			
+			
+			
+			
+		}
+		else {
+			
+		}
+		
+		
+		return move;
+	}
 	
 }
