@@ -5,18 +5,18 @@ import java.util.Map;
 import domain.State;
 import domain.State.Pawn;
 
-public class HashMap {
-	private static HashMap instance;
+public class PawnMap {
+	private static PawnMap instance;
 	
 	private Map<Position, PawnClass> map = new java.util.HashMap<Position, PawnClass>();
 	
-	private HashMap() {
+	private PawnMap() {
 		
 	}
 	
-	public static HashMap getInstance() {
+	public static PawnMap getInstance() {
 		if(instance == null) 
-			instance = new HashMap();
+			instance = new PawnMap();
 		return instance;
 	}
 	

@@ -24,7 +24,8 @@ public class PawnClass {
 		int cont = 0;
 		int max = 0;
 		/*non posso salire neanche di una casella perchè c'è una pedina sopra a quella considerata*/
-		if(HashMap.getInstance().getMap().containsKey(new Position(row - 1 , column))) {
+
+		if(PawnMap.getInstance().getMap().containsKey(new Position(this.row - 1 , this.column))) {
 			return cont;
 		}else {
 			/*determino il massimo valore sul quale iterare per cercare pedine sulla colonna in cui 
@@ -52,8 +53,8 @@ public class PawnClass {
 			for(int i = row-1; i >= max; i--) {
 				/*calcolo l'indice della riga della prima pedina sulla stessa colonna della pedina 
 				 * che devo muovere.*/
-				if(HashMap.getInstance().getMap().containsKey(new Position(row, i))) {
-					cont = row - i - 1;
+				if(PawnMap.getInstance().getMap().containsKey(new Position(this.row, i))) {
+					cont = this.row - i - 1;
 					break;
 				}/*else {
 					cont = row-max;
@@ -69,14 +70,14 @@ public class PawnClass {
 		int cont = 0;
 		int max = 0;
 		/*non posso salire neanche di una casella perchè c'è una pedina sopra a quella considerata*/
-		if(HashMap.getInstance().getMap().containsKey(new Position(row + 1 , column))) {
+		if(PawnMap.getInstance().getMap().containsKey(new Position(this.row + 1 , this.column))) {
 			return cont;
 		}else {
+			/*determino il massimo valore sul quale iterare per cercare pedine sulla colonna in cui 
+			 * voglio muovere la pedina che sto considerando. */
 			if(column == 4 && row < 4) {
 				max = 3;
 			}else {
-				/*determino il massimo valore sul quale iterare per cercare pedine sulla colonna in cui 
-				 * voglio muovere la pedina che sto considerando. */
 				switch(column) {
 				case 4:
 					max = 6;
@@ -90,13 +91,12 @@ public class PawnClass {
 				default:
 					max = 8;
 				}
-			}
 		}
 		cont = max - row;
 		for(int i = row+1; i <= max; i++) {
 			/*calcolo l'indice della riga della prima pedina sulla stessa colonna della pedina 
 			 * che devo muovere.*/
-			if(HashMap.getInstance().getMap().containsKey(new Position(row, i))) {
+			if(PawnMap.getInstance().getMap().containsKey(new Position(row, i))) {
 				cont = i - row - 1;
 				break;
 			}/*else {
@@ -104,12 +104,13 @@ public class PawnClass {
 			}*/
 		}
 		return cont;
+		}
 	}
 	
 	public int maxNumberBoxMoveRight() {
 		int cont = 0;
 		int max = 0;
-		if(HashMap.getInstance().getMap().containsKey(new Position(row, column + 1))) {
+		if(PawnMap.getInstance().getMap().containsKey(new Position(row, column + 1))) {
 			return cont;
 		}else {
 			if(row == 4 && column < 4) {
@@ -128,23 +129,20 @@ public class PawnClass {
 					max = 8;
 				}
 			}
-		}
-		cont = max - column;
-		for(int i = column+1; i <= max; i++) {
-			if(HashMap.getInstance().getMap().containsKey(new Position(row, i))) {
-				cont = i - column - 1;
-				break;
-			}/*else {
-				cont = max - column;
-			}*/
+			cont = max - column;
+			for(int i = column+1; i <= max; i++) {
+				if(PawnMap.getInstance().getMap().containsKey(new Position(row, i))) {
+					cont = i - column - 1;
+			}
 		}
 		return cont;
+		}
 	}
 	
 	public int maxNumberBoxMoveLeft() {
 		int cont = 0;
 		int max = 0;
-		if(HashMap.getInstance().getMap().containsKey(new Position(row, column - 1))) {
+		if(PawnMap.getInstance().getMap().containsKey(new Position(row, column - 1))) {
 			return cont;
 		}else {
 			if(row == 4 && column > 4) {
@@ -163,17 +161,14 @@ public class PawnClass {
 					max = 0;
 				}
 			}
-		}
-		cont = column - max;
-		for(int i = column - 1; i >= max; i--) {
-			if(HashMap.getInstance().getMap().containsKey(new Position(row, i))) {
-				cont = column - i - 1;
-				break;
-			}/*else {
-				cont = column - max;
-			}*/
-		}
+			cont = column - max;
+			for(int i = column - 1; i >= max; i--) {
+				if(PawnMap.getInstance().getMap().containsKey(new Position(row, i))) {
+					cont = column - i - 1;
+				}
+			}
 		return cont;
+		}
 	}
 
 	public int getRow() {
