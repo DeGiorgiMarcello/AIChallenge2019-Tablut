@@ -35,6 +35,7 @@ public class HashMap {
 					break;
 				case KING:
 					map.put(new Position(i,j), new PawnClass(i, j, Pawn.KING));
+					break;
 				}
 			}
 		}

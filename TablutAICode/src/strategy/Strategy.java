@@ -11,18 +11,18 @@ import javax.swing.text.Position;
 
 import util.PawnClass;
 
-public class StrategyWhite {
+public class Strategy {
 	//calcola tutte le possibili mosse a partire da uno stato
-	private static StrategyWhite instance;
+	private static Strategy instance;
 	private ArrayList children = new ArrayList<Map<Position, PawnClass>>();
 		
-	private StrategyWhite() {
+	private Strategy() {
 		
 	}
 	
-	public static StrategyWhite getInstance() {
+	public static Strategy getInstance() {
 		if(instance == null)
-			instance = new StrategyWhite();
+			instance = new Strategy();
 		return instance;
 	}
 	
