@@ -29,7 +29,15 @@ public class Position {
 		return "Riga = "+row+"  Colonna = "+column;
 	}
 	
-	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		Position position = (Position)obj;
+		if(row == position.getRow() && column == position.getColumn())
+			return true;
+		else
+			return false;
+	}
 	
 	
 

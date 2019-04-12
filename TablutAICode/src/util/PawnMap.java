@@ -1,5 +1,6 @@
 package util;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import domain.State;
@@ -52,6 +53,15 @@ public class PawnMap {
 
 	public void setMap(Map<Position, PawnClass> map) {
 		this.map = map;
+	}
+	
+	public Position findKingPosition(Map<Position, PawnClass> map) {
+		ArrayList<Position> list = new ArrayList();
+		map.forEach((position, pawnClass) -> {
+			if(pawnClass.getType().equalsPawn(Pawn.KING.toString()))
+				list.add(position);
+		});
+		return list.get(0);
 	}
 	
 	
