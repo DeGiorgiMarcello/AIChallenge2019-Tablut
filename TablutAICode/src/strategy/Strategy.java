@@ -50,7 +50,6 @@ public class Strategy {
 			}
 			
 			
-			
 		}
 		else {
 			
@@ -64,7 +63,9 @@ public class Strategy {
 	public void moveLeft(PawnClass pawn,int maxNumberBoxMove,Node parent) {
 		for(int i=0;i<pawn.maxNumberBoxMoveLeft();i++) {
 			Map actualState = parent.getState();
+			Position pos = new Position(pawn.getRow(),pawn.getColumn()-i);
 			Map newState = updateState(actualState,pawn,pawn.getRow(),pawn.getColumn()-i);	//genera un nuovo stato dallo stato vecchio spostando la pedina a sx
+			newState = captureVerification(newState, pos);
 			Node child = new Node(depth+1,newState,parent,"","");
 		}
 	}
@@ -101,11 +102,7 @@ public class Strategy {
 		return state;
 	}
 	
-	
-	
-	
-	
-	
+
 	public void initCitadels() {
 		citadels.add(new Position(3,0));
 		citadels.add(new Position(4,0));
