@@ -138,51 +138,8 @@ public class Strategy {
 		if(map.get(newPawnPosition).getType().equalsPawn(Pawn.WHITE.toString()) || map.get(newPawnPosition).getType().equalsPawn(Pawn.KING.toString()) ) {
 			return captureVerificationWhite(map, newPawnPosition);
 		}else {
-			//CATTURO PEDINA SOPRA
-			if(map.containsKey(new Position(newPawnPosition.getRow() - 1, newPawnPosition.getColumn()))
-					&& map.containsKey(new Position(newPawnPosition.getRow() - 2, newPawnPosition.getColumn()))
-					&& (map.get(new Position(newPawnPosition.getRow()-1,  newPawnPosition.getColumn())).getType().equalsPawn(Pawn.WHITE.toString())
-							|| map.get(new Position(newPawnPosition.getRow()-1,  newPawnPosition.getColumn())).getType().equalsPawn(Pawn.KING.toString()))
-					&& map.get(new Position(newPawnPosition.getRow()-2,  newPawnPosition.getColumn())).getType().equalsPawn(Pawn.BLACK.toString())) {
-					/*&& !map.get(newPawnPosition).getType().equalsPawn(map.get(new Position(newPawnPosition.getRow() - 1, newPawnPosition.getColumn())).getType().toString())
-					&& map.get(newPawnPosition).getType().equalsPawn(map.get(new Position(newPawnPosition.getRow() - 2, newPawnPosition.getColumn())).getType().toString())) {*/
-				map.remove(new Position(newPawnPosition.getRow()-1, newPawnPosition.getColumn()));
-			}
-			
-			//CATTURO PEDINA SOTTO
-			if(map.containsKey(new Position(newPawnPosition.getRow() + 1, newPawnPosition.getColumn()))
-					&& map.containsKey(new Position(newPawnPosition.getRow() + 2, newPawnPosition.getColumn()))
-					&& (map.get(new Position(newPawnPosition.getRow()+1,  newPawnPosition.getColumn())).getType().equalsPawn(Pawn.WHITE.toString())
-							|| map.get(new Position(newPawnPosition.getRow()+1,  newPawnPosition.getColumn())).getType().equalsPawn(Pawn.KING.toString()))
-					&& map.get(new Position(newPawnPosition.getRow()+2,  newPawnPosition.getColumn())).getType().equalsPawn(Pawn.BLACK.toString())) {
-					/*&& !map.get(newPawnPosition).getType().equalsPawn(map.get(new Position(newPawnPosition.getRow() - 1, newPawnPosition.getColumn())).getType().toString())
-					&& map.get(newPawnPosition).getType().equalsPawn(map.get(new Position(newPawnPosition.getRow() - 2, newPawnPosition.getColumn())).getType().toString())) {*/
-				map.remove(new Position(newPawnPosition.getRow()+1, newPawnPosition.getColumn()));
-			}
-			
-			//CATTURO PEDINA A DESTRA
-			if(map.containsKey(new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()+1))
-					&& map.containsKey(new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()+2))
-					&& (map.get(new Position(newPawnPosition.getRow(),  newPawnPosition.getColumn()+1)).getType().equalsPawn(Pawn.WHITE.toString())
-							|| map.get(new Position(newPawnPosition.getRow(),  newPawnPosition.getColumn()+1)).getType().equalsPawn(Pawn.KING.toString()))
-					&& map.get(new Position(newPawnPosition.getRow(),  newPawnPosition.getColumn()+2)).getType().equalsPawn(Pawn.BLACK.toString())) {
-					/*&& !map.get(newPawnPosition).getType().equalsPawn(map.get(new Position(newPawnPosition.getRow() - 1, newPawnPosition.getColumn())).getType().toString())
-					&& map.get(newPawnPosition).getType().equalsPawn(map.get(new Position(newPawnPosition.getRow() - 2, newPawnPosition.getColumn())).getType().toString())) {*/
-				map.remove(new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()+2));
-			}
-			
-			//CATTURO PEDINA A SINISTRA
-			if(map.containsKey(new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()-1))
-					&& map.containsKey(new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()-2))
-					&& (map.get(new Position(newPawnPosition.getRow(),  newPawnPosition.getColumn()-1)).getType().equalsPawn(Pawn.WHITE.toString())
-							|| map.get(new Position(newPawnPosition.getRow(),  newPawnPosition.getColumn()-1)).getType().equalsPawn(Pawn.KING.toString()))
-					&& map.get(new Position(newPawnPosition.getRow(),  newPawnPosition.getColumn()-2)).getType().equalsPawn(Pawn.BLACK.toString())) {
-					/*&& !map.get(newPawnPosition).getType().equalsPawn(map.get(new Position(newPawnPosition.getRow() - 1, newPawnPosition.getColumn())).getType().toString())
-					&& map.get(newPawnPosition).getType().equalsPawn(map.get(new Position(newPawnPosition.getRow() - 2, newPawnPosition.getColumn())).getType().toString())) {*/
-				map.remove(new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()-2));
-			}
+			return captureVerificationBlack(map, newPawnPosition);
 		}
-		return map;
 	}
 	
 	
@@ -298,7 +255,7 @@ public class Strategy {
 	}
 	
 	
-	public void captureVerificationBlack(Map<Position,PawnClass> map, Position newPawnPosition) {
+	public Map<Position, PawnClass> captureVerificationBlack(Map<Position,PawnClass> map, Position newPawnPosition) {
 		Position kingPosition = PawnMap.getInstance().findKingPosition(map);
 		//black-white/king-black
 		//CATTURO PEDINA SOPRA
@@ -442,6 +399,7 @@ public class Strategy {
 			map.remove(kingPosition);
 			/*partita vinta*/
 		}
+		return map;
 	}
 	
 	
