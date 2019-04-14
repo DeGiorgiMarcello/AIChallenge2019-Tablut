@@ -7,7 +7,7 @@ import domain.State;
 public class Node {
 	
 	private int depth;
-	private Map<Position, PawnClass> state = new java.util.HashMap<Position, PawnClass>();
+	private Map<Position, PawnClass> state = (Map<Position, PawnClass>) PawnMap.getInstance();
 	private Node parent;
 	private int captured;
 	private String pawnMoveFrom;

@@ -15,7 +15,7 @@ import util.PawnMap;
 public class Strategy {
 	//calcola tutte le possibili mosse a partire da uno stato
 	private static Strategy instance;
-	private ArrayList children = new ArrayList<Map<Position, PawnClass>>();
+	private ArrayList nodes = new ArrayList<Node>();
 	private int depth = 0;
 	private ArrayList<Position> citadels = new ArrayList<Position>();
 	private Position castle = new Position(4,4);
@@ -35,7 +35,7 @@ public class Strategy {
 		return instance;
 	}
 	
-	/*A partire dalla mappa, per ogni pedina bianca calcola tutte le possibili mosse*/
+	/*A partire dalla mappa, per ogni pedina calcola tutte le possibili mosse*/
 	
 	public String[] getMove(String player) {
 		String[] move = new String[2];
@@ -45,12 +45,13 @@ public class Strategy {
 			for(Map.Entry<Position, PawnClass> entry : initState.entrySet()) {
 				PawnClass pawn = entry.getValue();
 				if(pawn.getType().equals(Pawn.WHITE)) {
-					
+					moveLeft(pawn,root);
+					moveRight(pawn,root);
+					moveUp(pawn,root);
+					moveDown(pawn,root);
 				}
 			
 			}
-			
-			
 		}
 		else {
 			
@@ -59,7 +60,7 @@ public class Strategy {
 		
 		return move;
 	}
-	
+	 
 	public String convertCoordinates(Position pos) {
 		String result = "";
 		int row = pos.getRow()+1;  //le righe partono da 1, non da 0.
@@ -87,7 +88,7 @@ public class Strategy {
 		return result;
 	}
 	
-	public void moveLeft(PawnClass pawn,int maxNumberBoxMove,Node parent) {
+	public void moveLeft(PawnClass pawn,Node parent) {
 		for(int i=0;i<pawn.maxNumberBoxMoveLeft();i++) {
 			int captured = parent.getCaptured();
 			Map actualState = parent.getState();
@@ -102,9 +103,10 @@ public class Strategy {
 			String moveFrom = convertCoordinates(oldPos);
 			String moveTo = convertCoordinates(newPos);
 			Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
+			nodes.add(0, child); 
 		}
 	}
-	public void moveRight(PawnClass pawn,int maxNumberBoxMove,Node parent) {
+	public void moveRight(PawnClass pawn,Node parent) {
 		for(int i=0;i<pawn.maxNumberBoxMoveLeft();i++) {
 			int captured = parent.getCaptured();
 			Map actualState = parent.getState();
@@ -119,9 +121,10 @@ public class Strategy {
 			String moveFrom = convertCoordinates(oldPos);
 			String moveTo = convertCoordinates(newPos);
 			Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
+			nodes.add(0, child); 
 			}
 		}
-		public void moveUp(PawnClass pawn,int maxNumberBoxMove,Node parent) {
+		public void moveUp(PawnClass pawn,Node parent) {
 			for(int i=0;i<pawn.maxNumberBoxMoveLeft();i++) {
 				int captured = parent.getCaptured();
 				Map actualState = parent.getState();
@@ -136,9 +139,10 @@ public class Strategy {
 				String moveFrom = convertCoordinates(oldPos);
 				String moveTo = convertCoordinates(newPos);
 				Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
+				nodes.add(0, child); 
 			}
 		}
-		public void moveDown(PawnClass pawn,int maxNumberBoxMove,Node parent) {
+		public void moveDown(PawnClass pawn,Node parent) {
 			int captured = parent.getCaptured();
 			for(int i=0;i<pawn.maxNumberBoxMoveLeft();i++) {
 				Map actualState = parent.getState();
@@ -153,6 +157,7 @@ public class Strategy {
 				String moveFrom = convertCoordinates(oldPos);
 				String moveTo = convertCoordinates(newPos);
 				Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
+				nodes.add(0, child); 
 			}
 		}
 	
