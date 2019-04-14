@@ -1,5 +1,6 @@
 package util;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import domain.State;
@@ -7,7 +8,8 @@ import domain.State;
 public class Node {
 	
 	private int depth;
-	private Map<Position, PawnClass> state = (Map<Position, PawnClass>) PawnMap.getInstance();
+	//private Map<Position, PawnClass> state = (Map<Position, PawnClass>) PawnMap.getInstance();
+	private Map<Position, PawnClass> state = new HashMap<Position, PawnClass>();
 	private Node parent;
 	private int captured;
 	private String pawnMoveFrom;
@@ -15,7 +17,7 @@ public class Node {
 	
 	//root
 	public Node() {
-		this.state = state; 
+		state = PawnMap.getInstance().getMap();
 		depth = 0;
 		captured = 0;
 		parent = null;
@@ -23,7 +25,7 @@ public class Node {
 		pawnMoveTo = "";
 	}
 	
-	public Node(int depth,Map state, Node parent,int captured, String pawnMoveFrom, String pawnMoveTo ) {
+	public Node(int depth,Map<Position, PawnClass> state, Node parent,int captured, String pawnMoveFrom, String pawnMoveTo ) {
 		this.depth = depth;
 		this.state = state;
 		this.parent = parent;
@@ -40,11 +42,11 @@ public class Node {
 		this.depth = depth;
 	}
 
-	public Map getState() {
+	public Map<Position, PawnClass> getState() {
 		return state;
 	}
 
-	public void setState(Map state) {
+	public void setState(Map<Position, PawnClass> state) {
 		this.state = state;
 	}
 
