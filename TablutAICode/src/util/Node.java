@@ -14,6 +14,7 @@ public class Node {
 	private int captured;
 	private String pawnMoveFrom;
 	private String pawnMoveTo;
+	private int cost;
 	
 	//root
 	public Node() {
@@ -23,6 +24,7 @@ public class Node {
 		parent = null;
 		pawnMoveFrom = "";
 		pawnMoveTo = "";
+		
 	}
 	
 	public Node(int depth,Map<Position, PawnClass> state, Node parent,int captured, String pawnMoveFrom, String pawnMoveTo ) {
@@ -80,6 +82,14 @@ public class Node {
 
 	public void setCaptured(int captured) {
 		this.captured = captured;
+	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
 	}
 	
 	
