@@ -14,7 +14,7 @@ public class Node {
 	private int captured;
 	private String pawnMoveFrom;
 	private String pawnMoveTo;
-	private int cost;
+	private int cost = 0;
 	
 	//root
 	public Node() {
@@ -24,6 +24,7 @@ public class Node {
 		parent = null;
 		pawnMoveFrom = "";
 		pawnMoveTo = "";
+		
 		
 	}
 	

@@ -16,6 +16,7 @@ public class Strategy {
 	//calcola tutte le possibili mosse a partire da uno stato
 	private static Strategy instance;
 	private ArrayList nodesList = new ArrayList<Node>();
+	private ArrayList firstNodes = new ArrayList<Node>();   //lista dei primi nodi per ogni depth
 	private int depth = 0;
 	private ArrayList<Position> citadels = new ArrayList<Position>();
 	private Position castle = new Position(4,4);
@@ -25,6 +26,7 @@ public class Strategy {
 	private Position a4 = new Position(5,4);
 	private boolean taken = false; //variabile per tener conto dell'avvenuta cattura e aggiornare i nodi figli
 	final int MAXDEPTH = 3;
+	boolean first = true;
 		
 	private Strategy() {
 		
@@ -53,83 +55,185 @@ public class Strategy {
 	public Node generatePartialTree(String player) {
 		Node root = new Node();
 		nodesList.add(0,root);
+		firstNodes.add(root);
+		
 		if(player.equals("white")) {
 			while(depth < MAXDEPTH) {
 				Node actualNode = (Node)nodesList.get(0);
-				Map<Position,PawnClass> actualState = actualNode.getState();
-				for(Map.Entry<Position, PawnClass> entry : actualState.entrySet()) {
-					PawnClass pawn = entry.getValue();
-					//si prendono tutte le pedine bianche nello stato iniziale e si spostano di tutte le possibili posizioni, generando 
-					//nodi figli di root -> i nodi sono quindi posti in testa al nodesList.
-					if(pawn.getType().equals(Pawn.WHITE)) {  
-						moveLeft(pawn,actualNode);
-						moveRight(pawn,actualNode);
-						moveUp(pawn,actualNode);
-						moveDown(pawn,actualNode);
-					}
-				}
+				expandNode(actualNode,Pawn.WHITE);
 				depth++;
+				first = true;
 			}
 		}
 		else {
 			while(depth < MAXDEPTH) {
 				Node actualNode = (Node)nodesList.get(0);
-				Map<Position,PawnClass> actualState = actualNode.getState();
-				for(Map.Entry<Position, PawnClass> entry : actualState.entrySet()) {
-					PawnClass pawn = entry.getValue();
-					//si prendono tutte le pedine nere nello stato iniziale e si spostano di tutte le possibili posizioni, generando 
-					//nodi figli di root -> i nodi sono quindi posti in testa al nodesList.
-					if(pawn.getType().equals(Pawn.BLACK)) {  
-						moveLeft(pawn,actualNode);
-						moveRight(pawn,actualNode);
-						moveUp(pawn,actualNode);
-						moveDown(pawn,actualNode);
-					}
-				}
+				expandNode(actualNode,Pawn.BLACK);
 				depth++;
+				first = true;
 			}
 		}
 		
 		return root;  //ritorna l'albero intero
 	}
 	
-	/*
-	public void minMax(String player) {
-		Node root = new Node();
-		
-		nodesList.add(root);
-		
-		while(!nodesList.isEmpty()) {
-			
-			Node actualNode = (Node)nodesList.get(0);
-			int actualValue = actualNode.getCost();
-			//se il nodo preso è root e ha un valore assegnato
-			if(actualNode.equals(root) && actualValue > 0) {
-				//ritorna il valore assegnato
+	public void expandNode(Node actualNode,Pawn color) {
+		Map<Position,PawnClass> actualState = actualNode.getState();
+		for(Map.Entry<Position, PawnClass> entry : actualState.entrySet()) {
+			PawnClass pawn = entry.getValue();
+			//si prendono tutte le pedine nello stato iniziale e si spostano di tutte le possibili posizioni, generando 
+			//nodi figli di root -> i nodi sono quindi posti in testa al nodesList.
+			if(pawn.getType().equals(color)) {  
+				moveLeft(pawn,actualNode);
+				moveRight(pawn,actualNode);
+				moveUp(pawn,actualNode);
+				moveDown(pawn,actualNode);
 			}
-			else if(!actualNode.equals(root) && actualValue > 0) {
-				Node parent = actualNode.getParent();
-				int parentValue = parent.getCost();
-				if(actualNode.getDepth() % 2 == 0) {   //se l'attuale ha profondità pari significa che è un nodo di Max, quindi il padre è di min
-					Math.min(parentValue, actualValue);
-				}
-				else {
-					Math.max(parentValue, actualValue);
-				}
-				nodesList.remove(0);
-			}
-			
-			
-			
 		}
-		
-		
+	}
+	public void expandNodeAlphaBeta(Node actualNode, Pawn color,int AlphaBetaDepth,int val,int alfa, int beta) {
+		Map<Position,PawnClass> actualState = actualNode.getState();
+		for(Map.Entry<Position, PawnClass> entry : actualState.entrySet()) {
+			PawnClass pawn = entry.getValue();
+			Node parent = actualNode.getParent();
+			if(pawn.getType().equals(color)) {
+				//MOVE LEFT
+				for(int i=0;i<pawn.maxNumberBoxMoveLeft();i++) {
+					int captured = parent.getCaptured();
+					Map state = parent.getState();
+					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
+					Position newPos = new Position(pawn.getRow(),pawn.getColumn()-i);
+					Map newState = updateState(state,pawn,pawn.getRow(),pawn.getColumn()-i);
+					newState = captureVerification(newState, newPos);
+					if(taken) {
+						captured++;
+						taken = false;
+					}
+					String moveFrom = convertCoordinates(oldPos);
+					String moveTo = convertCoordinates(newPos);
+					Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
+					nodesList.add(0, child); 
+					val = Math.max(val, alphaBeta(child,depth+1,alfa,beta,false));
+					alfa = Math.max(alfa, val);
+					if(beta <= alfa)
+						return;
+				}
+				//MOVE RIGHT
+				for(int i=0;i<pawn.maxNumberBoxMoveRight();i++) {
+					int captured = parent.getCaptured();
+					Map state = parent.getState();
+					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
+					Position newPos = new Position(pawn.getRow(),pawn.getColumn()+i);
+					Map newState = updateState(state,pawn,pawn.getRow(),pawn.getColumn()+i);
+					newState = captureVerification(newState, newPos);
+					if(taken) {
+						captured++;
+						taken = false;
+					}
+					String moveFrom = convertCoordinates(oldPos);
+					String moveTo = convertCoordinates(newPos);
+					Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
+					nodesList.add(0, child); 
+					val = Math.max(val, alphaBeta(child,depth+1,alfa,beta,false));
+					alfa = Math.max(alfa, val);
+					if(beta <= alfa)
+						return;
+				}
+				//MOVE UP
+				for(int i=0;i<pawn.maxNumberBoxMoveUp();i++) {
+					int captured = parent.getCaptured();
+					Map state = parent.getState();
+					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
+					Position newPos = new Position(pawn.getRow()-1,pawn.getColumn());
+					Map newState = updateState(state,pawn,pawn.getRow()-1,pawn.getColumn());
+					newState = captureVerification(newState, newPos);
+					if(taken) {
+						captured++;
+						taken = false;
+					}
+					String moveFrom = convertCoordinates(oldPos);
+					String moveTo = convertCoordinates(newPos);
+					Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
+					nodesList.add(0, child); 
+					val = Math.max(val, alphaBeta(child,depth+1,alfa,beta,false));
+					alfa = Math.max(alfa, val);
+					if(beta <= alfa)
+						return;
+				}
+				//MOVE DOWN
+				for(int i=0;i<pawn.maxNumberBoxMoveDown();i++) {
+					int captured = parent.getCaptured();
+					Map state = parent.getState();
+					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
+					Position newPos = new Position(pawn.getRow()+1,pawn.getColumn());
+					Map newState = updateState(state,pawn,pawn.getRow()+1,pawn.getColumn());
+					newState = captureVerification(newState, newPos);
+					if(taken) {
+						captured++;
+						taken = false;
+					}
+					String moveFrom = convertCoordinates(oldPos);
+					String moveTo = convertCoordinates(newPos);
+					Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
+					nodesList.add(0, child); 
+					val = Math.max(val, alphaBeta(child,depth+1,alfa,beta,false));
+					alfa = Math.max(alfa, val);
+					if(beta <= alfa)
+						return;
+				}
+			
+			}
+		}
 	}
 	
+	public int alphaBeta(Node node,int depth,int alfa,int beta, boolean max) {
+		
+		int val;
+		int childCounter = 0;
+		if(depth == 0 || nodesList.get(0) == node ) {
+			//ritorna il valore del nodo
+		}
+		if(max) {
+			val = -500;
+			if(depth != MAXDEPTH-1) { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
+				for(Node child : (ArrayList<Node>) nodesList) {
+					if(child.getParent() == node) {
+						childCounter++;
+						val = Math.max(val, alphaBeta(child,depth+1,alfa,beta,false));
+						alfa = Math.max(alfa, val);
+						if(beta <= alfa)
+							return val;
+					}
+				} 
+				//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
+				if(childCounter == 0) {  
+					expandNodeAlphaBeta(node, Pawn.WHITE, depth, val, alfa, beta); //Dubbi sul colore
+				}
+			}
+			if(depth == MAXDEPTH-1) { //NODI FOGLIA!
+				//con la funzione euristica si assegna il valore al nodo
+				//val =  
+				return val;
+			}
+			return val;
+		}
+		else {
+			val = +500;
+			if(depth != MAXDEPTH-1) { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
+				for(Node child : (ArrayList<Node>) nodesList) {
+					if(child.getParent() == node) {
+						val = Math.min(val, alphaBeta(child,depth-1,alfa,beta,true));
+						alfa = Math.min(beta, val);
+						if(beta <= alfa)
+							return val;
+					}
+				}
+			}
+			return val;	
+		}
+	}
+
 	
-*/	
-	
-	 
 	public String convertCoordinates(Position pos) {
 		String result = "";
 		int row = pos.getRow()+1;  //le righe partono da 1, non da 0.
@@ -172,12 +276,15 @@ public class Strategy {
 			String moveFrom = convertCoordinates(oldPos);
 			String moveTo = convertCoordinates(newPos);
 			Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-			if(depth < MAXDEPTH-1)  // i nodi foglia non vengono messi in lista
-				nodesList.add(0, child); 
+			nodesList.add(0, child); 
+			if(first) {
+				firstNodes.add(child);
+				first = false;
+			}
 		}
 	}
 	public void moveRight(PawnClass pawn,Node parent) {
-		for(int i=0;i<pawn.maxNumberBoxMoveLeft();i++) {
+		for(int i=0;i<pawn.maxNumberBoxMoveRight();i++) {
 			int captured = parent.getCaptured();
 			Map actualState = parent.getState();
 			Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
@@ -191,12 +298,12 @@ public class Strategy {
 			String moveFrom = convertCoordinates(oldPos);
 			String moveTo = convertCoordinates(newPos);
 			Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-			if(depth < MAXDEPTH-1)  // i nodi foglia non vengono messi in lista
-				nodesList.add(0, child); 
+		    nodesList.add(0, child); 
 			}
+			
 		}
 		public void moveUp(PawnClass pawn,Node parent) {
-			for(int i=0;i<pawn.maxNumberBoxMoveLeft();i++) {
+			for(int i=0;i<pawn.maxNumberBoxMoveUp();i++) {
 				int captured = parent.getCaptured();
 				Map actualState = parent.getState();
 				Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
@@ -210,13 +317,12 @@ public class Strategy {
 				String moveFrom = convertCoordinates(oldPos);
 				String moveTo = convertCoordinates(newPos);
 				Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-				if(depth < MAXDEPTH-1)  // i nodi foglia non vengono messi in lista
-					nodesList.add(0, child);  
+				nodesList.add(0, child);  
 			}
 		}
 		public void moveDown(PawnClass pawn,Node parent) {
 			int captured = parent.getCaptured();
-			for(int i=0;i<pawn.maxNumberBoxMoveLeft();i++) {
+			for(int i=0;i<pawn.maxNumberBoxMoveDown();i++) {
 				Map actualState = parent.getState();
 				Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 				Position newPos = new Position(pawn.getRow()+1,pawn.getColumn());
@@ -229,8 +335,7 @@ public class Strategy {
 				String moveFrom = convertCoordinates(oldPos);
 				String moveTo = convertCoordinates(newPos);
 				Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-				if(depth < MAXDEPTH-1)  // i nodi foglia non vengono messi in lista
-					nodesList.add(0, child);  
+				nodesList.add(0, child);  
 			}
 		}
 	
