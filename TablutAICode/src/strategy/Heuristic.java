@@ -1,6 +1,7 @@
 package strategy;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import domain.State.Pawn;
 import util.Node;
@@ -13,6 +14,7 @@ public class Heuristic {
 	private static Heuristic instance;
 	private ArrayList<Position> escapePoints = new ArrayList();
 	private Position escape = null; //salvo la posizione del punto di fuga più vicino
+	private Position castle = new Position(4,4);
 	
 	public static Heuristic getInstance() {
 		if(instance == null) {
@@ -37,14 +39,18 @@ public class Heuristic {
 	}
 	
 	public int whiteHeuristic(Node node) {
+		int sum = 0;
 		Position king = PawnMap.getInstance().findKingPosition(node.getState());
-		int val = 0;
+		
 		//AVENUTA CATTURA
-		int valCaptured = capturedPawn(node);
+		int valCaptured = numberOfPawnCaptured(node, Pawn.WHITE);
 		
 		//RE PROTETTO aggiungo 1 unità al risultato per ogni lato su cui il re è protetto
-		int valProtectedKing = kingProtected(node, king, Pawn.WHITE);
-		
+		int[] valProtectedKing = kingProtected(node, king, Pawn.WHITE);
+		int valProtectedKingOneSide = valProtectedKing[0];
+		int valProtectedKingTwoSide = valProtectedKing[1];
+		int valProtectedKingThreeSide = valProtectedKing[2];
+		int valProtectedKingFourSide = valProtectedKing[3];
 		//DISTANZA DEL RE DAL PUNTO DI FUGA PIù VICINO
 		int valDistanceEscapePoint = distanceBetweenKingEscape(king);
 		
@@ -54,28 +60,89 @@ public class Heuristic {
 		//PEDINA VIENE CATTURATA
 		
 		//RE VIENE CATTURATO
-		
+		int valKingCaptured = kingCaptured(node);
 		//RE IN UN PUNTO DI FUGA => VITTORIA
 		int win = kingInEscapePoint(king);
 		/*CALCOLARE SOMMA PESATA*/
-		return val;
+		return sum;
 	}
 	
 	public int BlackHeuristic(Node node) {
 		Position king = PawnMap.getInstance().findKingPosition(node.getState());
-		int val = 0;
+		int sum = 0;
 		//AVVENUTA CATTURA
-		int valCaptured = capturedPawn(node);
+		int valCaptured = numberOfPawnCaptured(node, Pawn.BLACK);
 		
 		//re chiuso sui lati
-		int valKingTrapped = kingProtected(node, king, Pawn.BLACK);
-		
+		int[] valKingTrapped = kingProtected(node, king, Pawn.BLACK);
+		int valKingTrappeOneSide = valKingTrapped[0];
+		int valKingTrappeTwoSide = valKingTrapped[1];
+		int valKingTrappeThreeSide = valKingTrapped[2];
+		int valKingTrappeFourSide = valKingTrapped[3];
 		//numeor di vie di fuga bloccate al re
 		int valEscapePointBlocked = blockEscapeRoute(node, king);
 		
 		//vedere se ho catturato il re
-		//?????
-		return val;
+		int valKingcaptured = kingCaptured(node);
+		return sum;
+	}
+	
+	public int possibleCaptureKing(Node node, Position king, int[] valKingTrapped) {
+		int valKingTrappeOneSide = valKingTrapped[0];
+		int valKingTrappeTwoSide = valKingTrapped[1];
+		int valKingTrappeThreeSide = valKingTrapped[2];
+		int valKingTrappeFourSide = valKingTrapped[3];
+		if(king.equals(castle)) {
+			//se il re è nel castello lo devo circondare su 4 lati per vincere
+			
+		}else {
+			//se re adiacente al castello mi bastano 3 pedine nere
+			//else -> in un'altra posizione su due lati
+		}
+	}
+	
+	public int numberOfPawnCaptured(Node node, Pawn pawn) {
+		int result = 0;
+		int pawnParent = 0;
+		int pawnChild = 0;
+		Map<Position, PawnClass> parentState = node.getParent().getState();
+		pawnParent = numberOfPawn(parentState, pawn);
+		pawnChild = numberOfPawn(node.getState(), pawn);
+		result = pawnParent - pawnChild;
+		return result;
+	}
+	
+	public int numberOfPawn(Map<Position, PawnClass> map, Pawn pawn) {
+		int cont = 0;
+		boolean white = false;
+		if(pawn.equalsPawn(Pawn.WHITE.toString()))
+			white = true;
+		for(Map.Entry<Position, PawnClass> entry: map.entrySet()) {
+			PawnClass currentPawn = entry.getValue();
+			if(white) {
+				if(currentPawn.getType().equalsPawn(Pawn.WHITE.toString()) || currentPawn.getType().equalsPawn(Pawn.KING.toString()))
+					cont++;
+			}else {
+				if(currentPawn.getType().equalsPawn(Pawn.BLACK.toString())) 
+					cont ++;
+			}
+		}
+		return cont;
+	}
+	
+	public int kingCaptured(Node node) {
+		/*verifica se nella mappa c'è il re, se c'è (=> NON è STATO CATTURATO) ritorna 0
+		 * altrimenti ritorna 1*/
+		int result = 0;
+		for(Map.Entry<Position, PawnClass> entry : node.getState().entrySet()) {
+			PawnClass currentPawn = entry.getValue();
+			if(currentPawn.getType().equalsPawn(Pawn.KING.toString())) {
+				return result;
+			}
+		}
+		result = 1;
+		return result;
+		
 	}
 	
 	public int kingInEscapePoint(Position king) {
@@ -199,8 +266,9 @@ public class Heuristic {
 		return dist;
 	}
 	
-	public int kingProtected(Node node,Position king, Pawn pawn) {
-		int cont = 0;
+	public int[] kingProtected(Node node,Position king, Pawn pawn) {
+		int[] result = {0,0,0,0};
+		int var = 0;
 		Position adjacentKingUp = new Position(king.getRow()-1, king.getColumn());
 		Position adjacentKingDown = new Position(king.getRow()+1, king.getColumn());
 		Position adjacentKingRight = new Position(king.getRow(), king.getColumn()+1);
@@ -208,24 +276,29 @@ public class Heuristic {
 		if(node.getState().containsKey(adjacentKingUp)) {
 			PawnClass p = (PawnClass) node.getState().get(adjacentKingUp);
 			if(p.getType().equalsPawn(pawn.toString()))
-				cont++;
+				var++;
 		}
 		if(node.getState().containsKey(adjacentKingDown)) {
 			PawnClass p = (PawnClass) node.getState().get(adjacentKingDown);
 			if(p.getType().equalsPawn(pawn.toString()))
-				cont++;
+				var++;
 		}
 		if(node.getState().containsKey(adjacentKingRight)) {
 			PawnClass p = (PawnClass) node.getState().get(adjacentKingRight);
 			if(p.getType().equalsPawn(pawn.toString()))
-				cont++;
+				var++;
 		}
 		if(node.getState().containsKey(adjacentKingLeft)) {
 			PawnClass p = (PawnClass) node.getState().get(adjacentKingLeft);
 			if(p.getType().equalsPawn(pawn.toString()))
-				cont++;
+				var++;
 		}
-		return cont;
+		if(var == 0)
+			return result;
+		else {
+			result[var -1] = 1;
+			return result;
+		}
 	}
 	
 	public int capturedPawn(Node node) {
