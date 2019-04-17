@@ -15,6 +15,8 @@ public class Heuristic {
 	private ArrayList<Position> escapePoints = new ArrayList();
 	private Position escape = null; //salvo la posizione del punto di fuga più vicino
 	private Position castle = new Position(4,4);
+	/*posizioni adiacenti al castello*/
+	private ArrayList<Position> adjacentPointsCastle = new ArrayList();
 	
 	public static Heuristic getInstance() {
 		if(instance == null) {
@@ -26,6 +28,7 @@ public class Heuristic {
 	private Heuristic() {
 		/*inizializzo la lista solo la prima volta che chiamo la classse Heuristic*/
 		initEscapePoint();
+		initAdjacentPointsCaste();
 	}
 	
 	public void evaluateNode(Node node) {
@@ -41,10 +44,19 @@ public class Heuristic {
 	public int whiteHeuristic(Node node) {
 		int sum = 0;
 		Position king = PawnMap.getInstance().findKingPosition(node.getState());
-		
+		final double capturedBlack = 0;
+		final double capturedWhite = 0;
+		final double ProtectedKingOneSide = 0;
+		final double ProtectedKingTwoSide = 0;
+		final double ProtectedKingThreeSide = 0;
+		final double ProtectedKingFourSide = 0;
+		final double DistanceEscapePoint = 0;
+		final double RowColumnFree = 0;
+		final double KingCaptured = 0;
+		final double win = 0;	
 		//AVENUTA CATTURA
-		int valCaptured = numberOfPawnCaptured(node, Pawn.WHITE);
-		
+		int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se ho mangiato pedine avversarie
+		int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se sono state mangiate delle mie pedine
 		//RE PROTETTO aggiungo 1 unità al risultato per ogni lato su cui il re è protetto
 		int[] valProtectedKing = kingProtected(node, king, Pawn.WHITE);
 		int valProtectedKingOneSide = valProtectedKing[0];
@@ -62,7 +74,7 @@ public class Heuristic {
 		//RE VIENE CATTURATO
 		int valKingCaptured = kingCaptured(node);
 		//RE IN UN PUNTO DI FUGA => VITTORIA
-		int win = kingInEscapePoint(king);
+		int valwin = kingInEscapePoint(king);
 		/*CALCOLARE SOMMA PESATA*/
 		return sum;
 	}
@@ -70,36 +82,66 @@ public class Heuristic {
 	public int BlackHeuristic(Node node) {
 		Position king = PawnMap.getInstance().findKingPosition(node.getState());
 		int sum = 0;
+		final double capturedWhite = 0;
+		final double capturedBlack = 0;
+		final double KingTrappedOneSide = 0;
+		final double KingTrappedTwoSide = 0;
+		final double KingTrappedThreeSide = 0;
+		final double KingTrappedFourSide = 0;
+		final double EscapePointBlocked = 0;
+		final double Kingcaptured = 0;
+		final double KingWin = 0;
 		//AVVENUTA CATTURA
-		int valCaptured = numberOfPawnCaptured(node, Pawn.BLACK);
+		int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se ho catturato pedine avversarie
+		int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se sono state catturate le mie pedine
 		
 		//re chiuso sui lati
 		int[] valKingTrapped = kingProtected(node, king, Pawn.BLACK);
-		int valKingTrappeOneSide = valKingTrapped[0];
-		int valKingTrappeTwoSide = valKingTrapped[1];
-		int valKingTrappeThreeSide = valKingTrapped[2];
-		int valKingTrappeFourSide = valKingTrapped[3];
+		int valKingTrappedOneSide = valKingTrapped[0];
+		int valKingTrappedTwoSide = valKingTrapped[1];
+		int valKingTrappedThreeSide = valKingTrapped[2];
+		int valKingTrappedFourSide = valKingTrapped[3];
 		//numeor di vie di fuga bloccate al re
 		int valEscapePointBlocked = blockEscapeRoute(node, king);
 		
 		//vedere se ho catturato il re
 		int valKingcaptured = kingCaptured(node);
+		//vedere se il re è in un punto di fuga
+		int valKingWin = kingInEscapePoint(king);
 		return sum;
 	}
 	
-	public int possibleCaptureKing(Node node, Position king, int[] valKingTrapped) {
-		int valKingTrappeOneSide = valKingTrapped[0];
-		int valKingTrappeTwoSide = valKingTrapped[1];
-		int valKingTrappeThreeSide = valKingTrapped[2];
-		int valKingTrappeFourSide = valKingTrapped[3];
+	/*public int possibleCaptureKingInOneMove(Node node, Position king, int valKingTrappeThreeSide, int valKingTrappeOneSide, int valKingTrappeTwoSide) {
+		int result = 0;
+		Map<Position, PawnClass> map = node.getState();
 		if(king.equals(castle)) {
 			//se il re è nel castello lo devo circondare su 4 lati per vincere
 			
+			if(valKingTrappeThreeSide == 1) {
+				//il re ha tre pedine nere su tre lati, verifico se il quarto lato è libero
+				for(Position position: adjacentPointsCastle) {
+					if(!(map.containsKey(position) && map.get(position).getType().equalsPawn(Pawn.BLACK.toString()))) {
+						//o la casella è vuota o c'è una pedina bianca
+						if(!map.containsKey(position)) {
+							//la casella è libera
+							result = 1;
+						}
+					}
+				}
+			}
 		}else {
-			//se re adiacente al castello mi bastano 3 pedine nere
-			//else -> in un'altra posizione su due lati
+			if(adjacentPointsCastle.contains(king)) {
+				//re si trova adiacente al castello
+				if(valKingTrappeTwoSide == 1) {
+					if(map.containsKey() && map.get(position).getType().equalsPawn(Pawn.BLACK.toString())) {
+						
+					}
+				}
+			}else {
+				//re in un'altra posizione 
+			}
 		}
-	}
+	}*/
 	
 	public int numberOfPawnCaptured(Node node, Pawn pawn) {
 		int result = 0;
@@ -333,6 +375,13 @@ public class Heuristic {
 			break;
 		}
 		return result;
+	}
+	
+	public void initAdjacentPointsCaste() {
+		adjacentPointsCastle.add(new Position(3,4));
+		adjacentPointsCastle.add(new Position(4,3));
+		adjacentPointsCastle.add(new Position(4,5));
+		adjacentPointsCastle.add(new Position(5,4));
 	}
 	
 	public void initEscapePoint() {
