@@ -26,7 +26,7 @@ public class PawnMap {
 			map.clear();
 		}
 		for(int i = 0; i < state.getBoard().length; i++) {
-			for(int j = 0; j < state.getBoard()[0].length; j++) {
+			for(int j = 0; j < state.getBoard().length; j++) {
 				switch(state.getBoard()[i][j]) {
 				case WHITE:
 					map.put(new Position(i,j), new PawnClass(i, j, Pawn.WHITE));
