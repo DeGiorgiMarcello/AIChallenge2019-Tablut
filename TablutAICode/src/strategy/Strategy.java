@@ -17,6 +17,7 @@ public class Strategy {
 	private static Strategy instance;
 	private ArrayList nodesList = new ArrayList<Node>();
 	private ArrayList firstNodes = new ArrayList<Node>();   //lista dei primi nodi per ogni depth
+	private String player; 
 	private int depth = 0;
 	private ArrayList<Position> citadels = new ArrayList<Position>();
 	private Position castle = new Position(4,4);
@@ -28,8 +29,7 @@ public class Strategy {
 	final int MAXDEPTH = 3;
 	boolean first = true;
 		
-	private Strategy() {
-		
+	private Strategy() {	
 	}
 	
 	public static Strategy getInstance() {
@@ -45,14 +45,18 @@ public class Strategy {
 		//Inizializzazione variabili globali
 		depth = 0;
 		nodesList.clear();
+		this.player = player;
 		//----------------
-		Node partialTree = generatePartialTree(player);
+		Node partialTree = generatePartialTree();
+		int alfa = -500;  //-infinito
+		int beta = 500;   //+infinito
+		alphaBeta(partialTree,0,alfa,beta,true);  //si inizializza con la root
 		
 		
 		return move;
 	}
 	
-	public Node generatePartialTree(String player) {
+	public Node generatePartialTree() {
 		Node root = new Node();
 		nodesList.add(0,root);
 		firstNodes.add(root);
@@ -91,7 +95,7 @@ public class Strategy {
 			}
 		}
 	}
-	public void expandNodeAlphaBeta(Node actualNode, Pawn color,int AlphaBetaDepth,int val,int alfa, int beta) {
+	public void expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDepth,int val,int alfa, int beta,boolean max) {
 		Map<Position,PawnClass> actualState = actualNode.getState();
 		for(Map.Entry<Position, PawnClass> entry : actualState.entrySet()) {
 			PawnClass pawn = entry.getValue();
@@ -111,13 +115,22 @@ public class Strategy {
 					}
 					String moveFrom = convertCoordinates(oldPos);
 					String moveTo = convertCoordinates(newPos);
-					Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
+					Node child = new Node(alphaBetaDepth+1,newState,parent,captured,moveFrom,moveTo);
 					nodesList.add(0, child); 
-					val = Math.max(val, alphaBeta(child,depth+1,alfa,beta,false));
-					alfa = Math.max(alfa, val);
-					if(beta <= alfa)
-						return;
+					if(max) {
+						val = Math.max(val, alphaBeta(child,alphaBetaDepth+1,alfa,beta,false));
+						alfa = Math.max(alfa, val);
+						if(beta <= alfa)
+							return;
+					}
+					else {
+						val = Math.min(val, alphaBeta(child,alphaBetaDepth-1,alfa,beta,true));
+						alfa = Math.min(beta, val);
+						if(beta <= alfa)
+							return;
+					}		
 				}
+				
 				//MOVE RIGHT
 				for(int i=0;i<pawn.maxNumberBoxMoveRight();i++) {
 					int captured = parent.getCaptured();
@@ -134,10 +147,18 @@ public class Strategy {
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
 					nodesList.add(0, child); 
-					val = Math.max(val, alphaBeta(child,depth+1,alfa,beta,false));
-					alfa = Math.max(alfa, val);
-					if(beta <= alfa)
-						return;
+					if(max) {
+						val = Math.max(val, alphaBeta(child,alphaBetaDepth+1,alfa,beta,false));
+						alfa = Math.max(alfa, val);
+						if(beta <= alfa)
+							return;
+					}
+					else {
+						val = Math.min(val, alphaBeta(child,alphaBetaDepth-1,alfa,beta,true));
+						alfa = Math.min(beta, val);
+						if(beta <= alfa)
+							return;
+					}		
 				}
 				//MOVE UP
 				for(int i=0;i<pawn.maxNumberBoxMoveUp();i++) {
@@ -155,10 +176,18 @@ public class Strategy {
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
 					nodesList.add(0, child); 
-					val = Math.max(val, alphaBeta(child,depth+1,alfa,beta,false));
-					alfa = Math.max(alfa, val);
-					if(beta <= alfa)
-						return;
+					if(max) {
+						val = Math.max(val, alphaBeta(child,alphaBetaDepth+1,alfa,beta,false));
+						alfa = Math.max(alfa, val);
+						if(beta <= alfa)
+							return;
+					}
+					else {
+						val = Math.min(val, alphaBeta(child,alphaBetaDepth-1,alfa,beta,true));
+						alfa = Math.min(beta, val);
+						if(beta <= alfa)
+							return;
+					}		
 				}
 				//MOVE DOWN
 				for(int i=0;i<pawn.maxNumberBoxMoveDown();i++) {
@@ -176,10 +205,18 @@ public class Strategy {
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
 					nodesList.add(0, child); 
-					val = Math.max(val, alphaBeta(child,depth+1,alfa,beta,false));
-					alfa = Math.max(alfa, val);
-					if(beta <= alfa)
-						return;
+					if(max) {
+						val = Math.max(val, alphaBeta(child,alphaBetaDepth+1,alfa,beta,false));
+						alfa = Math.max(alfa, val);
+						if(beta <= alfa)
+							return;
+					}
+					else {
+						val = Math.min(val, alphaBeta(child,alphaBetaDepth-1,alfa,beta,true));
+						alfa = Math.min(beta, val);
+						if(beta <= alfa)
+							return;
+					}		
 				}
 			
 			}
@@ -187,9 +224,18 @@ public class Strategy {
 	}
 	
 	public int alphaBeta(Node node,int depth,int alfa,int beta, boolean max) {
-		
 		int val;
 		int childCounter = 0;
+		Pawn maxColor,minColor;
+		if(player.equals("white")) {
+			 maxColor = Pawn.WHITE;
+			 minColor = Pawn.BLACK;
+		}
+		else {
+			 maxColor = Pawn.BLACK;
+			 minColor = Pawn.WHITE;
+			
+		}
 		if(depth == 0 || nodesList.get(0) == node ) {
 			//ritorna il valore del nodo
 		}
@@ -207,7 +253,7 @@ public class Strategy {
 				} 
 				//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
 				if(childCounter == 0) {  
-					expandNodeAlphaBeta(node, Pawn.WHITE, depth, val, alfa, beta); //Dubbi sul colore
+					expandNodeAlphaBeta(node, maxColor, depth, val, alfa, beta,max); 
 				}
 			}
 			if(depth == MAXDEPTH-1) { //NODI FOGLIA!
@@ -228,6 +274,15 @@ public class Strategy {
 							return val;
 					}
 				}
+				//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
+				if(childCounter == 0) {  
+					expandNodeAlphaBeta(node, minColor, depth, val, alfa, beta,!max); 
+				}
+			}
+			if(depth == MAXDEPTH-1) { //NODI FOGLIA!
+				//con la funzione euristica si assegna il valore al nodo
+				//val =  
+				return val;
 			}
 			return val;	
 		}
