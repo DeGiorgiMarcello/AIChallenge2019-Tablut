@@ -1,6 +1,7 @@
 package util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import domain.State;
@@ -9,7 +10,7 @@ import domain.State.Pawn;
 public class PawnMap {
 	private static PawnMap instance;
 	
-	private Map<Position, PawnClass> map = new java.util.HashMap<Position, PawnClass>();
+	private Map<Position, PawnClass> map = new HashMap<Position, PawnClass>();
 	
 	private PawnMap() {
 		
@@ -44,7 +45,7 @@ public class PawnMap {
 
 	
 	public void printMap() {
-		map.forEach((position, pawn) -> System.out.println(pawn.toString() + "In position "+position.toString()));
+		map.forEach((position, pawn) -> System.out.println(pawn.toString() + " In position "+position.toString()));
 	}
 	
 	public Map<Position, PawnClass> getMap() {
