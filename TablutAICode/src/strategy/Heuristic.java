@@ -41,18 +41,18 @@ public class Heuristic {
 		}
 	}
 	
-	public int whiteHeuristic(Node node) {
-		int sum = 0;
+	public double whiteHeuristic(Node node) {
+		double sum = 0;
 		Position king = PawnMap.getInstance().findKingPosition(node.getState());
 		final double capturedBlack = 0;
 		final double capturedWhite = 0;
-		final double ProtectedKingOneSide = 0;
-		final double ProtectedKingTwoSide = 0;
-		final double ProtectedKingThreeSide = 0;
-		final double ProtectedKingFourSide = 0;
-		final double DistanceEscapePoint = 0;
-		final double RowColumnFree = 0;
-		final double KingCaptured = 0;
+		final double protectedKingOneSide = 0;
+		final double protectedKingTwoSide = 0;
+		final double protectedKingThreeSide = 0;
+		final double protectedKingFourSide = 0;
+		final double distanceEscapePoint = 0;
+		final double rowColumnFree = 0;
+		final double kingCaptured = 0;
 		final double win = 0;	
 		//AVENUTA CATTURA
 		int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se ho mangiato pedine avversarie
@@ -76,21 +76,24 @@ public class Heuristic {
 		//RE IN UN PUNTO DI FUGA => VITTORIA
 		int valwin = kingInEscapePoint(king);
 		/*CALCOLARE SOMMA PESATA*/
-		return sum;
+		return capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite+protectedKingOneSide*valProtectedKingOneSide+
+				protectedKingTwoSide*valProtectedKingTwoSide+protectedKingThreeSide*valProtectedKingThreeSide+
+				protectedKingFourSide*valProtectedKingFourSide+distanceEscapePoint*valDistanceEscapePoint+
+				rowColumnFree*valRowColumnFree+kingCaptured*valKingCaptured+win*valwin;
 	}
 	
-	public int BlackHeuristic(Node node) {
+	public double BlackHeuristic(Node node) {
 		Position king = PawnMap.getInstance().findKingPosition(node.getState());
-		int sum = 0;
+		double sum = 0;
 		final double capturedWhite = 0;
 		final double capturedBlack = 0;
-		final double KingTrappedOneSide = 0;
-		final double KingTrappedTwoSide = 0;
-		final double KingTrappedThreeSide = 0;
-		final double KingTrappedFourSide = 0;
-		final double EscapePointBlocked = 0;
-		final double Kingcaptured = 0;
-		final double KingWin = 0;
+		final double kingTrappedOneSide = 0;
+		final double kingTrappedTwoSide = 0;
+		final double kingTrappedThreeSide = 0;
+		final double kingTrappedFourSide = 0;
+		final double escapePointBlocked = 0;
+		final double kingcaptured = 0;
+		final double kingWin = 0;
 		//AVVENUTA CATTURA
 		int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se ho catturato pedine avversarie
 		int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se sono state catturate le mie pedine
@@ -108,7 +111,9 @@ public class Heuristic {
 		int valKingcaptured = kingCaptured(node);
 		//vedere se il re è in un punto di fuga
 		int valKingWin = kingInEscapePoint(king);
-		return sum;
+		return capturedWhite*valCapturedWhite+capturedBlack*valCapturedBlack+kingTrappedOneSide*valKingTrappedOneSide+
+				kingTrappedTwoSide*valKingTrappedTwoSide+kingTrappedThreeSide*valKingTrappedThreeSide+kingTrappedFourSide*valKingTrappedFourSide
+				+escapePointBlocked*valEscapePointBlocked+kingcaptured*valKingcaptured+kingWin*valKingWin;
 	}
 	
 	/*public int possibleCaptureKingInOneMove(Node node, Position king, int valKingTrappeThreeSide, int valKingTrappeOneSide, int valKingTrappeTwoSide) {
