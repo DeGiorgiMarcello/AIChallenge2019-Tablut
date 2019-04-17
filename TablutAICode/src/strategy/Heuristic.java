@@ -31,13 +31,13 @@ public class Heuristic {
 		initAdjacentPointsCaste();
 	}
 	
-	public void evaluateNode(Node node) {
+	public double evaluateNode(Node node) {
 		Position position = convertLetterToInt(node.getPawnMoveTo());
 		PawnClass pawn = (PawnClass) node.getState().get(position);
 		if(pawn.getType().equalsPawn(Pawn.WHITE.toString()) || pawn.getType().equalsPawn(Pawn.KING.toString()) ) {
-			//funzione euristica per giocatore bianco
+			return whiteHeuristic(node);
 		}else {
-			//funzione euristica per giocatore nero
+			return BlackHeuristic(node);
 		}
 	}
 	

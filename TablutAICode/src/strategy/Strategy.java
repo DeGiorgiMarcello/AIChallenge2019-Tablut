@@ -95,7 +95,7 @@ public class Strategy {
 			}
 		}
 	}
-	public void expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDepth,int val,int alfa, int beta,boolean max) {
+	public void expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDepth,double val,double alfa, double beta,boolean max) {
 		Map<Position,PawnClass> actualState = actualNode.getState();
 		for(Map.Entry<Position, PawnClass> entry : actualState.entrySet()) {
 			PawnClass pawn = entry.getValue();
@@ -223,8 +223,8 @@ public class Strategy {
 		}
 	}
 	
-	public int alphaBeta(Node node,int depth,int alfa,int beta, boolean max) {
-		int val;
+	public double alphaBeta(Node node,int depth,double alfa,double beta, boolean max) {
+		double val;
 		int childCounter = 0;
 		Pawn maxColor,minColor;
 		if(player.equals("white")) {
@@ -236,8 +236,8 @@ public class Strategy {
 			 minColor = Pawn.WHITE;
 			
 		}
-		if(depth == 0 || nodesList.get(0) == node ) {
-			//ritorna il valore del nodo
+		if(depth == 0 && nodesList.get(0) == node ) {    //incerto su questo
+		 Heuristic.getInstance().evaluateNode(node);
 		}
 		if(max) {
 			val = -500;
@@ -258,7 +258,7 @@ public class Strategy {
 			}
 			if(depth == MAXDEPTH-1) { //NODI FOGLIA!
 				//con la funzione euristica si assegna il valore al nodo
-				//val =  
+				val = Heuristic.getInstance().evaluateNode(node);  
 				return val;
 			}
 			return val;
