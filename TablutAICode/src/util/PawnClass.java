@@ -199,6 +199,15 @@ public class PawnClass {
 	public String toString() {
 		return "Pawn "+type.toString();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		PawnClass pawnClass = (PawnClass) obj;
+		if(pawnClass.getRow() == this.row && pawnClass.getColumn() == this.column && pawnClass.getType().equalsPawn(this.getType().toString()))
+			return true;
+		else
+			return false;
+	}
 	
 	
 
