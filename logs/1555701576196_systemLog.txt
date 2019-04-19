@@ -1,0 +1,24 @@
+apr 19, 2019 9:19:36 PM server.Server run
+BUONO: Accensione server
+apr 19, 2019 9:19:36 PM server.Server run
+BUONO: Partita di Tablut
+apr 19, 2019 9:19:39 PM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+apr 19, 2019 9:19:39 PM server.Server run
+BUONO: Lettura nome player bianco in corso..
+apr 19, 2019 9:19:40 PM server.Server run
+BUONO: White player name:	Topolino
+apr 19, 2019 9:19:41 PM server.Server run
+BUONO: Accettata connessione con client giocatore Nero
+apr 19, 2019 9:19:41 PM server.Server run
+BUONO: Lettura nome player nero in corso..
+apr 19, 2019 9:19:42 PM server.Server run
+BUONO: Black player name:	pippo
+apr 19, 2019 9:19:43 PM server.Server run
+BUONO: Invio messaggio ai giocatori
+apr 19, 2019 9:19:43 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+apr 19, 2019 9:19:44 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from null to null
+apr 19, 2019 9:19:44 PM server.Server run
+AVVERTENZA: Chiusura sistema per troppi errori giocatore bianco
