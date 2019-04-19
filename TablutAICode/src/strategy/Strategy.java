@@ -8,6 +8,7 @@ import java.util.Set;
 import util.Position;
 
 import domain.State.Pawn;
+import util.BestNode;
 import util.Node;
 import util.PawnClass;
 import util.PawnMap;
@@ -50,8 +51,10 @@ public class Strategy {
 		Node partialTree = generatePartialTree();
 		int alfa = -500;  //-infinito
 		int beta = 500;   //+infinito
-		alphaBeta(partialTree,0,alfa,beta,true);  //si inizializza con la root
-		
+		BestNode alphaBetaBestNode = alphaBeta(partialTree,0,alfa,beta,true);  //si inizializza con la root
+		Node bestNode = alphaBetaBestNode.getNode();
+		move[0] = bestNode.getPawnMoveFrom();
+		move[1] = bestNode.getPawnMoveTo();
 		
 		return move;
 	}
@@ -116,15 +119,20 @@ public class Strategy {
 					String moveFrom = convertCoordinates(oldPos);
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(alphaBetaDepth+1,newState,parent,captured,moveFrom,moveTo);
-					nodesList.add(0, child); 
+					if(depth < MAXDEPTH-1)
+						nodesList.add(0, child);
 					if(max) {
-						val = Math.max(val, alphaBeta(child,alphaBetaDepth+1,alfa,beta,false));
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
+						double childVal = childNode.getVal();
+						val = Math.max(val, childVal);
 						alfa = Math.max(alfa, val);
 						if(beta <= alfa)
 							return;
 					}
 					else {
-						val = Math.min(val, alphaBeta(child,alphaBetaDepth-1,alfa,beta,true));
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,true);
+						double childVal = childNode.getVal();
+						val = Math.min(val, childVal);
 						alfa = Math.min(beta, val);
 						if(beta <= alfa)
 							return;
@@ -146,15 +154,20 @@ public class Strategy {
 					String moveFrom = convertCoordinates(oldPos);
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-					nodesList.add(0, child); 
+					if(depth < MAXDEPTH-1)
+						nodesList.add(0, child); 
 					if(max) {
-						val = Math.max(val, alphaBeta(child,alphaBetaDepth+1,alfa,beta,false));
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
+						double childVal = childNode.getVal();
+						val = Math.max(val, childVal);
 						alfa = Math.max(alfa, val);
 						if(beta <= alfa)
 							return;
 					}
 					else {
-						val = Math.min(val, alphaBeta(child,alphaBetaDepth-1,alfa,beta,true));
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,true);
+						double childVal = childNode.getVal();
+						val = Math.min(val, childVal);
 						alfa = Math.min(beta, val);
 						if(beta <= alfa)
 							return;
@@ -175,15 +188,20 @@ public class Strategy {
 					String moveFrom = convertCoordinates(oldPos);
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-					nodesList.add(0, child); 
+					if(depth < MAXDEPTH-1)
+						nodesList.add(0, child); 
 					if(max) {
-						val = Math.max(val, alphaBeta(child,alphaBetaDepth+1,alfa,beta,false));
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
+						double childVal = childNode.getVal();
+						val = Math.max(val, childVal);
 						alfa = Math.max(alfa, val);
 						if(beta <= alfa)
 							return;
 					}
 					else {
-						val = Math.min(val, alphaBeta(child,alphaBetaDepth-1,alfa,beta,true));
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,true);
+						double childVal = childNode.getVal();
+						val = Math.min(val, childVal);
 						alfa = Math.min(beta, val);
 						if(beta <= alfa)
 							return;
@@ -204,18 +222,27 @@ public class Strategy {
 					String moveFrom = convertCoordinates(oldPos);
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-					nodesList.add(0, child); 
+					if(depth < MAXDEPTH-1)
+						nodesList.add(0, child); 
 					if(max) {
-						val = Math.max(val, alphaBeta(child,alphaBetaDepth+1,alfa,beta,false));
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
+						double childVal = childNode.getVal();
+						val = Math.max(val, childVal);
 						alfa = Math.max(alfa, val);
-						if(beta <= alfa)
+						if(beta <= alfa) {
+							nodesList.remove(child);
 							return;
+						}
 					}
 					else {
-						val = Math.min(val, alphaBeta(child,alphaBetaDepth-1,alfa,beta,true));
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,true);
+						double childVal = childNode.getVal();
+						val = Math.min(val, childVal);
 						alfa = Math.min(beta, val);
-						if(beta <= alfa)
+						if(beta <= alfa) {
+							nodesList.remove(child);
 							return;
+						}
 					}		
 				}
 			
@@ -223,7 +250,7 @@ public class Strategy {
 		}
 	}
 	
-	public double alphaBeta(Node node,int depth,double alfa,double beta, boolean max) {
+	public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean max) {
 		double val;
 		int childCounter = 0;
 		Pawn maxColor,minColor;
@@ -236,8 +263,8 @@ public class Strategy {
 			 minColor = Pawn.WHITE;
 			
 		}
-		if(depth == 0 && nodesList.get(0) == node ) {    //incerto su questo
-		 Heuristic.getInstance().evaluateNode(node);
+		if(depth == 0 && nodesList.get(0) == node ) {  
+			Heuristic.getInstance().evaluateNode(node);
 		}
 		if(max) {
 			val = -500;
@@ -245,10 +272,13 @@ public class Strategy {
 				for(Node child : (ArrayList<Node>) nodesList) {
 					if(child.getParent() == node) {
 						childCounter++;
-						val = Math.max(val, alphaBeta(child,depth+1,alfa,beta,false));
+						BestNode childNode = alphaBeta(child,depth+1,alfa,beta,false);
+						double childVal = childNode.getVal();
+						val = Math.max(val, childVal);
 						alfa = Math.max(alfa, val);
 						if(beta <= alfa)
-							return val;
+							nodesList.remove(child);
+							return childNode;
 					}
 				} 
 				//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
@@ -259,19 +289,22 @@ public class Strategy {
 			if(depth == MAXDEPTH-1) { //NODI FOGLIA!
 				//con la funzione euristica si assegna il valore al nodo
 				val = Heuristic.getInstance().evaluateNode(node);  
-				return val;
+				return new BestNode(node,val);
 			}
-			return val;
+			return new BestNode(node,val);
 		}
 		else {
 			val = +500;
 			if(depth != MAXDEPTH-1) { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
 				for(Node child : (ArrayList<Node>) nodesList) {
 					if(child.getParent() == node) {
-						val = Math.min(val, alphaBeta(child,depth-1,alfa,beta,true));
+						BestNode childNode = alphaBeta(child,depth+1,alfa,beta,true);
+						double childVal = childNode.getVal();
+						val = Math.max(val, childVal);
 						alfa = Math.min(beta, val);
 						if(beta <= alfa)
-							return val;
+							nodesList.remove(child);
+							return childNode;
 					}
 				}
 				//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
@@ -281,10 +314,10 @@ public class Strategy {
 			}
 			if(depth == MAXDEPTH-1) { //NODI FOGLIA!
 				//con la funzione euristica si assegna il valore al nodo
-				//val =  
-				return val;
+				val = Heuristic.getInstance().evaluateNode(node);  
+				return new BestNode(node,val);
 			}
-			return val;	
+			return new BestNode(node,val);
 		}
 	}
 
@@ -331,7 +364,8 @@ public class Strategy {
 			String moveFrom = convertCoordinates(oldPos);
 			String moveTo = convertCoordinates(newPos);
 			Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-			nodesList.add(0, child); 
+			if(depth < MAXDEPTH-1)
+				nodesList.add(0, child); 
 			if(first) {
 				firstNodes.add(child);
 				first = false;
@@ -353,7 +387,8 @@ public class Strategy {
 			String moveFrom = convertCoordinates(oldPos);
 			String moveTo = convertCoordinates(newPos);
 			Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-		    nodesList.add(0, child); 
+			if(depth < MAXDEPTH-1)
+				nodesList.add(0, child); 
 			}
 			
 		}
@@ -372,7 +407,8 @@ public class Strategy {
 				String moveFrom = convertCoordinates(oldPos);
 				String moveTo = convertCoordinates(newPos);
 				Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-				nodesList.add(0, child);  
+				if(depth < MAXDEPTH-1)
+					nodesList.add(0, child);
 			}
 		}
 		public void moveDown(PawnClass pawn,Node parent) {
@@ -390,7 +426,8 @@ public class Strategy {
 				String moveFrom = convertCoordinates(oldPos);
 				String moveTo = convertCoordinates(newPos);
 				Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-				nodesList.add(0, child);  
+				if(depth < MAXDEPTH-1)
+					nodesList.add(0, child);  
 			}
 		}
 	

@@ -1,0 +1,16 @@
+apr 19, 2019 7:41:02 PM server.Server run
+BUONO: Accensione server
+apr 19, 2019 7:41:02 PM server.Server run
+BUONO: Partita di Tablut
+apr 19, 2019 7:41:12 PM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+apr 19, 2019 7:41:12 PM server.Server run
+BUONO: Lettura nome player bianco in corso..
+apr 19, 2019 7:41:13 PM server.Server run
+BUONO: White player name:	Topolino
+apr 19, 2019 7:41:16 PM server.Server run
+BUONO: Accettata connessione con client giocatore Nero
+apr 19, 2019 7:41:16 PM server.Server run
+BUONO: Lettura nome player nero in corso..
+apr 19, 2019 7:41:17 PM server.Server run
+BUONO: Black player name:	pippo

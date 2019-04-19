@@ -4,13 +4,17 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import domain.*;
 import domain.State.Turn;
+import strategy.Strategy;
+import util.PawnMap;
 
 public class TablutAIClient extends TablutClient {
 	
+	String player;
 
 	public TablutAIClient(String player, String name) throws UnknownHostException, IOException {
 		super(player, name);
 		// TODO Auto-generated constructor stub
+		player = this.player;
 	}
 	
 	//per lanciarlo inserire giocatore e nome come argomenti
@@ -50,11 +54,11 @@ public class TablutAIClient extends TablutClient {
 					*/
 					if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITE)) {
 						System.out.println("Player "+this.getPlayer().toString()+ " is moving.");
-						//Map.getInstance().createMap(this.getCurrentState());  -> inserire nel metodo un controllo se l'hashmap è già stato creato.
-						//Strategy strategy = Stragegy.getInstance();
-						//move = strategy.getMove(this.player); -> array di due stringhe
-						//actionStringFrom = move[0];
-						//actionStringTo = move[1];
+						PawnMap.getInstance().createMap(this.getCurrentState());  
+						Strategy strategy = Strategy.getInstance();
+						move = strategy.getMove(this.player); 
+						actionStringFrom = move[0];
+						actionStringTo = move[1];
 						action = new Action(actionStringFrom, actionStringTo, this.getPlayer());
 						this.write(action);  // la mossa viene mandata al server
 					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {

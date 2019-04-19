@@ -1,0 +1,10 @@
+apr 19, 2019 7:37:58 PM server.Server run
+BUONO: Accensione server
+apr 19, 2019 7:37:58 PM server.Server run
+BUONO: Partita di Tablut
+apr 19, 2019 7:38:21 PM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+apr 19, 2019 7:38:21 PM server.Server run
+BUONO: Lettura nome player bianco in corso..
+apr 19, 2019 7:38:23 PM server.Server run
+BUONO: White player name:	Pippo
