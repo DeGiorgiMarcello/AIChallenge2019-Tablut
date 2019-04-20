@@ -4,10 +4,6 @@ package test;
 import static org.junit.Assert.assertThat;*/
 import java.util.HashMap;
 import java.util.Map;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 import org.junit.*;
 
@@ -20,15 +16,22 @@ import util.Position;
 import util.PawnClass;
 
 public class PawnMapTest {
-	private PawnMap underTest = PawnMap.getInstance();
-	private State state = new StateTablut();
+	PawnMap underTest;
+	State state;
+	TestUtil testUtil;
+	@Before
+	public void init() {
+		underTest = PawnMap.getInstance();
+		state = new StateTablut();
+		testUtil = new TestUtil();
+	}
 	
 	@Test
-	public void testCreateMap() throws Throwable{
+	public void testCreateMap(){
 		
 		underTest.createMap(state);
-		TestUtil testUtil = new TestUtil();
-		if(testUtil.mapCreated.keySet().equals(underTest.getMap().keySet()))
+		System.out.println(underTest.getMap().get(new Position(4,4)).toString());
+		if(testUtil.mapCreated.keySet().containsAll(underTest.getMap().keySet()))
 			System.out.println("EQ");
 		else
 			System.out.println("NOT EQ");

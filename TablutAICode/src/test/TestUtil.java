@@ -8,7 +8,7 @@ import util.PawnClass;
 import util.Position;
 
 public class TestUtil {
-	Map<Position, PawnClass> mapCreated = new HashMap();
+	Map<Position, PawnClass> mapCreated = new HashMap<Position, PawnClass>();
 	
 	public TestUtil() {
 		initMapCreated();
@@ -41,5 +41,7 @@ public class TestUtil {
 		mapCreated.put(new Position(8,4), new PawnClass(8, 4, Pawn.BLACK));
 		mapCreated.put(new Position(8,5), new PawnClass(8, 5, Pawn.BLACK));
 	}
+	
+	
 	
 }

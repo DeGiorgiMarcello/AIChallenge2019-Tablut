@@ -31,7 +31,7 @@ public class Heuristic {
 		initAdjacentPointsCaste();
 	}
 	
-	public double evaluateNode(Node node) {
+	public int evaluateNode(Node node) {
 		Position position = convertLetterToInt(node.getPawnMoveTo());
 		PawnClass pawn = (PawnClass) node.getState().get(position);
 		if(pawn.getType().equalsPawn(Pawn.WHITE.toString()) || pawn.getType().equalsPawn(Pawn.KING.toString()) ) {
@@ -41,19 +41,19 @@ public class Heuristic {
 		}
 	}
 	
-	public double whiteHeuristic(Node node) {
-		double sum = 0;
+	public int whiteHeuristic(Node node) {
+		int sum = 0;
 		Position king = PawnMap.getInstance().findKingPosition(node.getState());
-		final double capturedBlack = 0;
-		final double capturedWhite = 0;
-		final double protectedKingOneSide = 0;
-		final double protectedKingTwoSide = 0;
-		final double protectedKingThreeSide = 0;
-		final double protectedKingFourSide = 0;
-		final double distanceEscapePoint = 0;
-		final double rowColumnFree = 0;
-		final double kingCaptured = 0;
-		final double win = 0;	
+		final int capturedBlack = 1;
+		final int capturedWhite = -1;
+		final int protectedKingOneSide = 3;
+		final int protectedKingTwoSide = 6;
+		final int protectedKingThreeSide = 4;
+		final int protectedKingFourSide = 2;
+		final int distanceEscapePoint = 1;
+		final int rowColumnFree = 20;
+		final int kingCaptured = -100;
+		final int win = 100;	
 		//AVENUTA CATTURA
 		int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se ho mangiato pedine avversarie
 		int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se sono state mangiate delle mie pedine
@@ -82,18 +82,18 @@ public class Heuristic {
 				rowColumnFree*valRowColumnFree+kingCaptured*valKingCaptured+win*valwin;
 	}
 	
-	public double BlackHeuristic(Node node) {
+	public int BlackHeuristic(Node node) {
 		Position king = PawnMap.getInstance().findKingPosition(node.getState());
-		double sum = 0;
-		final double capturedWhite = 0;
-		final double capturedBlack = 0;
-		final double kingTrappedOneSide = 0;
-		final double kingTrappedTwoSide = 0;
-		final double kingTrappedThreeSide = 0;
-		final double kingTrappedFourSide = 0;
-		final double escapePointBlocked = 0;
-		final double kingcaptured = 0;
-		final double kingWin = 0;
+		int sum = 0;
+		final int capturedWhite = 1;
+		final int capturedBlack = -1;
+		final int kingTrappedOneSide = 2;
+		final int kingTrappedTwoSide = 3;
+		final int kingTrappedThreeSide = 4;
+		final int kingTrappedFourSide = 6;
+		final int escapePointBlocked = 20;
+		final int kingcaptured = 100;
+		final int kingWin = -100;
 		//AVVENUTA CATTURA
 		int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se ho catturato pedine avversarie
 		int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se sono state catturate le mie pedine
@@ -152,8 +152,9 @@ public class Heuristic {
 		int result = 0;
 		int pawnParent = 0;
 		int pawnChild = 0;
-		Map<Position, PawnClass> parentState = node.getParent().getState();
-		pawnParent = numberOfPawn(parentState, pawn);
+		Map<Position, PawnClass> rootState = PawnMap.getInstance().getMap();
+		//Map<Position, PawnClass> parentState = node.getParent().getState();
+		pawnParent = numberOfPawn(rootState, pawn);
 		pawnChild = numberOfPawn(node.getState(), pawn);
 		result = pawnParent - pawnChild;
 		return result;
