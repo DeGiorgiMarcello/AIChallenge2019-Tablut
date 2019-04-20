@@ -472,7 +472,9 @@ public class Strategy {
 		 * 2 LA MAPPA CONTIENE UN ELEMENTO DUE POSIZIONI SOPRA LA PEDINA SPOSTATA
 		 * 3 SE LA PEDINA SUBITO SOPRA A QUELLA APPENA SPOSTATA è DI TIPO DIVERSO DA QUELLA CONSIDERATA 
 		 * 4 SE LA PEDINA 2 POSIZIONI SOPRA QUELLA CONSIDERATA è DELLO STESSO TIPO OPPURE NEL CASO BIANCO è IL RE*/
-		if(map.get(newPawnPosition).getType().equalsPawn(Pawn.WHITE.toString()) || map.get(newPawnPosition).getType().equalsPawn(Pawn.KING.toString()) ) {
+		PawnClass pawn = map.get(newPawnPosition);
+		Pawn type = pawn.getType();
+		if(type.equalsPawn(Pawn.WHITE.toString()) || type.equalsPawn(Pawn.KING.toString()) ) {
 			return captureVerificationWhite(map, newPawnPosition);
 		}else {
 			return captureVerificationBlack(map, newPawnPosition);
@@ -768,5 +770,13 @@ public class Strategy {
 			return true;
 		}else
 			return false;
+	}
+
+	public ArrayList getNodesList() {
+		return nodesList;
+	}
+
+	public void setNodesList(ArrayList nodesList) {
+		this.nodesList = nodesList;
 	}
 }
