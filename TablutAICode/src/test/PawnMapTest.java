@@ -19,6 +19,7 @@ public class PawnMapTest {
 	PawnMap underTest;
 	State state;
 	TestUtil testUtil;
+	
 	@Before
 	public void init() {
 		underTest = PawnMap.getInstance();
@@ -30,14 +31,11 @@ public class PawnMapTest {
 	public void testCreateMap(){
 		
 		underTest.createMap(state);
-		System.out.println(underTest.getMap().get(new Position(4,4)).toString());
-		if(testUtil.mapCreated.keySet().containsAll(underTest.getMap().keySet()))
-			System.out.println("EQ");
-		else
-			System.out.println("NOT EQ");
 		
 		Assert.assertNotNull("Mappa creata è nulla", underTest.getMap());
 		Assert.assertEquals("Mappe hanno la stessa dimensione",testUtil.mapCreated.size(), underTest.getMap().size());
+		Assert.assertEquals("Key Set diversi", testUtil.mapCreated.keySet(), underTest.getMap().keySet());
+		Assert.assertTrue(testUtil.mapCreated.equals(underTest.getMap()));
 	}
 	
 	

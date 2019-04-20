@@ -92,4 +92,12 @@ public class Node {
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
+	
+	public Map<Position, PawnClass> cloneState(){
+		Map<Position, PawnClass> cloned = new HashMap<Position, PawnClass>();
+		state.forEach((position, pawn) -> {
+			cloned.put(position, pawn);
+		});
+		return cloned;
+	}
 }

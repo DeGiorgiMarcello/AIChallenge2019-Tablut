@@ -3,13 +3,17 @@ package strategy;
 import java.util.ArrayList;
 import java.util.Map;
 
+import domain.State;
 import domain.State.Pawn;
+import domain.StateTablut;
 import util.Node;
 import util.PawnClass;
 import util.PawnMap;
 import util.Position;
 
 public class Heuristic {
+	/*per i test*/
+	private State state = new StateTablut();
 	
 	private static Heuristic instance;
 	private ArrayList<Position> escapePoints = new ArrayList();
@@ -26,6 +30,8 @@ public class Heuristic {
 	}
 	
 	private Heuristic() {
+		PawnMap.getInstance().createMap(state);
+		
 		/*inizializzo la lista solo la prima volta che chiamo la classse Heuristic*/
 		initEscapePoint();
 		initAdjacentPointsCaste();
@@ -153,6 +159,7 @@ public class Heuristic {
 		int pawnParent = 0;
 		int pawnChild = 0;
 		Map<Position, PawnClass> rootState = PawnMap.getInstance().getMap();
+		System.out.println("\nfrom Heuristic "+rootState.size());
 		//Map<Position, PawnClass> parentState = node.getParent().getState();
 		pawnParent = numberOfPawn(rootState, pawn);
 		pawnChild = numberOfPawn(node.getState(), pawn);
@@ -202,28 +209,42 @@ public class Heuristic {
 	}
 	
 	public int blockEscapeRoute(Node node, Position king) {
+		/*RITORNA IL NUMERO DI VIE BLOCCATE*/
 		/*devo vedere se sulla riga o colonna del re c'è una via di fuga
 		 * RIGHE VIE DI FUGA 1 2 6 7
 		 * COLONNE VIE DI FUGA 1 2 6 7*/
 		int cont = 0;
+		boolean block = false;
 		if(king.getRow() == 1 || king.getRow() == 2 || king.getRow() == 6 || king.getRow() == 7) {
 			/*il re è su una riga in corrispondenza di un punto di fuga*/
 			//verifico sinistra libera
 			for(int i = king.getColumn()-1; i >= 0; i--) {
 				Position position = new Position(king.getRow(), i);
-				if(node.getState().containsKey(position) && node.getState().get(position).getType().equalsPawn(Pawn.BLACK.toString())) {
+				if(node.getState().containsKey(position) && (node.getState().get(position).getType().equalsPawn(Pawn.BLACK.toString()) ||
+						node.getState().get(position).getType().equalsPawn(Pawn.WHITE.toString()) ||
+						position.equals(new Position(1,4)) || position.equals(new Position(7,4)))) {
 					//pedina nera sulla via di fuga del re
-					cont++;
+					block = true;
+					break;
 				}	
 			}
+			if(block)
+				cont++;
+			block = false;
 			//verifico destra libera
 			for(int i = king.getColumn()+1; i<=8; i++) {
 				Position position = new Position(king.getRow(), i);
-				if(node.getState().containsKey(position) && node.getState().get(position).getType().equalsPawn(Pawn.BLACK.toString())) {
+				if(node.getState().containsKey(position) && (node.getState().get(position).getType().equalsPawn(Pawn.BLACK.toString()) ||
+						node.getState().get(position).getType().equalsPawn(Pawn.WHITE.toString()) ||
+						position.equals(new Position(1,4)) || position.equals(new Position(7,4)))) {
 					//riga occupata
-					cont++;
+					block = true;
+					break;
 				}
 			}
+			if(block)
+				cont++;
+			block = false;
 		}
 		
 		if(king.getColumn() == 1 || king.getColumn() == 2 || king.getColumn() == 6 || king.getColumn() == 7) {
@@ -231,19 +252,31 @@ public class Heuristic {
 			//verifico sopra libera
 			for(int i = king.getRow()-1; i >= 0; i--) {
 				Position position = new Position(i, king.getColumn());
-				if(node.getState().containsKey(position) && node.getState().get(position).getType().equalsPawn(Pawn.BLACK.toString())) {
+				if(node.getState().containsKey(position) && (node.getState().get(position).getType().equalsPawn(Pawn.BLACK.toString()) ||
+						node.getState().get(position).getType().equalsPawn(Pawn.WHITE.toString()) ||
+						position.equals(new Position(4,1)) || position.equals(new Position(4,7)))) {
 					//colonna occupata
-					cont++;
+					block = true;
+					break;
 				}	
 			}
-			//verifico destra libera
+			if(block)
+				cont++;
+			block = false;
+			//verifico sotto libera
 			for(int i = king.getRow()+1; i<=8; i++) {
 				Position position = new Position(i, king.getColumn());
-				if(node.getState().containsKey(position) && node.getState().get(position).getType().equalsPawn(Pawn.BLACK.toString())) {
+				if(node.getState().containsKey(position) && 
+						(node.getState().get(position).getType().equalsPawn(Pawn.BLACK.toString()) ||
+								node.getState().get(position).getType().equalsPawn(Pawn.WHITE.toString()) ||
+								position.equals(new Position(4,1)) || position.equals(new Position(4,7)))) {
 					//riga occupata
-					cont++;
+					block = true;
 				}
 			}
+			if(block)
+				cont++;
+			block = false;
 		}
 		
 		return cont;
@@ -254,24 +287,35 @@ public class Heuristic {
 		 * RIGHE VIE DI FUGA 1 2 6 7
 		 * COLONNE VIE DI FUGA 1 2 6 7*/
 		int cont = 0;
+		boolean block = false;
 		if(king.getRow() == 1 || king.getRow() == 2 || king.getRow() == 6 || king.getRow() == 7) {
 			/*il re è su una riga in corrispondenza di un punto di fuga*/
 			//verifico sinistra libera
 			for(int i = king.getColumn()-1; i >= 0; i--) {
 				Position position = new Position(king.getRow(), i);
-				if(node.getState().containsKey(position) || i == 4) {
+				if(node.getState().containsKey(position) || position.equals(new Position(1,4)) || position.equals(new Position(7,4))) {
 					//riga occupata
-					cont--;
-				}	
+					block = true;
+					break;
+				}
 			}
+			if(!block) {
+				++cont;
+			}
+			block = false;
 			//verifico destra libera
 			for(int i = king.getColumn()+1; i<=8; i++) {
 				Position position = new Position(king.getRow(), i);
-				if(node.getState().containsKey(position) || i == 4) {
+				if(node.getState().containsKey(position) || position.equals(new Position(1,4)) || position.equals(new Position(7,4))) {
 					//riga occupata
-					cont--;
+					block = true;
+					break;
 				}
 			}
+			if(!block) {
+				++cont;
+			}
+			block = false;
 		}
 		
 		if(king.getColumn() == 1 || king.getColumn() == 2 || king.getColumn() == 6 || king.getColumn() == 7) {
@@ -279,22 +323,36 @@ public class Heuristic {
 			//verifico sopra libera
 			for(int i = king.getRow()-1; i >= 0; i--) {
 				Position position = new Position(i, king.getColumn());
-				if(node.getState().containsKey(position) || i == 4) {
+				if(node.getState().containsKey(position) || position.equals(new Position(4,1)) || position.equals(new Position(4,7))) {
 					//colonna occupata
-					cont--;
-				}	
-			}
-			//verifico destra libera
-			for(int i = king.getRow()+1; i<=8; i++) {
-				Position position = new Position(i, king.getColumn());
-				if(node.getState().containsKey(position) || i == 4) {
-					//riga occupata
-					cont--;
+					block = true;
+					break;
 				}
 			}
+			if(!block) {
+				++cont;
+			}
+			block = false;
+			//verifico sotto libero
+			for(int i = king.getRow()+1; i<=8; i++) {
+				Position position = new Position(i, king.getColumn());
+				if(node.getState().containsKey(position) || position.equals(new Position(4,1)) || position.equals(new Position(4,7))) {
+					//colonna occupata
+					block = true;
+					break;
+				}
+			}
+			if(!block) {
+				++cont;
+			}
+			block = false;
 		}
-		
 		return cont;
+		/*if(cont > 0)
+			return 1;
+		else
+			return 0;*/
+		
 	}
 	
 	public int distanceBetweenKingEscape(Position king) {
