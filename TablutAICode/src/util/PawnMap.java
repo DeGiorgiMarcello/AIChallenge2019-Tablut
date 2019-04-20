@@ -22,6 +22,14 @@ public class PawnMap {
 		return instance;
 	}
 	
+	public Map<Position, PawnClass> cloneState(Map<Position, PawnClass> state){
+		Map<Position, PawnClass> cloned = new HashMap<Position, PawnClass>();
+		state.forEach((position, pawn) -> {
+			cloned.put(position, pawn);
+		});
+		return cloned;
+	}
+	
 	public void createMap(State state) {
 		if(!map.isEmpty()) {
 			map.clear();
