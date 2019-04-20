@@ -60,19 +60,13 @@ class StrategyTest {
 	} */
 	
 	@Test
-	protected void captureVerification() {
-		//System.out.println(state.toString());
+	protected void captureVerificationWhite() {
+		System.out.println(state.toString());
+		strategy.captureVerification(state, new Position(3,4)); //white
 		
-		for(int i=0;i<8;i++) {
-			for(int j=0;j<8;j++) {
-				Position prova = new Position(i,j);
-				int hash = prova.hashCode();
-				System.out.println(state.get(hash));
-				
-			} 
-		} 
+		State newState = initState.clone();
+		newState.
 		
-		//strategy.captureVerification(state, new Position(3,8));
 	}
 
 }
