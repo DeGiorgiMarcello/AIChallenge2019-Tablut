@@ -47,19 +47,9 @@ class StrategyTest {
 		PawnMap.getInstance().createMap(initState);
 		state = PawnMap.getInstance().getMap();
 		parent = new Node();
-		pawn = new PawnClass(5,4,Pawn.WHITE); //bianco in e6
+		
 	}
-	/*
-	@Test
-	protected void moveLeft() {
-		strategy.moveLeft(pawn, parent);
-		ArrayList<Node> nodeList = strategy.getNodesList();
-		State stato = (State) nodeList.get(0).getState();
-		stato.boardString();
 		
-		
-	} */
-	
 	@Test
 	protected void captureVerificationBlack() {
 		
@@ -69,9 +59,9 @@ class StrategyTest {
 		
 		newState.put(new Position(6,3), new PawnClass(6,3,Pawn.BLACK)); //aggiunto in d7
 		newState.put(new Position(6,5), new PawnClass(6,5,Pawn.BLACK)); //aggiunto in f7
-		Map<Position,PawnClass> captureVerificationState = strategy.captureVerification(newState, new Position(6,5));
+		Map<Position,PawnClass> captureVerificationState = PawnMap.getInstance().cloneState(newState);
+		strategy.captureVerification(captureVerificationState, new Position(6,5));
 		newState.remove(new Position(6,4));
-		
 		assertEquals(newState, captureVerificationState);
 		
 		//Stato di cattura del re non adiacente al castello e fuori dal castello
@@ -80,7 +70,8 @@ class StrategyTest {
 		newState2.put(new Position(6,6), new PawnClass(6,6,Pawn.KING));
 		newState2.put(new Position(7,6), new PawnClass(7,6,Pawn.BLACK));
 		newState2.put(new Position(5,6), new PawnClass(5,6,Pawn.BLACK));
-		Map<Position,PawnClass> captureVerificationState2 = strategy.captureVerification(newState2, new Position(5,6));
+		Map<Position,PawnClass> captureVerificationState2 = PawnMap.getInstance().cloneState(newState2);
+		strategy.captureVerification(captureVerificationState2, new Position(5,6));
 		newState2.remove(new Position(6,6));
 		assertEquals(newState2, captureVerificationState2);
 		
@@ -90,11 +81,13 @@ class StrategyTest {
 		newState3.remove(new Position(3,4));
 		newState3.remove(new Position(4,3));
 		newState3.remove(new Position(4,5));
+		newState3.remove(new Position(4,6));
 		newState3.put(new Position(5,4),new PawnClass(5,4,Pawn.BLACK));
 		newState3.put(new Position(3,4),new PawnClass(3,4,Pawn.BLACK));
 		newState3.put(new Position(4,3),new PawnClass(4,3,Pawn.BLACK));
 		newState3.put(new Position(4,5),new PawnClass(4,5,Pawn.BLACK));
-		Map<Position,PawnClass> captureVerificationState3 = strategy.captureVerification(newState3, new Position(4,5));
+		Map<Position,PawnClass> captureVerificationState3 = PawnMap.getInstance().cloneState(newState3);
+		strategy.captureVerification(captureVerificationState3, new Position(4,5));
 		newState3.remove(new Position(4,4));
 		assertEquals(newState3, captureVerificationState3);
 		
@@ -102,16 +95,132 @@ class StrategyTest {
 		Map<Position,PawnClass> newState4 = PawnMap.getInstance().cloneState(state);
 		newState4.remove(new Position(5,4));
 		newState4.remove(new Position(6,4));
+		newState4.remove(new Position(4,4));
 		newState4.put(new Position(5,4), new PawnClass(5,4,Pawn.KING));
 		newState4.put(new Position(5,3), new PawnClass(5,3,Pawn.BLACK));
 		newState4.put(new Position(5,5), new PawnClass(5,5,Pawn.BLACK));
 		newState4.put(new Position(6,4), new PawnClass(6,4,Pawn.BLACK));
-		Map<Position,PawnClass> captureVerificationState4 = strategy.captureVerification(newState4, new Position(5,4));
+		Map<Position,PawnClass> captureVerificationState4 = PawnMap.getInstance().cloneState(newState4);
+		strategy.captureVerification(captureVerificationState4, new Position(6,4));
 		newState4.remove(new Position(5,4));
 		assertEquals(newState4, captureVerificationState4);
+	} 
+	
+	@Test
+	protected void captureVerificationWhite() {
 		
-		//C'è da risolvere il bug con le cittadelle
+		Map<Position,PawnClass> newState = PawnMap.getInstance().cloneState(state);
 		
+		//Stato di semplice cattura
+		newState.put(new Position(6,6), new PawnClass(6,6,Pawn.WHITE)); 
+		newState.put(new Position(6,5), new PawnClass(6,5,Pawn.BLACK)); 
+		Map<Position,PawnClass> captureVerificationState = PawnMap.getInstance().cloneState(newState);
+		strategy.captureVerification(captureVerificationState, new Position(6,4));
+		newState.remove(new Position(6,5));
+		assertEquals(newState, captureVerificationState);
+		
+		//Cattura con cittadella
+		Map<Position,PawnClass> newState2 = PawnMap.getInstance().cloneState(state);
+		newState2.put(new Position(7,5), new PawnClass(7,5,Pawn.BLACK)); 
+		newState2.put(new Position(6,5), new PawnClass(6,5,Pawn.WHITE)); 
+		Map<Position,PawnClass> captureVerificationState2 = PawnMap.getInstance().cloneState(newState2);
+		strategy.captureVerification(captureVerificationState2, new Position(6,5));
+		newState2.remove(new Position(7,5));
+		assertEquals(newState2, captureVerificationState2);
+		
+	}
+	
+	
+	@Test
+	protected void moveLeft() {
+		double cost;
+		int depth,captured;
+		String moveFrom,moveTo;
+		Node node;
+		pawn = new PawnClass(7,4,Pawn.BLACK); 
+		Strategy.getInstance().getNodesList().clear(); //libero la NodeList
+		
+		strategy.moveLeft(pawn, parent);
+		ArrayList<Node> nodeList = strategy.getNodesList();
+		System.out.println("MOVE LEFT TEST of pawn "+pawn.getType()+" in "+pawn.getRow()+" "+pawn.getColumn());
+		for(int i=0;i<nodeList.size();i++) {
+			node = nodeList.get(i);
+			depth = node.getDepth();
+			moveFrom = node.getPawnMoveFrom();
+			moveTo = node.getPawnMoveTo();
+			captured = node.getCaptured();
+			cost = node.getCost();
+			System.out.println("Depth: "+depth+" Captured: "+captured+" cost: "+cost+" MoveFrom: "+moveFrom+" MoveTo: "+moveTo);
+		}
+	}
+		
+		
+		@Test
+		protected void moveRight() {
+			double cost;
+			int depth,captured;
+			String moveFrom,moveTo;
+			Node node;
+			pawn = new PawnClass(7,4,Pawn.BLACK); 
+			Strategy.getInstance().getNodesList().clear(); //libero la NodeList
+			
+			strategy.moveRight(pawn, parent);
+			ArrayList<Node> nodeList = strategy.getNodesList();
+			System.out.println("MOVE RIGHT TEST of pawn "+pawn.getType()+" in "+pawn.getRow()+" "+pawn.getColumn());
+			for(int i=0;i<nodeList.size();i++) {
+				node = nodeList.get(i);
+				depth = node.getDepth();
+				moveFrom = node.getPawnMoveFrom();
+				moveTo = node.getPawnMoveTo();
+				captured = node.getCaptured();
+				cost = node.getCost();
+				System.out.println("Depth: "+depth+" Captured: "+captured+" cost: "+cost+" MoveFrom: "+moveFrom+" MoveTo: "+moveTo);
+			}
+		}
+			@Test
+			protected void moveUp() {
+				double cost;
+				int depth,captured;
+				String moveFrom,moveTo;
+				Node node;
+				pawn = new PawnClass(7,4,Pawn.BLACK); 
+				Strategy.getInstance().getNodesList().clear(); //libero la NodeList
+				
+				strategy.moveUp(pawn, parent);
+				ArrayList<Node> nodeList = strategy.getNodesList();
+				System.out.println("MOVE UP TEST of pawn "+pawn.getType()+" in "+pawn.getRow()+" "+pawn.getColumn());
+				for(int i=0;i<nodeList.size();i++) {
+					node = nodeList.get(i);
+					depth = node.getDepth();
+					moveFrom = node.getPawnMoveFrom();
+					moveTo = node.getPawnMoveTo();
+					captured = node.getCaptured();
+					cost = node.getCost();
+					System.out.println("Depth: "+depth+" Captured: "+captured+" cost: "+cost+" MoveFrom: "+moveFrom+" MoveTo: "+moveTo);
+				}
+			}
+				@Test
+				protected void moveDown() {
+					double cost;
+					int depth,captured;
+					String moveFrom,moveTo;
+					Node node;
+					pawn = new PawnClass(7,4,Pawn.BLACK); 
+					Strategy.getInstance().getNodesList().clear(); //libero la NodeList
+				
+					
+					strategy.moveDown(pawn, parent);
+					ArrayList<Node> nodeList = strategy.getNodesList();
+					System.out.println("MOVE DOWN TEST of pawn "+pawn.getType()+" in "+pawn.getRow()+" "+pawn.getColumn());
+					for(int i=0;i<nodeList.size();i++) {
+						node = nodeList.get(i);
+						depth = node.getDepth();
+						moveFrom = node.getPawnMoveFrom();
+						moveTo = node.getPawnMoveTo();
+						captured = node.getCaptured();
+						cost = node.getCost();
+						System.out.println("Depth: "+depth+" Captured: "+captured+" cost: "+cost+" MoveFrom: "+moveFrom+" MoveTo: "+moveTo);
+					}  
 	}
 
 }

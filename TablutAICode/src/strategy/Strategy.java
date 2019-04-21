@@ -350,13 +350,14 @@ public class Strategy {
 	}
 	
 	public void moveLeft(PawnClass pawn,Node parent) {
-		for(int i=0;i<pawn.maxNumberBoxMoveLeft();i++) {
+		taken = false;
+		for(int i=1;i<=pawn.maxNumberBoxMoveLeft();i++) {
 			int captured = parent.getCaptured();
-			Map actualState = parent.getState();
+			Map newState = PawnMap.getInstance().cloneState(parent.getState());
 			Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 			Position newPos = new Position(pawn.getRow(),pawn.getColumn()-i);
-			Map newState = updateState(actualState,pawn,pawn.getRow(),pawn.getColumn()-i);	//genera un nuovo stato dallo stato vecchio spostando la pedina a sx
-			newState = captureVerification(newState, newPos);
+			updateState(newState,pawn,pawn.getRow(),pawn.getColumn()-i);	//genera un nuovo stato dallo stato vecchio spostando la pedina a sx
+			captureVerification(newState, newPos);
 			if(taken) {
 				captured++;
 				taken = false;
@@ -373,13 +374,14 @@ public class Strategy {
 		}
 	}
 	public void moveRight(PawnClass pawn,Node parent) {
-		for(int i=0;i<pawn.maxNumberBoxMoveRight();i++) {
+		taken = false;
+		for(int i=1;i<=pawn.maxNumberBoxMoveRight();i++) {
 			int captured = parent.getCaptured();
-			Map actualState = parent.getState();
+			Map newState = PawnMap.getInstance().cloneState(parent.getState());
 			Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 			Position newPos = new Position(pawn.getRow(),pawn.getColumn()+i);
-			Map newState = updateState(actualState,pawn,pawn.getRow(),pawn.getColumn()+i);	//genera un nuovo stato dallo stato vecchio spostando la pedina a dx
-			newState = captureVerification(newState, newPos);
+			updateState(newState,pawn,pawn.getRow(),pawn.getColumn()+i);	//genera un nuovo stato dallo stato vecchio spostando la pedina a dx
+			captureVerification(newState, newPos);
 			if(taken) {
 				captured++;
 				taken = false;
@@ -393,13 +395,14 @@ public class Strategy {
 			
 		}
 		public void moveUp(PawnClass pawn,Node parent) {
-			for(int i=0;i<pawn.maxNumberBoxMoveUp();i++) {
+			taken = false;
+			for(int i=1;i<=pawn.maxNumberBoxMoveUp();i++) {
 				int captured = parent.getCaptured();
-				Map actualState = parent.getState();
+				Map newState = PawnMap.getInstance().cloneState(parent.getState());
 				Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 				Position newPos = new Position(pawn.getRow()-i,pawn.getColumn());
-				Map newState = updateState(actualState,pawn,pawn.getRow()-i,pawn.getColumn());	//genera un nuovo stato dallo stato vecchio spostando la pedina su
-				newState = captureVerification(newState, newPos);
+				updateState(newState,pawn,pawn.getRow()-i,pawn.getColumn());	//genera un nuovo stato dallo stato vecchio spostando la pedina su
+				captureVerification(newState, newPos);
 				if(taken) {
 					captured++;
 					taken = false;
@@ -412,13 +415,14 @@ public class Strategy {
 			}
 		}
 		public void moveDown(PawnClass pawn,Node parent) {
+			taken = false;
 			int captured = parent.getCaptured();
-			for(int i=0;i<pawn.maxNumberBoxMoveDown();i++) {
-				Map actualState = parent.getState();
+			for(int i=1;i<=pawn.maxNumberBoxMoveDown();i++) {
+				Map newState = PawnMap.getInstance().cloneState(parent.getState());
 				Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 				Position newPos = new Position(pawn.getRow()+1,pawn.getColumn());
-				Map newState = updateState(actualState,pawn,pawn.getRow()+i,pawn.getColumn());	//genera un nuovo stato dallo stato vecchio spostando la pedina giù
-				newState = captureVerification(newState, newPos);
+				updateState(newState,pawn,pawn.getRow()+i,pawn.getColumn());	//genera un nuovo stato dallo stato vecchio spostando la pedina giù
+				captureVerification(newState, newPos);
 				if(taken) {
 					captured++;
 					taken = false;
@@ -568,7 +572,7 @@ public class Strategy {
 		if(map.containsKey(abovePosition1) && citadels.contains(abovePosition2) || castle.equals(abovePosition2)){
 			PawnClass pawnAbove1 = map.get(abovePosition1);
 							
-			if(pawnAbove1.getType().equalsPawn(Pawn.BLACK.toString())) {
+			if(pawnAbove1.getType().equalsPawn(Pawn.BLACK.toString()) && !citadels.contains(abovePosition1)) {
 				map.remove(abovePosition1);
 				taken = true;
 			}
@@ -578,7 +582,7 @@ public class Strategy {
 		if(map.containsKey(belowPosition1) && citadels.contains(belowPosition2) || castle.equals(belowPosition2)){
 			PawnClass pawnBelow1 = map.get(belowPosition1);
 			
-			if(pawnBelow1.getType().equalsPawn(Pawn.BLACK.toString())) {
+			if(pawnBelow1.getType().equalsPawn(Pawn.BLACK.toString()) && !citadels.contains(belowPosition1)) {
 				map.remove(belowPosition1);
 				taken = true;
 			}
@@ -587,7 +591,7 @@ public class Strategy {
 		//CATTURO PEDINA A DESTRA
 		if(map.containsKey(rightPosition1) && citadels.contains(rightPosition2)|| castle.equals(rightPosition2)){
 			PawnClass pawnRight1 = map.get(rightPosition1);
-			if(pawnRight1.getType().equalsPawn(Pawn.BLACK.toString())) {
+			if(pawnRight1.getType().equalsPawn(Pawn.BLACK.toString()) && !citadels.contains(rightPosition1)) {
 				map.remove(rightPosition1);
 				taken = true;
 			}
@@ -596,7 +600,7 @@ public class Strategy {
 		//CATTURO A SINISTRA
 		if(map.containsKey(leftPosition1) && citadels.contains(leftPosition2) || castle.equals(rightPosition2)){
 			PawnClass pawnLeft1 = map.get(leftPosition1);
-			if(pawnLeft1.getType().equalsPawn(Pawn.BLACK.toString())) {
+			if(pawnLeft1.getType().equalsPawn(Pawn.BLACK.toString()) && !citadels.contains(leftPosition1)) {
 				map.remove(leftPosition1);
 			taken = true;
 			}
@@ -677,7 +681,7 @@ public class Strategy {
 		Position leftPosition1 = new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()-1);
 		Position leftPosition2 = new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()-2);
 		
-		if(map.containsKey(rightPosition1) && map.containsKey(leftPosition2)){
+		if(map.containsKey(leftPosition1) && map.containsKey(leftPosition2)){
 			PawnClass pawnLeft1 = map.get(leftPosition1);
 			PawnClass pawnLeft2 = map.get(leftPosition2);
 			
