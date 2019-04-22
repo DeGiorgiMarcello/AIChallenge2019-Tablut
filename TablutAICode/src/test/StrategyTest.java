@@ -4,16 +4,15 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import domain.State;
-import domain.StateTablut;
 import domain.State.Pawn;
+import domain.StateTablut;
 import strategy.Strategy;
 import util.Node;
 import util.PawnClass;
@@ -26,6 +25,10 @@ class StrategyTest {
 	protected Map<Position,PawnClass> state;
 	protected Node parent;
 	protected PawnClass pawn;
+	protected double cost;
+	protected int depth,captured;
+	protected String moveFrom,moveTo;
+	protected Node node;
 	
 	@BeforeEach
 	protected void init() {
@@ -47,7 +50,6 @@ class StrategyTest {
 		PawnMap.getInstance().createMap(initState);
 		state = PawnMap.getInstance().getMap();
 		parent = new Node();
-		
 	}
 		
 	@Test
@@ -133,14 +135,16 @@ class StrategyTest {
 	
 	@Test
 	protected void moveLeft() {
-		double cost;
-		int depth,captured;
-		String moveFrom,moveTo;
-		Node node;
-		pawn = new PawnClass(7,4,Pawn.BLACK); 
+		pawn = new PawnClass(7,3,Pawn.BLACK); 
 		Strategy.getInstance().getNodesList().clear(); //libero la NodeList
 		
-		strategy.moveLeft(pawn, parent);
+		Map<Position,PawnClass> state = new HashMap<Position,PawnClass>();
+		state.put(new Position(2,2), new PawnClass(2,2,Pawn.KING));
+		state.put(new Position(7,2), new PawnClass(7,2,Pawn.WHITE));
+		state.put(new Position(7,3), new PawnClass(7,3,Pawn.BLACK));
+		node = new Node(0,state,null,0,null,null);
+		
+		strategy.moveLeft(pawn, node);
 		ArrayList<Node> nodeList = strategy.getNodesList();
 		System.out.println("MOVE LEFT TEST of pawn "+pawn.getType()+" in "+pawn.getRow()+" "+pawn.getColumn());
 		for(int i=0;i<nodeList.size();i++) {
@@ -154,73 +158,104 @@ class StrategyTest {
 		}
 	}
 		
+	
+	@Test
+	protected void moveRight() {
+		pawn = new PawnClass(7,3,Pawn.BLACK); 
+		Strategy.getInstance().getNodesList().clear(); //libero la NodeList
 		
-		@Test
-		protected void moveRight() {
-			double cost;
-			int depth,captured;
-			String moveFrom,moveTo;
-			Node node;
-			pawn = new PawnClass(7,4,Pawn.BLACK); 
-			Strategy.getInstance().getNodesList().clear(); //libero la NodeList
-			
-			strategy.moveRight(pawn, parent);
-			ArrayList<Node> nodeList = strategy.getNodesList();
-			System.out.println("MOVE RIGHT TEST of pawn "+pawn.getType()+" in "+pawn.getRow()+" "+pawn.getColumn());
-			for(int i=0;i<nodeList.size();i++) {
-				node = nodeList.get(i);
-				depth = node.getDepth();
-				moveFrom = node.getPawnMoveFrom();
-				moveTo = node.getPawnMoveTo();
-				captured = node.getCaptured();
-				cost = node.getCost();
-				System.out.println("Depth: "+depth+" Captured: "+captured+" cost: "+cost+" MoveFrom: "+moveFrom+" MoveTo: "+moveTo);
-			}
+		Map<Position,PawnClass> state = new HashMap<Position,PawnClass>();
+		state.put(new Position(2,2), new PawnClass(2,2,Pawn.KING));
+		state.put(new Position(7,2), new PawnClass(7,2,Pawn.WHITE));
+		state.put(new Position(7,3), new PawnClass(7,3,Pawn.BLACK));
+		node = new Node(0,state,null,0,null,null);
+		
+		strategy.moveRight(pawn, parent);
+		ArrayList<Node> nodeList = strategy.getNodesList();
+		System.out.println("MOVE RIGHT TEST of pawn "+pawn.getType()+" in "+pawn.getRow()+" "+pawn.getColumn());
+		for(int i=0;i<nodeList.size();i++) {
+			node = nodeList.get(i);
+			depth = node.getDepth();
+			moveFrom = node.getPawnMoveFrom();
+			moveTo = node.getPawnMoveTo();
+			captured = node.getCaptured();
+			cost = node.getCost();
+			System.out.println("Depth: "+depth+" Captured: "+captured+" cost: "+cost+" MoveFrom: "+moveFrom+" MoveTo: "+moveTo);
 		}
-			@Test
-			protected void moveUp() {
-				double cost;
-				int depth,captured;
-				String moveFrom,moveTo;
-				Node node;
-				pawn = new PawnClass(7,4,Pawn.BLACK); 
-				Strategy.getInstance().getNodesList().clear(); //libero la NodeList
-				
-				strategy.moveUp(pawn, parent);
-				ArrayList<Node> nodeList = strategy.getNodesList();
-				System.out.println("MOVE UP TEST of pawn "+pawn.getType()+" in "+pawn.getRow()+" "+pawn.getColumn());
-				for(int i=0;i<nodeList.size();i++) {
-					node = nodeList.get(i);
-					depth = node.getDepth();
-					moveFrom = node.getPawnMoveFrom();
-					moveTo = node.getPawnMoveTo();
-					captured = node.getCaptured();
-					cost = node.getCost();
-					System.out.println("Depth: "+depth+" Captured: "+captured+" cost: "+cost+" MoveFrom: "+moveFrom+" MoveTo: "+moveTo);
-				}
-			}
-				@Test
-				protected void moveDown() {
-					double cost;
-					int depth,captured;
-					String moveFrom,moveTo;
-					Node node;
-					pawn = new PawnClass(7,4,Pawn.BLACK); 
-					Strategy.getInstance().getNodesList().clear(); //libero la NodeList
-				
-					
-					strategy.moveDown(pawn, parent);
-					ArrayList<Node> nodeList = strategy.getNodesList();
-					System.out.println("MOVE DOWN TEST of pawn "+pawn.getType()+" in "+pawn.getRow()+" "+pawn.getColumn());
-					for(int i=0;i<nodeList.size();i++) {
-						node = nodeList.get(i);
-						depth = node.getDepth();
-						moveFrom = node.getPawnMoveFrom();
-						moveTo = node.getPawnMoveTo();
-						captured = node.getCaptured();
-						cost = node.getCost();
-						System.out.println("Depth: "+depth+" Captured: "+captured+" cost: "+cost+" MoveFrom: "+moveFrom+" MoveTo: "+moveTo);
-					}  
 	}
-
+	@Test
+	protected void moveUp() {
+		pawn = new PawnClass(7,3,Pawn.BLACK); 
+		Strategy.getInstance().getNodesList().clear(); //libero la NodeList
+		
+		Map<Position,PawnClass> state = new HashMap<Position,PawnClass>();
+		state.put(new Position(2,2), new PawnClass(2,2,Pawn.KING));
+		state.put(new Position(7,2), new PawnClass(7,2,Pawn.WHITE));
+		state.put(new Position(7,3), new PawnClass(7,3,Pawn.BLACK));
+		node = new Node(0,state,null,0,null,null);
+		strategy.moveUp(pawn, parent);
+		ArrayList<Node> nodeList = strategy.getNodesList();
+		System.out.println("MOVE UP TEST of pawn "+pawn.getType()+" in "+pawn.getRow()+" "+pawn.getColumn());
+		for(int i=0;i<nodeList.size();i++) {
+			node = nodeList.get(i);
+			depth = node.getDepth();
+			moveFrom = node.getPawnMoveFrom();
+			moveTo = node.getPawnMoveTo();
+			captured = node.getCaptured();
+			cost = node.getCost();
+			System.out.println("Depth: "+depth+" Captured: "+captured+" cost: "+cost+" MoveFrom: "+moveFrom+" MoveTo: "+moveTo);
+		}
+}
+	
+	
+	@Test
+	protected void moveDown() {
+		pawn = new PawnClass(7,3,Pawn.BLACK); 
+		Strategy.getInstance().getNodesList().clear(); //libero la NodeList
+		
+		Map<Position,PawnClass> state = new HashMap<Position,PawnClass>();
+		state.put(new Position(2,2), new PawnClass(2,2,Pawn.KING));
+		state.put(new Position(7,2), new PawnClass(7,2,Pawn.WHITE));
+		state.put(new Position(7,3), new PawnClass(7,3,Pawn.BLACK));
+		node = new Node(0,state,null,0,null,null);
+	
+		strategy.moveDown(pawn, parent);
+		ArrayList<Node> nodeList = strategy.getNodesList();
+		System.out.println("MOVE DOWN TEST of pawn "+pawn.getType()+" in "+pawn.getRow()+" "+pawn.getColumn());
+		for(int i=0;i<nodeList.size();i++) {
+			node = nodeList.get(i);
+			depth = node.getDepth();
+			moveFrom = node.getPawnMoveFrom();
+			moveTo = node.getPawnMoveTo();
+			captured = node.getCaptured();
+			cost = node.getCost();
+			System.out.println("Depth: "+depth+" Captured: "+captured+" cost: "+cost+" MoveFrom: "+moveFrom+" MoveTo: "+moveTo);
+		}  
+	}
+	
+	/*
+	@Test
+	protected void expandNode() {
+		
+		Map<Position,PawnClass> state = new HashMap<Position,PawnClass>();
+		ArrayList<Node> nodeList = strategy.getNodesList();
+		nodeList.clear();
+		state.put(new Position(2,2), new PawnClass(2,2,Pawn.KING));
+		state.put(new Position(6,2), new PawnClass(6,2,Pawn.KING));
+		state.put(new Position(6,7), new PawnClass(6,7,Pawn.BLACK));
+		node = new Node(0,state,null,0,null,null);
+		strategy.expandNode(node,Pawn.WHITE);
+		System.out.println("EXPAND NODE TEST");
+		for(int i=0;i<nodeList.size();i++) {
+			node = nodeList.get(i);
+			depth = node.getDepth();
+			moveFrom = node.getPawnMoveFrom();
+			moveTo = node.getPawnMoveTo();
+			captured = node.getCaptured();
+			cost = node.getCost();
+			System.out.println("Depth: "+depth+" Captured: "+captured+" cost: "+cost+" MoveFrom: "+moveFrom+" MoveTo: "+moveTo);
+		}
+		
+		
+	} */
 }
