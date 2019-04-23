@@ -26,39 +26,17 @@ public class PawnClass {
 		/*restituisce il massimo numero di caselle
 		 * in cui si può muovere la pedina*/
 		int cont = 0;
-		int max = 0;
-		/*non posso salire neanche di una casella perchè c'è una pedina sopra a quella considerata*/
-
-		/*if(pawnMap.containsKey(new Position(this.row - 1 , this.column))) {
-			return cont;
-		}else {
-			/*determino il massimo valore sul quale iterare per cercare pedine sulla colonna in cui 
-			 * voglio muovere la pedina che sto considerando. 
-			if(column == 4 && row > 4) {
-				/*mi voglio spostare verso l'alto e mi trovo sulla colonna del castello
-				max = 5;
-			}else {
-				switch(column) {
-				case 4:
-					max = 2;
-					break;
-				case 3:
-					max = 1;
-					break;
-				case 5:
-					max = 1;
-					break;
-				default:
-					max = 0;
-				}
-			}
-			/*assengo a cont il valore massimo dello spostamento, se ci sono pedine sul cammino, verrà ridotto*/
-			//cont = row-max;
+		boolean notInCitadels = true;
+		Position current = new Position();
+		current.setColumn(column);
+		if(Strategy.getInstance().getCitadels().contains(new Position(row,column))) {
+			notInCitadels = false;
+		}
 		for(int i = row-1; i >= 0; i--) {
-			/*calcolo l'indice della riga della prima pedina sulla stessa colonna della pedina 
-			 * che devo muovere.*/
-			Position current = new Position(i, column);
-			if(pawnMap.containsKey(current) || Strategy.getInstance().getCitadels().contains(current) || current.equals(castle)) {
+			current.setRow(i);
+			if(cont > 0)
+				notInCitadels = true;
+			if(pawnMap.containsKey(current) || (notInCitadels && Strategy.getInstance().getCitadels().contains(current)) || current.equals(castle)) {
 				break;
 			}else {
 				cont++;
@@ -71,107 +49,66 @@ public class PawnClass {
 		/*restituisce il massimo numero di caselle
 		 * in cui si può muovere la pedina*/
 		int cont = 0;
-		int max = 0;
-		/*non posso salire neanche di una casella perchè c'è una pedina sopra a quella considerata*/
-		if(pawnMap.containsKey(new Position(this.row + 1 , this.column))) {
-			return cont;
-		}else {
-			/*determino il massimo valore sul quale iterare per cercare pedine sulla colonna in cui 
-			 * voglio muovere la pedina che sto considerando. */
-			if(column == 4 && row < 4) {
-				max = 3;
-			}else {
-				switch(column) {
-				case 4:
-					max = 6;
-					break;
-				case 3:
-					max = 7;
-					break;
-				case 5:
-					max = 7;
-					break;
-				default:
-					max = 8;
-				}
+		boolean notInCitadels = true;
+		Position current = new Position();
+		current.setColumn(column);
+		if(Strategy.getInstance().getCitadels().contains(new Position(row,column))) {
+			notInCitadels = false;
 		}
-		cont = max - row;
-		for(int i = row+1; i <= max; i++) {
+		for(int i = row+1; i <= 8; i++) {
 			/*calcolo l'indice della riga della prima pedina sulla stessa colonna della pedina 
 			 * che devo muovere.*/
-			if(pawnMap.containsKey(new Position(row, i))) {
-				cont = i - row - 1;
+			current.setRow(i);
+			if(cont > 0)
+				notInCitadels = true;
+			if(pawnMap.containsKey(current) || (notInCitadels && Strategy.getInstance().getCitadels().contains(current)) || current.equals(castle)) {
 				break;
-			}/*else {
-				cont = max - row;
-			}*/
+			}else {
+				cont++;
+			}
 		}
 		return cont;
-		}
 	}
 	
 	public int maxNumberBoxMoveRight(Map<Position,PawnClass> pawnMap) {
 		int cont = 0;
-		int max = 0;
-		if(pawnMap.containsKey(new Position(row, column + 1))) {
-			return cont;
-		}else {
-			if(row == 4 && column < 4) {
-				max = 3;
-			}else {
-				switch(row) {
-				case 4:
-					max = 6;
-					break;
-				case 3:
-					max = 7;
-					break;
-				case 5:
-					max = 7;
-				default:
-					max = 8;
-				}
-			}
-			cont = max - column;
-			for(int i = column+1; i <= max; i++) {
-				if(pawnMap.containsKey(new Position(row, i))) {
-					cont = i - column - 1;
-			}
+		boolean notInCitadels = true;
+		Position current = new Position();
+		current.setRow(row);
+		if(Strategy.getInstance().getCitadels().contains(new Position(row,column))) {
+			notInCitadels = false;
+		}
+		for(int i = column+1; i <= 8; i++) {
+			current.setColumn(i);
+			if(cont > 0)
+				notInCitadels = true;
+			if(pawnMap.containsKey(current) || (notInCitadels && Strategy.getInstance().getCitadels().contains(current)) || current.equals(castle)) {
+				break;
+			}else
+				cont++;
 		}
 		return cont;
-		}
 	}
 	
 	public int maxNumberBoxMoveLeft(Map<Position,PawnClass> pawnMap) {
 		int cont = 0;
-		int max = 0;
-		if(pawnMap.containsKey(new Position(row, column - 1))) {
-			return cont;
-		}else {
-			if(row == 4 && column > 4) {
-				max = 5;
-			}else {
-				switch(row) {
-				case 4:
-					max = 2;
-					break;
-				case 3:
-					max = 1;
-					break;
-				case 5:
-					max = 1;
-				default:
-					max = 0;
-				}
-			}
-			cont = column - max;
-			for(int i = column - 1; i >= max; i--) {
-				if(pawnMap.containsKey(new Position(row, i))) {
-					cont = column - i - 1;
-				}
-			}
-		return cont;
+		boolean notInCitadels = true;
+		Position current = new Position();
+		current.setRow(row);
+		if(Strategy.getInstance().getCitadels().contains(new Position(row,column))) {
+			notInCitadels = false;
 		}
+		for(int i = column - 1; i >= 0; i--) {
+			current.setColumn(i);
+			if(cont > 0)
+				notInCitadels = true;
+			if(pawnMap.containsKey(current) || (notInCitadels && Strategy.getInstance().getCitadels().contains(current)) || current.equals(castle)) {
+				break;
+			}else
+				cont++;
+		}
+		return cont;
+		
 	}
 
 	public int getRow() {

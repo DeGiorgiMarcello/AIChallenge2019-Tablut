@@ -8,6 +8,10 @@ public class Position {
 		this.column = column;
 	}
 
+	public Position() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getRow() {
 		return row;
 	}
