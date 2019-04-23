@@ -18,6 +18,7 @@ public class Strategy {
 	private static Strategy instance;
 	private ArrayList nodesList = new ArrayList<Node>();
 	private ArrayList firstNodes = new ArrayList<Node>();   //lista dei primi nodi per ogni depth
+	private ArrayList hashCodeStateList = new ArrayList<Integer>();
 	private String player; 
 	private int depth = 0;
 	private ArrayList<Position> citadels = new ArrayList<Position>();
@@ -27,7 +28,7 @@ public class Strategy {
 	private Position a3 = new Position(4,5);
 	private Position a4 = new Position(5,4);
 	private boolean taken = false; //variabile per tener conto dell'avvenuta cattura e aggiornare i nodi figli
-	final int MAXDEPTH = 3;
+	final int MAXDEPTH = 5;
 	boolean first = true;
 		
 	private Strategy() {
@@ -61,27 +62,30 @@ public class Strategy {
 	}
 	
 	public Node generatePartialTree() {
+		String player = this.player;
 		Node root = new Node();
 		nodesList.add(0,root);
 		firstNodes.add(root);
+		hashCodeStateList.add(root.getState().hashCode());
 		
-		if(player.equals("white")) {
-			while(depth < MAXDEPTH) {
+		while(depth < MAXDEPTH) {
+			if(getPlayer().equals("white")) {
 				Node actualNode = (Node)nodesList.get(0);
 				expandNode(actualNode,Pawn.WHITE);
 				depth++;
 				first = true;
+				setPlayer("black");
 			}
-		}
-		else {
-			while(depth < MAXDEPTH) {
+		
+			else {
 				Node actualNode = (Node)nodesList.get(0);
 				expandNode(actualNode,Pawn.BLACK);
 				depth++;
-				first = true;
+				first = true;	
+				setPlayer("white");
 			}
 		}
-		
+		setPlayer(player);
 		return root;  //ritorna l'albero intero
 	}
 	
@@ -368,8 +372,11 @@ public class Strategy {
 			String moveFrom = convertCoordinates(oldPos);
 			String moveTo = convertCoordinates(newPos);
 			Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-			if(depth < MAXDEPTH-1)
+			int stateHashCode = newState.hashCode();
+			if(depth < MAXDEPTH-1 && !hashCodeStateList.contains(stateHashCode)) {
 				nodesList.add(0, child); 
+				hashCodeStateList.add(stateHashCode);
+			}
 			if(first) {
 				firstNodes.add(child);
 				first = false;
@@ -393,11 +400,13 @@ public class Strategy {
 			String moveFrom = convertCoordinates(oldPos);
 			String moveTo = convertCoordinates(newPos);
 			Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-			if(depth < MAXDEPTH-1)
+			int stateHashCode = newState.hashCode();
+			if(depth < MAXDEPTH-1 && !hashCodeStateList.contains(stateHashCode)) {
 				nodesList.add(0, child); 
+				hashCodeStateList.add(stateHashCode);
 			}
-			
 		}
+	}
 		public void moveUp(PawnClass pawn,Node parent) {
 			taken = false;
 			int captured = parent.getCaptured();
@@ -415,8 +424,11 @@ public class Strategy {
 				String moveFrom = convertCoordinates(oldPos);
 				String moveTo = convertCoordinates(newPos);
 				Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-				if(depth < MAXDEPTH-1)
-					nodesList.add(0, child);
+				int stateHashCode = newState.hashCode();
+				if(depth < MAXDEPTH-1 && !hashCodeStateList.contains(stateHashCode)) {
+					nodesList.add(0, child); 
+					hashCodeStateList.add(stateHashCode);
+				}
 			}
 		}
 		public void moveDown(PawnClass pawn,Node parent) {
@@ -437,8 +449,11 @@ public class Strategy {
 				String moveFrom = convertCoordinates(oldPos);
 				String moveTo = convertCoordinates(newPos);
 				Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-				if(depth < MAXDEPTH-1)
-					nodesList.add(0, child);  
+				int stateHashCode = newState.hashCode();
+				if(depth < MAXDEPTH-1 && !hashCodeStateList.contains(stateHashCode)) {
+					nodesList.add(0, child); 
+					hashCodeStateList.add(stateHashCode);
+				}
 			}
 		}
 	
@@ -555,7 +570,7 @@ public class Strategy {
 		Position leftPosition1 = new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()-1);
 		Position leftPosition2 = new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()-2);
 		
-		if(map.containsKey(rightPosition1) && map.containsKey(leftPosition2)){
+		if(map.containsKey(leftPosition1) && map.containsKey(leftPosition2)){
 			PawnClass pawnLeft1 = map.get(leftPosition1);
 			PawnClass pawnLeft2 = map.get(leftPosition2);
 				
@@ -825,7 +840,16 @@ public class Strategy {
 	public void setNodesList(ArrayList nodesList) {
 		this.nodesList = nodesList;
 	}
-	
+
+
+	public String getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(String player) {
+		this.player = player;
+	}
+
 	public ArrayList<Position> getCitadels() {
 		return citadels;
 	}

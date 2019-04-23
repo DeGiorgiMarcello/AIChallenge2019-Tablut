@@ -132,7 +132,7 @@ class StrategyTest {
 		
 	}
 	
-	
+	/*
 	@Test
 	protected void moveLeft() {
 		pawn = new PawnClass(7,3,Pawn.BLACK); 
@@ -256,7 +256,26 @@ class StrategyTest {
 			cost = node.getCost();
 			System.out.println("Depth: "+depth+" Captured: "+captured+" cost: "+cost+" MoveFrom: "+moveFrom+" MoveTo: "+moveTo);
 		}
-		
-		
 	} 
+	*/
+	@Test 
+	protected void generatePartialTree() {
+		
+		strategy.setPlayer("white");
+		ArrayList<Node> nodeList = strategy.getInstance().getNodesList();
+		nodeList.clear();
+		int count = 0;
+		strategy.generatePartialTree();
+		for(int i=0;i<nodeList.size();i++) {
+			node = nodeList.get(i);
+			depth = node.getDepth();
+			moveFrom = node.getPawnMoveFrom();
+			moveTo = node.getPawnMoveTo();
+			System.out.println(" Depth: "+depth+" MoveFrom: "+moveFrom+" MoveTo: "+moveTo);
+			count++;
+		}
+		System.out.println("Count: "+count);
+		
+		
+	}
 }
