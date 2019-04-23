@@ -28,7 +28,7 @@ public class Strategy {
 	private Position a3 = new Position(4,5);
 	private Position a4 = new Position(5,4);
 	private boolean taken = false; //variabile per tener conto dell'avvenuta cattura e aggiornare i nodi figli
-	final int MAXDEPTH = 5;
+	final int MAXDEPTH = 3;
 	boolean first = true;
 		
 	private Strategy() {
@@ -96,6 +96,8 @@ public class Strategy {
 		Map<Position,PawnClass> actualState = actualNode.getState();
 		for(Map.Entry<Position, PawnClass> entry : actualState.entrySet()) {
 			PawnClass pawn = entry.getValue();
+			if(color.equals(Pawn.KING))
+				color = Pawn.WHITE;
 			//si prendono tutte le pedine nello stato iniziale e si spostano di tutte le possibili posizioni, generando 
 			//nodi figli di root -> i nodi sono quindi posti in testa al nodesList.
 			if(pawn.getType().equals(color)) {  
@@ -110,24 +112,28 @@ public class Strategy {
 		Map<Position,PawnClass> actualState = actualNode.getState();
 		for(Map.Entry<Position, PawnClass> entry : actualState.entrySet()) {
 			PawnClass pawn = entry.getValue();
-			Node parent = actualNode.getParent();
+			int captured = actualNode.getCaptured();
+			if(color == Pawn.KING)
+				color = Pawn.WHITE;
 			if(pawn.getType().equals(color)) {
+				
 				//MOVE LEFT
 				for(int i=0;i<pawn.maxNumberBoxMoveLeft(actualState);i++) {
-					int captured = parent.getCaptured();
-					Map state = parent.getState();
+					
+					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow(),pawn.getColumn()-i);
-					Map newState = updateState(state,pawn,pawn.getRow(),pawn.getColumn()-i);
-					newState = captureVerification(newState, newPos);
+					updateState(newState,pawn,pawn.getRow(),pawn.getColumn()-i);
+					captureVerification(newState, newPos);
 					if(taken) {
 						captured++;
 						taken = false;
 					}
 					String moveFrom = convertCoordinates(oldPos);
 					String moveTo = convertCoordinates(newPos);
-					Node child = new Node(alphaBetaDepth+1,newState,parent,captured,moveFrom,moveTo);
-					if(depth < MAXDEPTH-1)
+					Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
+					int stateHashCode = newState.hashCode();
+					if(depth < MAXDEPTH-1 && !hashCodeStateList.contains(stateHashCode))
 						nodesList.add(0, child);
 					if(max) {
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
@@ -149,20 +155,20 @@ public class Strategy {
 				
 				//MOVE RIGHT
 				for(int i=0;i<pawn.maxNumberBoxMoveRight(actualState);i++) {
-					int captured = parent.getCaptured();
-					Map state = parent.getState();
+					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow(),pawn.getColumn()+i);
-					Map newState = updateState(state,pawn,pawn.getRow(),pawn.getColumn()+i);
-					newState = captureVerification(newState, newPos);
+					updateState(newState,pawn,pawn.getRow(),pawn.getColumn()+i);
+					captureVerification(newState, newPos);
 					if(taken) {
 						captured++;
 						taken = false;
 					}
 					String moveFrom = convertCoordinates(oldPos);
 					String moveTo = convertCoordinates(newPos);
-					Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-					if(depth < MAXDEPTH-1)
+					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
+					int stateHashCode = newState.hashCode();
+					if(depth < MAXDEPTH-1 && !hashCodeStateList.contains(stateHashCode))
 						nodesList.add(0, child); 
 					if(max) {
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
@@ -183,11 +189,10 @@ public class Strategy {
 				}
 				//MOVE UP
 				for(int i=0;i<pawn.maxNumberBoxMoveUp(actualState);i++) {
-					int captured = parent.getCaptured();
-					Map state = parent.getState();
+					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow()-1,pawn.getColumn());
-					Map newState = updateState(state,pawn,pawn.getRow()-1,pawn.getColumn());
+					updateState(newState,pawn,pawn.getRow()-1,pawn.getColumn());
 					newState = captureVerification(newState, newPos);
 					if(taken) {
 						captured++;
@@ -195,8 +200,9 @@ public class Strategy {
 					}
 					String moveFrom = convertCoordinates(oldPos);
 					String moveTo = convertCoordinates(newPos);
-					Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-					if(depth < MAXDEPTH-1)
+					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
+					int stateHashCode = newState.hashCode();
+					if(depth < MAXDEPTH-1 && !hashCodeStateList.contains(stateHashCode))
 						nodesList.add(0, child); 
 					if(max) {
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
@@ -217,20 +223,20 @@ public class Strategy {
 				}
 				//MOVE DOWN
 				for(int i=0;i<pawn.maxNumberBoxMoveDown(actualState);i++) {
-					int captured = parent.getCaptured();
-					Map state = parent.getState();
+					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow()+1,pawn.getColumn());
-					Map newState = updateState(state,pawn,pawn.getRow()+1,pawn.getColumn());
-					newState = captureVerification(newState, newPos);
+					updateState(newState,pawn,pawn.getRow()+1,pawn.getColumn());
+					captureVerification(newState, newPos);
 					if(taken) {
 						captured++;
 						taken = false;
 					}
 					String moveFrom = convertCoordinates(oldPos);
 					String moveTo = convertCoordinates(newPos);
-					Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-					if(depth < MAXDEPTH-1)
+					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
+					int stateHashCode = newState.hashCode();
+					if(depth < MAXDEPTH-1 && !hashCodeStateList.contains(stateHashCode))
 						nodesList.add(0, child); 
 					if(max) {
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
@@ -271,9 +277,6 @@ public class Strategy {
 			 minColor = Pawn.WHITE;
 			
 		}
-		if(depth == 0 && nodesList.get(0) == node ) {  
-			Heuristic.getInstance().evaluateNode(node);
-		}
 		if(max) {
 			val = -500;
 			if(depth != MAXDEPTH-1) { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
@@ -296,8 +299,12 @@ public class Strategy {
 			}
 			if(depth == MAXDEPTH-1) { //NODI FOGLIA!
 				//con la funzione euristica si assegna il valore al nodo
-				val = Heuristic.getInstance().evaluateNode(node);  
+				val = Heuristic.getInstance().evaluateNode(node);
 				return new BestNode(node,val);
+			}
+			
+			if(depth == 0 && nodesList.get(0) == node ) {  
+				return new BestNode(node,val); 
 			}
 			return new BestNode(node,val);
 		}

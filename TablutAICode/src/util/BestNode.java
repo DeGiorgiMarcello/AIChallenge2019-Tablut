@@ -6,8 +6,8 @@ public class BestNode {
 	private double val;
 	
 	public BestNode(Node node, double val) {
-		node = this.node;
-		val = this.val;
+		this.node = node;
+		this.val = val;
 	}
 
 	public Node getNode() {

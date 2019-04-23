@@ -159,7 +159,7 @@ public class Heuristic {
 		int pawnParent = 0;
 		int pawnChild = 0;
 		Map<Position, PawnClass> rootState = PawnMap.getInstance().getMap();
-		System.out.println("\nfrom Heuristic "+rootState.size());
+		//System.out.println("\nfrom Heuristic "+rootState.size());
 		//Map<Position, PawnClass> parentState = node.getParent().getState();
 		pawnParent = numberOfPawn(rootState, pawn);
 		pawnChild = numberOfPawn(node.getState(), pawn);
@@ -415,27 +415,28 @@ public class Heuristic {
 	}
 	
 	public Position convertLetterToInt(String position) {
-		char row = position.charAt(0);
-		int column = Character.getNumericValue(position.charAt(1));
+		char column = position.charAt(0);
+		int row = Character.getNumericValue(position.charAt(1));
+		row = row -1;
 		Position result = null;
-		switch(row) {
-		case 'a': result = new Position(0,column-1);
+		switch(column) {
+		case 'a': result = new Position(row,0);
 			break;
-		case 'b': result = new Position(1, column-1);
+		case 'b': result = new Position(row,1);
 			break;
-		case 'c': result = new Position(2, column -1);
+		case 'c': result = new Position(row,2);
 			break;
-		case 'd': result = new Position(3, column -1);
+		case 'd': result = new Position(row,3);
 			break;
-		case 'e': result = new Position(4, column-1);
+		case 'e': result = new Position(row,4);
 			break;
-		case 'f': result = new Position(5, column-1);
+		case 'f': result = new Position(row,5);
 			break;
-		case 'g': result = new Position(6, column-1);
+		case 'g': result = new Position(row,6);
 			break;
-		case 'h': result = new Position(7, column-1);
+		case 'h': result = new Position(7,7);
 			break;
-		case 'i': result = new Position(8, column-1);
+		case 'i': result = new Position(8,8);
 			break;
 		}
 		return result;

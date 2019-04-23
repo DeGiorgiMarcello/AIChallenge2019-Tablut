@@ -14,6 +14,7 @@ import domain.State;
 import domain.State.Pawn;
 import domain.StateTablut;
 import strategy.Strategy;
+import util.BestNode;
 import util.Node;
 import util.PawnClass;
 import util.PawnMap;
@@ -144,7 +145,7 @@ class StrategyTest {
 		state.put(new Position(7,3), new PawnClass(7,3,Pawn.BLACK));
 		parent = new Node(0,state,null,0,null,null);
 		
-		strategy.moveLeft(pawn, node);
+		strategy.moveLeft(pawn, parent);
 		ArrayList<Node> nodeList = strategy.getNodesList();
 		System.out.println("MOVE LEFT TEST of pawn "+pawn.getType()+" in "+pawn.getRow()+" "+pawn.getColumn());
 		for(int i=0;i<nodeList.size();i++) {
@@ -257,7 +258,9 @@ class StrategyTest {
 			System.out.println("Depth: "+depth+" Captured: "+captured+" cost: "+cost+" MoveFrom: "+moveFrom+" MoveTo: "+moveTo);
 		}
 	} 
-	*/
+	
+	
+	
 	@Test 
 	protected void generatePartialTree() {
 		
@@ -276,6 +279,31 @@ class StrategyTest {
 		}
 		System.out.println("Count: "+count);
 		
+		
+	} */
+	
+	@Test
+	protected void alphaBetaTest() {
+		
+	/*	state.put(new Position(2,2), new PawnClass(2,2,Pawn.KING));
+		state.put(new Position(7,2), new PawnClass(7,2,Pawn.WHITE));
+		state.put(new Position(7,3), new PawnClass(7,3,Pawn.BLACK));
+		
+		state2.remove(new Position(7,3));
+		state2.put(new Position(6,3), new PawnClass(6,3,Pawn.BLACK));
+		
+		nodesList.clear();
+		Node node1 = new Node(1,state,parent,0,"d5","d8");
+		Node node2 = new Node(2,state2,node1,0,"d8","d7");
+		nodesList.add(0,node2);
+		nodesList.add(0,node1);  */
+		ArrayList<Node> nodesList = strategy.getNodesList();
+		nodesList.add(0,parent);
+		strategy.setPlayer("white");
+		BestNode bn = strategy.alphaBeta(parent, 0, -500, 500, true);
+		Node prova = bn.getNode();
+		
+		System.out.println(prova.getPawnMoveFrom()+"-"+prova.getPawnMoveTo());
 		
 	}
 }
