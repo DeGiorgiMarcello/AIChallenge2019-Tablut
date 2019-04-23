@@ -67,14 +67,16 @@ public class Strategy {
 		nodesList.add(0,root);
 		firstNodes.add(root);
 		hashCodeStateList.add(root.getState().hashCode());
+		 
 		
 		while(depth < MAXDEPTH) {
 			if(getPlayer().equals("white")) {
 				Node actualNode = (Node)nodesList.get(0);
-				expandNode(actualNode,Pawn.WHITE);
+				expandNode(actualNode,Pawn.WHITE);	
 				depth++;
 				first = true;
 				setPlayer("black");
+			
 			}
 		
 			else {
@@ -83,6 +85,7 @@ public class Strategy {
 				depth++;
 				first = true;	
 				setPlayer("white");
+		
 			}
 		}
 		setPlayer(player);
