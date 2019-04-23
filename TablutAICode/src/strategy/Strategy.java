@@ -825,7 +825,7 @@ public class Strategy {
 	public void setNodesList(ArrayList nodesList) {
 		this.nodesList = nodesList;
 	}
-
+	
 	public ArrayList<Position> getCitadels() {
 		return citadels;
 	}
@@ -843,4 +843,5 @@ public class Strategy {
 	}
 	
 	
+
 }

@@ -142,7 +142,7 @@ class StrategyTest {
 		state.put(new Position(2,2), new PawnClass(2,2,Pawn.KING));
 		state.put(new Position(7,2), new PawnClass(7,2,Pawn.WHITE));
 		state.put(new Position(7,3), new PawnClass(7,3,Pawn.BLACK));
-		node = new Node(0,state,null,0,null,null);
+		parent = new Node(0,state,null,0,null,null);
 		
 		strategy.moveLeft(pawn, node);
 		ArrayList<Node> nodeList = strategy.getNodesList();
@@ -168,7 +168,7 @@ class StrategyTest {
 		state.put(new Position(2,2), new PawnClass(2,2,Pawn.KING));
 		state.put(new Position(7,2), new PawnClass(7,2,Pawn.WHITE));
 		state.put(new Position(7,3), new PawnClass(7,3,Pawn.BLACK));
-		node = new Node(0,state,null,0,null,null);
+		parent = new Node(0,state,null,0,null,null);
 		
 		strategy.moveRight(pawn, parent);
 		ArrayList<Node> nodeList = strategy.getNodesList();
@@ -192,7 +192,8 @@ class StrategyTest {
 		state.put(new Position(2,2), new PawnClass(2,2,Pawn.KING));
 		state.put(new Position(7,2), new PawnClass(7,2,Pawn.WHITE));
 		state.put(new Position(7,3), new PawnClass(7,3,Pawn.BLACK));
-		node = new Node(0,state,null,0,null,null);
+		parent = new Node(0,state,null,0,null,null);
+		
 		strategy.moveUp(pawn, parent);
 		ArrayList<Node> nodeList = strategy.getNodesList();
 		System.out.println("MOVE UP TEST of pawn "+pawn.getType()+" in "+pawn.getRow()+" "+pawn.getColumn());
@@ -217,8 +218,8 @@ class StrategyTest {
 		state.put(new Position(2,2), new PawnClass(2,2,Pawn.KING));
 		state.put(new Position(7,2), new PawnClass(7,2,Pawn.WHITE));
 		state.put(new Position(7,3), new PawnClass(7,3,Pawn.BLACK));
-		node = new Node(0,state,null,0,null,null);
-	
+		parent = new Node(0,state,null,0,null,null);
+		
 		strategy.moveDown(pawn, parent);
 		ArrayList<Node> nodeList = strategy.getNodesList();
 		System.out.println("MOVE DOWN TEST of pawn "+pawn.getType()+" in "+pawn.getRow()+" "+pawn.getColumn());
@@ -233,7 +234,7 @@ class StrategyTest {
 		}  
 	}
 	
-	/*
+	
 	@Test
 	protected void expandNode() {
 		
@@ -241,10 +242,10 @@ class StrategyTest {
 		ArrayList<Node> nodeList = strategy.getNodesList();
 		nodeList.clear();
 		state.put(new Position(2,2), new PawnClass(2,2,Pawn.KING));
-		state.put(new Position(6,2), new PawnClass(6,2,Pawn.KING));
-		state.put(new Position(6,7), new PawnClass(6,7,Pawn.BLACK));
+		state.put(new Position(7,2), new PawnClass(7,2,Pawn.WHITE));
+		state.put(new Position(7,3), new PawnClass(7,3,Pawn.BLACK));
 		node = new Node(0,state,null,0,null,null);
-		strategy.expandNode(node,Pawn.WHITE);
+		strategy.expandNode(node,Pawn.BLACK);
 		System.out.println("EXPAND NODE TEST");
 		for(int i=0;i<nodeList.size();i++) {
 			node = nodeList.get(i);
@@ -257,5 +258,5 @@ class StrategyTest {
 		}
 		
 		
-	} */
+	} 
 }
