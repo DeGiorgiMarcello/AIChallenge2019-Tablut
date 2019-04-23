@@ -825,4 +825,12 @@ public class Strategy {
 	public void setNodesList(ArrayList nodesList) {
 		this.nodesList = nodesList;
 	}
+
+	public String getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(String player) {
+		this.player = player;
+	}
 }
