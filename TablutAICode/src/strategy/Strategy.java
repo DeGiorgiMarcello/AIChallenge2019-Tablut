@@ -30,7 +30,8 @@ public class Strategy {
 	final int MAXDEPTH = 3;
 	boolean first = true;
 		
-	private Strategy() {	
+	private Strategy() {
+		initCitadels();
 	}
 	
 	public static Strategy getInstance() {
@@ -473,7 +474,6 @@ public class Strategy {
 	}
 	
 	public Map<Position, PawnClass> captureVerification(Map<Position,PawnClass> map, Position newPawnPosition) {
-		initCitadels();
 		/*una volta creato il nuovo stato, viene richiamato quesdto metodo che verifica se la mossa genera la cattura
 		 * di una pedina avversaria; in caso affermativo elimina la pedina dalla mappa e ritorna la nuova mappa aggiornata. */
 		/*IF ESTERNO VERIFICA SE LA PEDINA CORRENTE è BIANCO O NERA ( CORRISPONDE ANCHE AL GIOCATORE CHE STA EFFETTUANDO LA MOSSA)
@@ -825,4 +825,22 @@ public class Strategy {
 	public void setNodesList(ArrayList nodesList) {
 		this.nodesList = nodesList;
 	}
+
+	public ArrayList<Position> getCitadels() {
+		return citadels;
+	}
+
+	public void setCitadels(ArrayList<Position> citadels) {
+		this.citadels = citadels;
+	}
+
+	public Position getCastle() {
+		return castle;
+	}
+
+	public void setCastle(Position castle) {
+		this.castle = castle;
+	}
+	
+	
 }

@@ -1,12 +1,16 @@
 package util;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import domain.State.Pawn;
+import strategy.Strategy;
 
 public class PawnClass {
 	private int row, column;
 	private Pawn type;
+	private Position castle = new Position(4,4);
+	//private ArrayList<Position> citadels = new ArrayList<Position>();
 	/*
 	 * color: b = black w = white
 	 */
@@ -25,13 +29,13 @@ public class PawnClass {
 		int max = 0;
 		/*non posso salire neanche di una casella perchè c'è una pedina sopra a quella considerata*/
 
-		if(pawnMap.containsKey(new Position(this.row - 1 , this.column))) {
+		/*if(pawnMap.containsKey(new Position(this.row - 1 , this.column))) {
 			return cont;
 		}else {
 			/*determino il massimo valore sul quale iterare per cercare pedine sulla colonna in cui 
-			 * voglio muovere la pedina che sto considerando. */
+			 * voglio muovere la pedina che sto considerando. 
 			if(column == 4 && row > 4) {
-				/*mi voglio spostare verso l'alto e mi trovo sulla colonna del castello*/
+				/*mi voglio spostare verso l'alto e mi trovo sulla colonna del castello
 				max = 5;
 			}else {
 				switch(column) {
@@ -49,16 +53,15 @@ public class PawnClass {
 				}
 			}
 			/*assengo a cont il valore massimo dello spostamento, se ci sono pedine sul cammino, verrà ridotto*/
-			cont = row-max;
-			for(int i = row-1; i >= max; i--) {
-				/*calcolo l'indice della riga della prima pedina sulla stessa colonna della pedina 
-				 * che devo muovere.*/
-				if(pawnMap.containsKey(new Position(this.row, i))) {
-					cont = this.row - i - 1;
-					break;
-				}/*else {
-					cont = row-max;
-				}*/
+			//cont = row-max;
+		for(int i = row-1; i >= 0; i--) {
+			/*calcolo l'indice della riga della prima pedina sulla stessa colonna della pedina 
+			 * che devo muovere.*/
+			Position current = new Position(i, column);
+			if(pawnMap.containsKey(current) || Strategy.getInstance().getCitadels().contains(current) || current.equals(castle)) {
+				break;
+			}else {
+				cont++;
 			}
 		}
 		return cont;
@@ -208,8 +211,5 @@ public class PawnClass {
 		else
 			return false;
 	}
-	
-	
-
 	
 }
