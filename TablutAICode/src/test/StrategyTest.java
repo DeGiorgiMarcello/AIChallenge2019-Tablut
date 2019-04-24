@@ -295,13 +295,13 @@ class StrategyTest {
 		ArrayList<Node> nodesList = strategy.getNodesList();
 		nodesList.clear();
 		
-		Node node1 = new Node(1,state1,parent,0,"d5","d8");
-		Node node2 = new Node(2,state2,node1,0,"d8","d7");
-		nodesList.add(0,node2);
+		Node node1 = new Node(0,state1,parent,0,"d5","d8");
+	//	Node node2 = new Node(2,state2,node1,0,"d8","d7");
+	//	nodesList.add(0,node2);
 		nodesList.add(0,node1);  
 		strategy.setPlayer("white");
 		//nodesList.add(0,parent);
-		BestNode bn = strategy.alphaBeta(node1, 1, -500, 500, true);
+		BestNode bn = strategy.alphaBeta(node1, 0, -500, 500, true);
 		Node prova = bn.getNode();
 		
 		System.out.println(prova.getPawnMoveFrom()+"-"+prova.getPawnMoveTo());

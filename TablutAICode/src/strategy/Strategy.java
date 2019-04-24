@@ -139,7 +139,7 @@ public class Strategy {
 					Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
 					if(alphaBetaDepth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode))
-						nodesList.add(0, child);
+						nodesList.add(child); //nodesList.add(0, child);
 					if(max) {
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
 						double childVal = childNode.getVal();
@@ -179,7 +179,7 @@ public class Strategy {
 					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
 					if(depth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode))
-						nodesList.add(0, child); 
+						nodesList.add(child); //nodesList.add(0, child); 
 					if(max) {
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
 						double childVal = childNode.getVal();
@@ -217,7 +217,7 @@ public class Strategy {
 					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
 					if(depth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode))
-						nodesList.add(0, child); 
+						nodesList.add(child); //nodesList.add(0, child); 
 					if(max) {
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
 						double childVal = childNode.getVal();
@@ -255,7 +255,7 @@ public class Strategy {
 					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
 					if(depth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode))
-						nodesList.add(0, child); 
+						nodesList.add(child); //nodesList.add(0, child);
 					if(max) {
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
 						double childVal = childNode.getVal();
@@ -305,6 +305,7 @@ public class Strategy {
 		if(max) {
 			val = -500;
 			if(depth != MAXDEPTH) { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
+				try {
 				for(Node child : (ArrayList<Node>) nodesList) {
 					if(child.getParent() == node) {
 						childCounter++;
@@ -320,28 +321,35 @@ public class Strategy {
 						}
 					}
 				} 
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
 				//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
-				if(childCounter == 0) {  
-					expandNodeAlphaBeta(node, maxColor, depth, -val, alfa, beta,max); 
+				if(childCounter == 0) { 
+					BestNode newBestNodeMove = expandNodeAlphaBeta(node, maxColor, depth, -val, alfa, beta,true); 
+					if(newBestNodeMove.getVal() > bestNodeMove.getVal())
+						bestNodeMove = newBestNodeMove;
 				}
 			} 
 			if(depth == MAXDEPTH) { //NODI FOGLIA!
 				//con la funzione euristica si assegna il valore al nodo
 				val = Heuristic.getInstance().evaluateNode(node);
-				return new BestNode(node,val);
+				bestNodeMove = new BestNode(node,val);
+				return bestNodeMove;
 			}
-			
+			//DA RIVEDERE!
 			if(depth == 0 && nodesList.get(0) == node ) {  
-				return new BestNode(node,val); 
+				bestNodeMove = new BestNode(node,val);
+				return bestNodeMove;
 			}
-			return new BestNode(node,val);
+			return bestNodeMove;
 		}
 		else {
 			val = +500;
 			if(depth != MAXDEPTH) { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
 				for(Node child : (ArrayList<Node>) nodesList) {
 					if(child.getParent() == node) {
-						BestNode childNode = alphaBeta(child,depth+1,alfa,beta,true);
+						BestNode childNode = alphaBeta(child,depth+1,alfa,beta,false);
 						double childVal = childNode.getVal();
 						if(childVal < bestNodeMove.getVal())
 							bestNodeMove = childNode;
@@ -354,8 +362,10 @@ public class Strategy {
 				}
 				//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
 				if(childCounter == 0) {  
-					bestNodeMove = expandNodeAlphaBeta(node, minColor, depth, -val, alfa, beta,!max); 
-				}
+					BestNode newBestNodeMove = expandNodeAlphaBeta(node, maxColor, depth, -val, alfa, beta,true); 
+					if(newBestNodeMove.getVal() < bestNodeMove.getVal())
+						bestNodeMove = newBestNodeMove;
+					}
 			}
 			if(depth == MAXDEPTH) { //NODI FOGLIA!
 				//con la funzione euristica si assegna il valore al nodo
