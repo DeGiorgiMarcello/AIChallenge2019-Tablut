@@ -434,9 +434,9 @@ public class Heuristic {
 			break;
 		case 'g': result = new Position(row,6);
 			break;
-		case 'h': result = new Position(7,7);
+		case 'h': result = new Position(row,7);
 			break;
-		case 'i': result = new Position(8,8);
+		case 'i': result = new Position(row,8);
 			break;
 		}
 		return result;
