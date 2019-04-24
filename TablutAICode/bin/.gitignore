@@ -1,6 +1,8 @@
+/client/
+/domain/
+/exceptions/
+/gui/
 /server/
 /strategy/
 /test/
 /util/
-/gui/
-/client/

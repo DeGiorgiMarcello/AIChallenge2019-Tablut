@@ -140,7 +140,7 @@ class HeuristicTest {
 		assertEquals(1, actual);
 	}*/
 	
-	@Test
+	/*@Test
 	void testBlockEscapeRoute() {
 		child.getState().remove(new Position(4,4));
 		Position king = new Position(2,2);
@@ -148,5 +148,18 @@ class HeuristicTest {
 		child.getState().put(new Position(2,1), new PawnClass(2,1, Pawn.BLACK));
 		int actual = Heuristic.getInstance().blockEscapeRoute(child, king);
 		assertEquals(3, actual);
+	}*/
+	
+	@Test
+	void testConvertLetterToInt() {
+		String position = "f3";
+		Position test = Heuristic.getInstance().convertLetterToInt(position);
+		Position pos = new Position(2,5);
+		System.out.println(test.toString());
+		if(pos.equals(test)) {
+			System.out.println("Uguali");
+		}else {
+			System.out.println("Diversi");
+		}
 	}
 }
