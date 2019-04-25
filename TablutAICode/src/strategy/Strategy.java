@@ -116,8 +116,8 @@ public class Strategy {
 		for(Map.Entry<Position, PawnClass> entry : actualState.entrySet()) {
 			PawnClass pawn = entry.getValue();
 			int captured = actualNode.getCaptured();
-			if(pawn.getType().equalsPawn(Pawn.KING.toString())) {
-				color = Pawn.WHITE;
+			if(pawn.getType().equalsPawn(Pawn.KING.toString()) && color.equalsPawn(Pawn.WHITE.toString())) {
+				//color = Pawn.WHITE;
 				isKing = true;
 			}
 			if(pawn.getType().equals(color) || isKing) {
@@ -141,9 +141,9 @@ public class Strategy {
 					if(alphaBetaDepth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode))
 						nodesList.add(child); //nodesList.add(0, child);
 					if(max) {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
 						double childVal = childNode.getVal();
-						if(childVal > bestNodeMove.getVal())
+						if(childVal >= bestNodeMove.getVal())
 							bestNodeMove = childNode;
 						
 						val = Math.max(val, childVal);
@@ -152,9 +152,9 @@ public class Strategy {
 							return bestNodeMove ;
 					}
 					else {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,true);
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era true
 						double childVal = childNode.getVal();
-						if(childVal < bestNodeMove.getVal())
+						if(childVal <= bestNodeMove.getVal())
 							bestNodeMove = childNode;
 						val = Math.min(val, childVal);
 						beta = Math.min(beta, val);
@@ -181,9 +181,9 @@ public class Strategy {
 					if(depth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode))
 						nodesList.add(child); //nodesList.add(0, child); 
 					if(max) {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
 						double childVal = childNode.getVal();
-						if(childVal > bestNodeMove.getVal())
+						if(childVal >= bestNodeMove.getVal())
 							bestNodeMove = childNode;
 						val = Math.max(val, childVal);
 						alfa = Math.max(alfa, val);
@@ -191,10 +191,10 @@ public class Strategy {
 							return bestNodeMove;
 					}
 					else {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,true);
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era true
 						double childVal = childNode.getVal();
 						val = Math.min(val, childVal);
-						if(childVal < bestNodeMove.getVal())
+						if(childVal <= bestNodeMove.getVal())
 							bestNodeMove = childNode;
 						beta = Math.min(beta, val);
 						if(beta <= alfa)
@@ -219,9 +219,9 @@ public class Strategy {
 					if(depth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode))
 						nodesList.add(child); //nodesList.add(0, child); 
 					if(max) {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max);
 						double childVal = childNode.getVal();
-						if(childVal > bestNodeMove.getVal())
+						if(childVal >= bestNodeMove.getVal())
 							bestNodeMove = childNode;
 						val = Math.max(val, childVal);
 						alfa = Math.max(alfa, val);
@@ -229,9 +229,9 @@ public class Strategy {
 							return bestNodeMove;
 					}
 					else {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,true);
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max);
 						double childVal = childNode.getVal();
-						if(childVal < bestNodeMove.getVal())
+						if(childVal <= bestNodeMove.getVal())
 							bestNodeMove = childNode;
 						val = Math.min(val, childVal);
 						beta = Math.min(beta, val);
@@ -257,9 +257,9 @@ public class Strategy {
 					if(depth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode))
 						nodesList.add(child); //nodesList.add(0, child);
 					if(max) {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,false);
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max);
 						double childVal = childNode.getVal();
-						if(childVal > bestNodeMove.getVal())
+						if(childVal >= bestNodeMove.getVal())
 							bestNodeMove = childNode;
 						val = Math.max(val, childVal);
 						alfa = Math.max(alfa, val);
@@ -269,9 +269,9 @@ public class Strategy {
 						}
 					}
 					else {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,true);
+						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max);
 						double childVal = childNode.getVal();
-						if(childVal < bestNodeMove.getVal())
+						if(childVal <= bestNodeMove.getVal())
 							bestNodeMove = childNode;
 						val = Math.min(val, childVal);
 						beta = Math.min(beta, val);
@@ -309,9 +309,9 @@ public class Strategy {
 				for(Node child : (ArrayList<Node>) nodesList) {
 					if(child.getParent() == node) {
 						childCounter++;
-						BestNode childNode = alphaBeta(child,depth+1,alfa,beta,false);
+						BestNode childNode = alphaBeta(child,depth+1,alfa,beta,max);
 						double childVal = childNode.getVal();
-						if(childVal > bestNodeMove.getVal())
+						if(childVal >= bestNodeMove.getVal())
 							bestNodeMove = childNode;
 						val = Math.max(val, childVal);
 						alfa = Math.max(alfa, val);
@@ -326,8 +326,8 @@ public class Strategy {
 				}
 				//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
 				if(childCounter == 0) { 
-					BestNode newBestNodeMove = expandNodeAlphaBeta(node, maxColor, depth, -val, alfa, beta,true); 
-					if(newBestNodeMove.getVal() > bestNodeMove.getVal())
+					BestNode newBestNodeMove = expandNodeAlphaBeta(node, maxColor, depth, -val, alfa, beta,max); 
+					if(newBestNodeMove.getVal() >= bestNodeMove.getVal())
 						bestNodeMove = newBestNodeMove;
 				}
 			} 
@@ -349,9 +349,9 @@ public class Strategy {
 			if(depth != MAXDEPTH) { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
 				for(Node child : (ArrayList<Node>) nodesList) {
 					if(child.getParent() == node) {
-						BestNode childNode = alphaBeta(child,depth+1,alfa,beta,false);
+						BestNode childNode = alphaBeta(child,depth+1,alfa,beta,max);
 						double childVal = childNode.getVal();
-						if(childVal < bestNodeMove.getVal())
+						if(childVal <= bestNodeMove.getVal())
 							bestNodeMove = childNode;
 						val = Math.max(val, childVal);
 						beta = Math.min(beta, val);
@@ -362,8 +362,8 @@ public class Strategy {
 				}
 				//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
 				if(childCounter == 0) {  
-					BestNode newBestNodeMove = expandNodeAlphaBeta(node, maxColor, depth, -val, alfa, beta,true); 
-					if(newBestNodeMove.getVal() < bestNodeMove.getVal())
+					BestNode newBestNodeMove = expandNodeAlphaBeta(node, maxColor, depth, -val, alfa, beta,max); 
+					if(newBestNodeMove.getVal() <= bestNodeMove.getVal())
 						bestNodeMove = newBestNodeMove;
 					}
 			}

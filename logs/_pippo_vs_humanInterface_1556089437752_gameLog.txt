@@ -1,0 +1,21 @@
+apr 24, 2019 9:03:57 AM domain.GameAshtonTablut <init>
+BUONO: Players:	White:	pippo	vs	humanInterface
+apr 24, 2019 9:03:57 AM domain.GameAshtonTablut <init>
+BUONO: Repeated moves allowed:	0	Cache:	-1
+apr 24, 2019 9:03:57 AM domain.GameAshtonTablut <init>
+BUONO: Inizio partita
+apr 24, 2019 9:03:57 AM domain.GameAshtonTablut <init>
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+apr 24, 2019 9:03:59 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from null to null
