@@ -151,6 +151,15 @@ class HeuristicTest {
 	}*/
 	
 	@Test
+	void testWhiteHeuristic() {
+		root.getState().remove(new Position(4,4));
+		int result = Heuristic.getInstance().BlackHeuristic(root);
+		System.out.println("result "+result);
+		assertEquals(200, result);
+	}
+	
+	/*
+	@Test
 	void testConvertLetterToInt() {
 		String position = "f3";
 		Position test = Heuristic.getInstance().convertLetterToInt(position);
@@ -161,5 +170,5 @@ class HeuristicTest {
 		}else {
 			System.out.println("Diversi");
 		}
-	}
+	}*/
 }

@@ -12,9 +12,6 @@ import util.PawnMap;
 import util.Position;
 
 public class Heuristic {
-	/*per i test*/
-	private State state = new StateTablut();
-	
 	private static Heuristic instance;
 	private ArrayList<Position> escapePoints = new ArrayList();
 	private Position escape = null; //salvo la posizione del punto di fuga più vicino
@@ -30,8 +27,6 @@ public class Heuristic {
 	}
 	
 	private Heuristic() {
-		PawnMap.getInstance().createMap(state);
-		
 		/*inizializzo la lista solo la prima volta che chiamo la classse Heuristic*/
 		initEscapePoint();
 		initAdjacentPointsCaste();
@@ -59,33 +54,39 @@ public class Heuristic {
 		final int distanceEscapePoint = 1;
 		final int rowColumnFree = 20;
 		final int kingCaptured = -100;
-		final int win = 100;	
-		//AVENUTA CATTURA
-		int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se ho mangiato pedine avversarie
-		int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se sono state mangiate delle mie pedine
-		//RE PROTETTO aggiungo 1 unità al risultato per ogni lato su cui il re è protetto
-		int[] valProtectedKing = kingProtected(node, king, Pawn.WHITE);
-		int valProtectedKingOneSide = valProtectedKing[0];
-		int valProtectedKingTwoSide = valProtectedKing[1];
-		int valProtectedKingThreeSide = valProtectedKing[2];
-		int valProtectedKingFourSide = valProtectedKing[3];
-		//DISTANZA DEL RE DAL PUNTO DI FUGA PIù VICINO
-		int valDistanceEscapePoint = distanceBetweenKingEscape(king);
+		final int win = 100;
 		
-		//RE HA RIGA/COLONNA LIBERA VERSO UN PUNTO DI FUGA
-		int valRowColumnFree = freeEscapeRoute(node, king);
+		if(king == null) { //se kingPosition è null il king non c'è, ho perso.
+			return -200;
+		}else {
+			//AVENUTA CATTURA
+			int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se ho mangiato pedine avversarie
+			int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se sono state mangiate delle mie pedine
+			//RE PROTETTO aggiungo 1 unità al risultato per ogni lato su cui il re è protetto
+			int[] valProtectedKing = kingProtected(node, king, Pawn.WHITE);
+			int valProtectedKingOneSide = valProtectedKing[0];
+			int valProtectedKingTwoSide = valProtectedKing[1];
+			int valProtectedKingThreeSide = valProtectedKing[2];
+			int valProtectedKingFourSide = valProtectedKing[3];
+			//DISTANZA DEL RE DAL PUNTO DI FUGA PIù VICINO
+			int valDistanceEscapePoint = distanceBetweenKingEscape(king);
+			
+			//RE HA RIGA/COLONNA LIBERA VERSO UN PUNTO DI FUGA
+			int valRowColumnFree = freeEscapeRoute(node, king);
+			
+			//PEDINA VIENE CATTURATA
+			
+			//RE VIENE CATTURATO
+			int valKingCaptured = kingCaptured(node);
+			//RE IN UN PUNTO DI FUGA => VITTORIA
+			int valwin = kingInEscapePoint(king);
+			/*CALCOLARE SOMMA PESATA*/
+			return capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite+protectedKingOneSide*valProtectedKingOneSide+
+					protectedKingTwoSide*valProtectedKingTwoSide+protectedKingThreeSide*valProtectedKingThreeSide+
+					protectedKingFourSide*valProtectedKingFourSide+distanceEscapePoint*valDistanceEscapePoint+
+					rowColumnFree*valRowColumnFree+kingCaptured*valKingCaptured+win*valwin;
+		}
 		
-		//PEDINA VIENE CATTURATA
-		
-		//RE VIENE CATTURATO
-		int valKingCaptured = kingCaptured(node);
-		//RE IN UN PUNTO DI FUGA => VITTORIA
-		int valwin = kingInEscapePoint(king);
-		/*CALCOLARE SOMMA PESATA*/
-		return capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite+protectedKingOneSide*valProtectedKingOneSide+
-				protectedKingTwoSide*valProtectedKingTwoSide+protectedKingThreeSide*valProtectedKingThreeSide+
-				protectedKingFourSide*valProtectedKingFourSide+distanceEscapePoint*valDistanceEscapePoint+
-				rowColumnFree*valRowColumnFree+kingCaptured*valKingCaptured+win*valwin;
 	}
 	
 	public int BlackHeuristic(Node node) {
@@ -100,26 +101,32 @@ public class Heuristic {
 		final int escapePointBlocked = 20;
 		final int kingcaptured = 100;
 		final int kingWin = -100;
-		//AVVENUTA CATTURA
-		int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se ho catturato pedine avversarie
-		int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se sono state catturate le mie pedine
 		
-		//re chiuso sui lati
-		int[] valKingTrapped = kingProtected(node, king, Pawn.BLACK);
-		int valKingTrappedOneSide = valKingTrapped[0];
-		int valKingTrappedTwoSide = valKingTrapped[1];
-		int valKingTrappedThreeSide = valKingTrapped[2];
-		int valKingTrappedFourSide = valKingTrapped[3];
-		//numeor di vie di fuga bloccate al re
-		int valEscapePointBlocked = blockEscapeRoute(node, king);
+		if(king == null) {
+			return 200;
+		}else {
+			//AVVENUTA CATTURA
+			int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se ho catturato pedine avversarie
+			int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se sono state catturate le mie pedine
+			
+			//re chiuso sui lati
+			int[] valKingTrapped = kingProtected(node, king, Pawn.BLACK);
+			int valKingTrappedOneSide = valKingTrapped[0];
+			int valKingTrappedTwoSide = valKingTrapped[1];
+			int valKingTrappedThreeSide = valKingTrapped[2];
+			int valKingTrappedFourSide = valKingTrapped[3];
+			//numeor di vie di fuga bloccate al re
+			int valEscapePointBlocked = blockEscapeRoute(node, king);
+			
+			//vedere se ho catturato il re
+			int valKingcaptured = kingCaptured(node);
+			//vedere se il re è in un punto di fuga
+			int valKingWin = kingInEscapePoint(king);
+			return capturedWhite*valCapturedWhite+capturedBlack*valCapturedBlack+kingTrappedOneSide*valKingTrappedOneSide+
+					kingTrappedTwoSide*valKingTrappedTwoSide+kingTrappedThreeSide*valKingTrappedThreeSide+kingTrappedFourSide*valKingTrappedFourSide
+					+escapePointBlocked*valEscapePointBlocked+kingcaptured*valKingcaptured+kingWin*valKingWin;
+		}
 		
-		//vedere se ho catturato il re
-		int valKingcaptured = kingCaptured(node);
-		//vedere se il re è in un punto di fuga
-		int valKingWin = kingInEscapePoint(king);
-		return capturedWhite*valCapturedWhite+capturedBlack*valCapturedBlack+kingTrappedOneSide*valKingTrappedOneSide+
-				kingTrappedTwoSide*valKingTrappedTwoSide+kingTrappedThreeSide*valKingTrappedThreeSide+kingTrappedFourSide*valKingTrappedFourSide
-				+escapePointBlocked*valEscapePointBlocked+kingcaptured*valKingcaptured+kingWin*valKingWin;
 	}
 	
 	/*public int possibleCaptureKingInOneMove(Node node, Position king, int valKingTrappeThreeSide, int valKingTrappeOneSide, int valKingTrappeTwoSide) {

@@ -56,12 +56,12 @@ public class PawnClassTest {
 		assertEquals(3, cont);
 	}*/
 	
-	/*@Test
+	@Test
 	public void testMaxNumberBoxMoveRight() {
 		Map<Position, PawnClass> test = new HashMap<Position, PawnClass>();
-		Position pos = new Position(2,2);
+		Position pos = new Position(1,2);
 		//test.put(new Position(2,2), new PawnClass(2,2, Pawn.BLACK));
-		test.put(pos, new PawnClass(2,2, Pawn.BLACK));
+		test.put(pos, new PawnClass(1,2, Pawn.BLACK));
 		
 		int cont = test.get(pos).maxNumberBoxMoveRight(test);
 		if(cont == 0)
@@ -70,10 +70,10 @@ public class PawnClassTest {
 			int column = test.get(pos).getColumn()+i;
 			System.out.println("Posso spostarla in riga="+test.get(pos).getRow()+" colonna="+column);
 		}
-		assertEquals(6, cont);
-	}*/
+		assertEquals(1, cont);
+	}
 	
-	
+	/*
 	@Test
 	public void testMaxNumberBoxMoveLeft() {
 		Map<Position, PawnClass> test = new HashMap<Position, PawnClass>();
@@ -89,6 +89,6 @@ public class PawnClassTest {
 			System.out.println("Posso spostarla in riga="+test.get(pos).getRow()+" colonna="+column);
 		}
 		assertEquals(2, cont);
-	}
+	}*/
 }
 

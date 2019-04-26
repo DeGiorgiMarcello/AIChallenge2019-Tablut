@@ -25,5 +25,4 @@ public class BestNode {
 	public void setVal(double val) {
 		this.val = val;
 	}
-
 }

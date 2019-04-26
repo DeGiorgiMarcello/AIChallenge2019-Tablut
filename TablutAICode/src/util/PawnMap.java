@@ -70,7 +70,12 @@ public class PawnMap {
 			if(pawnClass.getType().equalsPawn(Pawn.KING.toString()))
 				list.add(position);
 		});
-		return list.get(0);
+		if(list.isEmpty()) {
+			return null;
+		}else {
+			return list.get(0);
+		}
+		
 	}
 	
 	

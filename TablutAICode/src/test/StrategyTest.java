@@ -288,21 +288,29 @@ class StrategyTest {
 		Map<Position,PawnClass> state1 = new HashMap<Position,PawnClass>();
 		state1.put(new Position(2,2), new PawnClass(2,2,Pawn.KING));
 		state1.put(new Position(7,2), new PawnClass(7,2,Pawn.WHITE));
+		state1.put(new Position(2,1), new PawnClass(2,1,Pawn.BLACK));
+		state1.put(new Position(2,7), new PawnClass(2,7,Pawn.WHITE));
+		state1.put(new Position(1,2), new PawnClass(1,2,Pawn.WHITE));
 		state1.put(new Position(7,3), new PawnClass(7,3,Pawn.BLACK));
-		Map<Position,PawnClass> state2  = PawnMap.getInstance().cloneState(state1);
+		/*Map<Position,PawnClass> state2  = PawnMap.getInstance().cloneState(state1);
 		state2.remove(new Position(7,3));
-		state2.put(new Position(6,3), new PawnClass(6,3,Pawn.BLACK));
+		state2.put(new Position(6,3), new PawnClass(6,3,Pawn.BLACK));*/
 		ArrayList<Node> nodesList = strategy.getNodesList();
 		nodesList.clear();
 		
 		Node node1 = new Node(0,state1,parent,0,"d5","d8");
 	//	Node node2 = new Node(2,state2,node1,0,"d8","d7");
 	//	nodesList.add(0,node2);
-		nodesList.add(0,node1);  
+		nodesList.add(node1);  
 		strategy.setPlayer("white");
 		//nodesList.add(0,parent);
 		BestNode bn = strategy.alphaBeta(node1, 0, -500, 500, true);
 		Node prova = bn.getNode();
+		
+		
+		while(prova.getDepth() != 1) {
+			prova = prova.getParent();
+		}
 		
 		System.out.println("Valore mossa consigliata "+bn.getVal()+"\nMossa consigliata "+prova.getPawnMoveFrom()+"-"+prova.getPawnMoveTo());
 		

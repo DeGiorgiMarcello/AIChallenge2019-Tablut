@@ -29,10 +29,12 @@ public class Strategy {
 	private Position a4 = new Position(5,4);
 	private boolean taken = false; //variabile per tener conto dell'avvenuta cattura e aggiornare i nodi figli
 	final int MAXDEPTH = 3;
+	private Heuristic heuristicInstance;
 	boolean first = true;
 		
 	private Strategy() {
 		initCitadels();
+		heuristicInstance.getInstance();
 	}
 	
 	public static Strategy getInstance() {
@@ -53,8 +55,13 @@ public class Strategy {
 		//Node partialTree = generatePartialTree();
 		int alfa = -500;  //-infinito
 		int beta = 500;   //+infinito
+		nodesList.add(new Node());
 		BestNode alphaBetaBestNode = alphaBeta(new Node(),0,alfa,beta,true);  //si inizializza con la root
 		Node bestNode = alphaBetaBestNode.getNode();
+		
+		while(bestNode.getDepth() != 1) {
+			bestNode = bestNode.getParent();
+		}
 		move[0] = bestNode.getPawnMoveFrom();
 		move[1] = bestNode.getPawnMoveTo();
 		
@@ -112,7 +119,7 @@ public class Strategy {
 public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDepth,double val,double alfa, double beta,boolean max) {
 		
 		boolean isKing = false;
-		BestNode bestNodeMove = new BestNode(actualNode,val);
+		BestNode bestNodeMove = new BestNode(actualNode,val); 
 		Map<Position,PawnClass> actualState = PawnMap.getInstance().cloneState(actualNode.getState());
 		for(Map.Entry<Position, PawnClass> entry : actualState.entrySet()) {
 			PawnClass pawn = entry.getValue();
@@ -142,7 +149,7 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					if(!hashCodeStateList.contains(stateHashCode)) {   //eliminata condizione che depth<MAXDEPTH e inglobato tutto il resto
 						//nodesList.add(child); //nodesList.add(0, child);
 						hashCodeStateList.add(stateHashCode);
-					
+						nodesList.add(child);
 						if(max) {
 							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
 							double childVal = childNode.getVal();
@@ -180,12 +187,12 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					}
 					String moveFrom = convertCoordinates(oldPos);
 					String moveTo = convertCoordinates(newPos);
-					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
+					Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
 					if(!hashCodeStateList.contains(stateHashCode)) {
 						//nodesList.add(child); //nodesList.add(0, child);
 						hashCodeStateList.add(stateHashCode);
-					
+						nodesList.add(child);
 						if(max) { 
 							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
 							double childVal = childNode.getVal();
@@ -221,12 +228,12 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					}
 					String moveFrom = convertCoordinates(oldPos);
 					String moveTo = convertCoordinates(newPos);
-					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
+					Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
 					if(!hashCodeStateList.contains(stateHashCode)) {
 						//nodesList.add(child); //nodesList.add(0, child);
 						hashCodeStateList.add(stateHashCode);
-					
+						nodesList.add(child);
 						if(max) {
 							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
 							double childVal = childNode.getVal();
@@ -262,12 +269,12 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					}
 					String moveFrom = convertCoordinates(oldPos);
 					String moveTo = convertCoordinates(newPos);
-					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
+					Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
 					if(!hashCodeStateList.contains(stateHashCode)) {
 						//nodesList.add(child); //nodesList.add(0, child);
 						hashCodeStateList.add(stateHashCode);
-						
+						nodesList.add(child);
 						if(max) {
 							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
 							double childVal = childNode.getVal();
@@ -276,7 +283,6 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 							val = Math.max(val, childVal);
 							alfa = Math.max(alfa, val);
 							if(beta <= alfa) {
-								nodesList.remove(child);
 								return bestNodeMove;
 							}
 						}
@@ -288,7 +294,6 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 							val = Math.min(val, childVal);
 							beta = Math.min(beta, val);
 							if(beta <= alfa) {
-								nodesList.remove(child);
 								return bestNodeMove;
 							}
 						}	
@@ -304,7 +309,7 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean max) {
 	double val;
 	int childCounter = 0;
-	BestNode bestNodeMove = new BestNode(node, 0); 
+	BestNode bestNodeMove = new BestNode(node, 0);
 	Pawn maxColor,minColor;
 	if(player.equals("white")) {
 		 maxColor = Pawn.WHITE;
@@ -318,8 +323,12 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 	if(max) {
 		val = -500;
 		bestNodeMove.setVal(val);
-		if(depth != MAXDEPTH) { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
-			try {
+		if(depth == MAXDEPTH ) { //NODI FOGLIA!
+			//con la funzione euristica si assegna il valore al nodo
+			val = Heuristic.getInstance().evaluateNode(node);
+			bestNodeMove = new BestNode(node,val); 
+			return bestNodeMove;
+		}else{ //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
 				/*
 			for(Node child : (ArrayList<Node>) nodesList) {
 				if(child.getParent() == node) {
@@ -336,9 +345,6 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 					}
 				}
 			} */
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
 			//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
 			BestNode childNode = expandNodeAlphaBeta(node, maxColor, depth, val, alfa, beta,max); //c'era true e depth -val
 			double childVal = childNode.getVal();
@@ -350,12 +356,7 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 				return bestNodeMove;
 			}
 		} 
-		if(depth == MAXDEPTH) { //NODI FOGLIA!
-			//con la funzione euristica si assegna il valore al nodo
-			val = Heuristic.getInstance().evaluateNode(node);
-			bestNodeMove = new BestNode(node,val);
-			return bestNodeMove;
-		}
+		
 		//DA RIVEDERE!
 		/*if(depth == 0 && nodesList.get(0) == node ) {  
 			bestNodeMove = new BestNode(node,val);
@@ -366,7 +367,11 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 	else {
 		val = +500;
 		bestNodeMove.setVal(val);
-		if(depth != MAXDEPTH) { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
+		if(depth == MAXDEPTH) { //NODI FOGLIA!
+			//con la funzione euristica si assegna il valore al nodo
+			val = Heuristic.getInstance().evaluateNode(node);  
+			return new BestNode(node,val);
+		}else { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
 			/*
 			for(Node child : (ArrayList<Node>) nodesList) {
 				if(child.getParent() == node) {
@@ -391,15 +396,17 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 			if(beta <= alfa)
 				return bestNodeMove;
 		}
-		if(depth == MAXDEPTH) { //NODI FOGLIA!
-			//con la funzione euristica si assegna il valore al nodo
-			val = Heuristic.getInstance().evaluateNode(node);  
-			return new BestNode(node,val);
-		}
 		return bestNodeMove;
 	}
 }
 
+	/*public boolean whiteWin(Node node) {
+		boolean result = false;
+		Position king;
+		for(Map.Entry<Position, PawnClass> entry : node.getState().entrySet()) {
+			
+		}
+	}*/
 	
 	public String convertCoordinates(Position pos) {
 		String result = "";
@@ -544,22 +551,22 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 	
 
 	public void initCitadels() {
-		citadels.add(new Position(3,0));
-		citadels.add(new Position(4,0));
-		citadels.add(new Position(3,0));
-		citadels.add(new Position(4,1));
-		citadels.add(new Position(8,3));
-		citadels.add(new Position(8,4));
-		citadels.add(new Position(8,5));
-		citadels.add(new Position(7,4));
-		citadels.add(new Position(5,8));
-		citadels.add(new Position(4,8));
-		citadels.add(new Position(4,7));
-		citadels.add(new Position(3,8));
 		citadels.add(new Position(0,3));
 		citadels.add(new Position(0,4));
 		citadels.add(new Position(0,5));
-		citadels.add(new Position(0,4));
+		citadels.add(new Position(1,4));
+		citadels.add(new Position(3,0));
+		citadels.add(new Position(3,8));
+		citadels.add(new Position(4,0));
+		citadels.add(new Position(4,1));
+		citadels.add(new Position(4,7));
+		citadels.add(new Position(4,8));
+		citadels.add(new Position(5,0));
+		citadels.add(new Position(5,8));
+		citadels.add(new Position(7,4));
+		citadels.add(new Position(8,3));
+		citadels.add(new Position(8,4));
+		citadels.add(new Position(8,5));
 	}
 	
 	public Map<Position, PawnClass> captureVerification(Map<Position,PawnClass> map, Position newPawnPosition) {
