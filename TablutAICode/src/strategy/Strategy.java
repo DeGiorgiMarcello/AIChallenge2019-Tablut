@@ -340,10 +340,14 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 				e.printStackTrace();
 			}
 			//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
-			if(childCounter == 0) { 
-				BestNode newBestNodeMove = expandNodeAlphaBeta(node, maxColor, depth, val, alfa, beta,max); //c'era true e depth -val
-				if(newBestNodeMove.getVal() >= bestNodeMove.getVal())
-					bestNodeMove = newBestNodeMove;
+			BestNode childNode = expandNodeAlphaBeta(node, maxColor, depth, val, alfa, beta,max); //c'era true e depth -val
+			double childVal = childNode.getVal();
+			if(childVal >= bestNodeMove.getVal())
+				bestNodeMove = childNode;
+			val = Math.max(val, childVal);
+			alfa = Math.max(alfa, val);
+			if(beta <= alfa) {
+				return bestNodeMove;
 			}
 		} 
 		if(depth == MAXDEPTH) { //NODI FOGLIA!
@@ -378,11 +382,14 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 				}
 			} */
 			//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
-			if(childCounter == 0) {  
-				BestNode newBestNodeMove = expandNodeAlphaBeta(node, minColor, depth, val, alfa, beta,max); //c'era true -
-				if(newBestNodeMove.getVal() <= bestNodeMove.getVal())
-					bestNodeMove = newBestNodeMove;
-				}
+			BestNode childNode = expandNodeAlphaBeta(node, minColor, depth, val, alfa, beta,max); //c'era true -
+			double childVal = childNode.getVal();
+			if(childVal <= bestNodeMove.getVal())
+				bestNodeMove = childNode;
+			val = Math.max(val, childVal);
+			beta = Math.min(beta, val);
+			if(beta <= alfa)
+				return bestNodeMove;
 		}
 		if(depth == MAXDEPTH) { //NODI FOGLIA!
 			//con la funzione euristica si assegna il valore al nodo
