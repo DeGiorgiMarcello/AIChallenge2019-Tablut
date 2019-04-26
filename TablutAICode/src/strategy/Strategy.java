@@ -129,8 +129,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow(),pawn.getColumn()-i);
-					captureVerification(newState, newPos);     //questo metodo e updateState sono stati scambiati di posto
 					updateState(newState,pawn,pawn.getRow(),pawn.getColumn()-i);
+					captureVerification(newState, newPos);     //questo metodo e updateState sono stati scambiati di posto
 					if(taken) {
 						captured++;
 						taken = false;
@@ -172,8 +172,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow(),pawn.getColumn()+i);
-					captureVerification(newState, newPos);
 					updateState(newState,pawn,pawn.getRow(),pawn.getColumn()+i);
+					captureVerification(newState, newPos);
 					if(taken) {
 						captured++;
 						taken = false;
@@ -213,8 +213,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow()-1,pawn.getColumn());
-					captureVerification(newState, newPos);
 					updateState(newState,pawn,pawn.getRow()-1,pawn.getColumn());
+					captureVerification(newState, newPos);
 					if(taken) {
 						captured++;
 						taken = false;
@@ -254,8 +254,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow()+1,pawn.getColumn());		
-					captureVerification(newState, newPos);
 					updateState(newState,pawn,pawn.getRow()+1,pawn.getColumn());
+					captureVerification(newState, newPos);
 					if(taken) {
 						captured++;
 						taken = false;
