@@ -1,7 +1,3 @@
-/domain/
-/exceptions/
-/gui/
-/server/
-/strategy/
 /test/
-/util/
+/strategy/
+/client/

@@ -1,0 +1,21 @@
+apr 25, 2019 9:00:00 PM domain.GameAshtonTablut <init>
+BUONO: Players:	White:	Topolino	vs	pippo
+apr 25, 2019 9:00:00 PM domain.GameAshtonTablut <init>
+BUONO: Repeated moves allowed:	0	Cache:	-1
+apr 25, 2019 9:00:00 PM domain.GameAshtonTablut <init>
+BUONO: Inizio partita
+apr 25, 2019 9:00:00 PM domain.GameAshtonTablut <init>
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+apr 25, 2019 9:00:01 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from null to null

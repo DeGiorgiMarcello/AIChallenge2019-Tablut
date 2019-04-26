@@ -14,7 +14,8 @@ public class TablutAIClient extends TablutClient {
 	public TablutAIClient(String player, String name) throws UnknownHostException, IOException {
 		super(player, name);
 		// TODO Auto-generated constructor stub
-		player = this.player;
+		player = player.toLowerCase();
+		this.player = player;
 	}
 	
 	//per lanciarlo inserire giocatore e nome come argomenti

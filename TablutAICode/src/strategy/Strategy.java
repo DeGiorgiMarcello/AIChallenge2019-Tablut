@@ -50,10 +50,10 @@ public class Strategy {
 		nodesList.clear();
 		this.player = player;
 		//----------------
-		Node partialTree = generatePartialTree();
+		//Node partialTree = generatePartialTree();
 		int alfa = -500;  //-infinito
 		int beta = 500;   //+infinito
-		BestNode alphaBetaBestNode = alphaBeta(partialTree,0,alfa,beta,true);  //si inizializza con la root
+		BestNode alphaBetaBestNode = alphaBeta(new Node(),0,alfa,beta,true);  //si inizializza con la root
 		Node bestNode = alphaBetaBestNode.getNode();
 		move[0] = bestNode.getPawnMoveFrom();
 		move[1] = bestNode.getPawnMoveTo();
@@ -112,7 +112,7 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 		
 		boolean isKing = false;
 		BestNode bestNodeMove = new BestNode(actualNode,val);
-		Map<Position,PawnClass> actualState = actualNode.getState();
+		Map<Position,PawnClass> actualState = PawnMap.getInstance().cloneState(actualNode.getState());
 		for(Map.Entry<Position, PawnClass> entry : actualState.entrySet()) {
 			PawnClass pawn = entry.getValue();
 			int captured = actualNode.getCaptured();
@@ -138,8 +138,10 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
-					if(alphaBetaDepth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode))
+					if(alphaBetaDepth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode)) {
 						nodesList.add(child); //nodesList.add(0, child);
+						hashCodeStateList.add(stateHashCode);
+					}
 					if(max) {
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
 						double childVal = childNode.getVal();
@@ -178,8 +180,10 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
-					if(depth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode))
-						nodesList.add(child); //nodesList.add(0, child); 
+					if(alphaBetaDepth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode)) {
+						nodesList.add(child); //nodesList.add(0, child);
+						hashCodeStateList.add(stateHashCode);
+					}
 					if(max) { 
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
 						double childVal = childNode.getVal();
@@ -216,8 +220,10 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
-					if(depth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode))
-						nodesList.add(child); //nodesList.add(0, child); 
+					if(alphaBetaDepth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode)) {
+						nodesList.add(child); //nodesList.add(0, child);
+						hashCodeStateList.add(stateHashCode);
+					}
 					if(max) {
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
 						double childVal = childNode.getVal();
@@ -254,8 +260,10 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
-					if(depth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode))
+					if(alphaBetaDepth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode)) {
 						nodesList.add(child); //nodesList.add(0, child);
+						hashCodeStateList.add(stateHashCode);
+					}
 					if(max) {
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
 						double childVal = childNode.getVal();
@@ -307,6 +315,7 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 		bestNodeMove.setVal(val);
 		if(depth != MAXDEPTH) { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
 			try {
+				/*
 			for(Node child : (ArrayList<Node>) nodesList) {
 				if(child.getParent() == node) {
 					childCounter++;
@@ -321,7 +330,7 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 						return bestNodeMove;
 					}
 				}
-			} 
+			} */
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -349,6 +358,7 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 		val = +500;
 		bestNodeMove.setVal(val);
 		if(depth != MAXDEPTH) { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
+			/*
 			for(Node child : (ArrayList<Node>) nodesList) {
 				if(child.getParent() == node) {
 					BestNode childNode = alphaBeta(child,depth+1,alfa,beta,max); //c'era false
@@ -361,7 +371,7 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 						nodesList.remove(child);
 						return bestNodeMove;
 				}
-			}
+			} */
 			//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
 			if(childCounter == 0) {  
 				BestNode newBestNodeMove = expandNodeAlphaBeta(node, minColor, depth, val, alfa, beta,max); //c'era true -

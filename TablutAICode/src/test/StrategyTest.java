@@ -301,7 +301,7 @@ class StrategyTest {
 		nodesList.add(0,node1);  
 		strategy.setPlayer("white");
 		//nodesList.add(0,parent);
-		BestNode bn = strategy.alphaBeta(node1, 0, -500, 500, true);
+		BestNode bn = strategy.alphaBeta(new Node(), 0, -500, 500, true);
 		Node prova = bn.getNode();
 		
 		System.out.println(prova.getPawnMoveFrom()+"-"+prova.getPawnMoveTo());
