@@ -61,6 +61,7 @@ public class Strategy {
 		return move;
 	}
 	
+	/*
 	public Node generatePartialTree() {
 		String player = this.player;
 		Node root = new Node();
@@ -90,7 +91,7 @@ public class Strategy {
 		}
 		setPlayer(player);
 		return root;  //ritorna l'albero intero
-	}
+	} */
 	
 	public void expandNode(Node actualNode,Pawn color) {
 		Map<Position,PawnClass> actualState = actualNode.getState();
@@ -128,8 +129,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow(),pawn.getColumn()-i);
+					captureVerification(newState, newPos);     //questo metodo e updateState sono stati scambiati di posto
 					updateState(newState,pawn,pawn.getRow(),pawn.getColumn()-i);
-					captureVerification(newState, newPos);
 					if(taken) {
 						captured++;
 						taken = false;
@@ -138,31 +139,32 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
-					if(alphaBetaDepth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode)) {
-						nodesList.add(child); //nodesList.add(0, child);
+					if(!hashCodeStateList.contains(stateHashCode)) {   //eliminata condizione che depth<MAXDEPTH e inglobato tutto il resto
+						//nodesList.add(child); //nodesList.add(0, child);
 						hashCodeStateList.add(stateHashCode);
+					
+						if(max) {
+							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
+							double childVal = childNode.getVal();
+							if(childVal >= bestNodeMove.getVal())
+								bestNodeMove = childNode;
+							
+							val = Math.max(val, childVal);
+							alfa = Math.max(alfa, val);
+							if(beta <= alfa)
+								return bestNodeMove ;
+						}
+						else {
+							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
+							double childVal = childNode.getVal();
+							if(childVal <= bestNodeMove.getVal())
+								bestNodeMove = childNode;
+							val = Math.min(val, childVal);
+							beta = Math.min(beta, val);
+							if(beta <= alfa)
+								return bestNodeMove;
+						}		
 					}
-					if(max) {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
-						double childVal = childNode.getVal();
-						if(childVal >= bestNodeMove.getVal())
-							bestNodeMove = childNode;
-						
-						val = Math.max(val, childVal);
-						alfa = Math.max(alfa, val);
-						if(beta <= alfa)
-							return bestNodeMove ;
-					}
-					else {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
-						double childVal = childNode.getVal();
-						if(childVal <= bestNodeMove.getVal())
-							bestNodeMove = childNode;
-						val = Math.min(val, childVal);
-						beta = Math.min(beta, val);
-						if(beta <= alfa)
-							return bestNodeMove;
-					}		
 				}
 				
 				//MOVE RIGHT
@@ -170,8 +172,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow(),pawn.getColumn()+i);
-					updateState(newState,pawn,pawn.getRow(),pawn.getColumn()+i);
 					captureVerification(newState, newPos);
+					updateState(newState,pawn,pawn.getRow(),pawn.getColumn()+i);
 					if(taken) {
 						captured++;
 						taken = false;
@@ -180,38 +182,39 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
-					if(alphaBetaDepth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode)) {
-						nodesList.add(child); //nodesList.add(0, child);
+					if(!hashCodeStateList.contains(stateHashCode)) {
+						//nodesList.add(child); //nodesList.add(0, child);
 						hashCodeStateList.add(stateHashCode);
+					
+						if(max) { 
+							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
+							double childVal = childNode.getVal();
+							if(childVal >= bestNodeMove.getVal())
+								bestNodeMove = childNode;
+							val = Math.max(val, childVal);
+							alfa = Math.max(alfa, val);
+							if(beta <= alfa)
+								return bestNodeMove;
+						}
+						else {
+							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era true
+							double childVal = childNode.getVal();
+							if(childVal <= bestNodeMove.getVal())
+								bestNodeMove = childNode;
+							val = Math.min(val, childVal);
+							beta = Math.min(beta, val);
+							if(beta <= alfa)
+								return bestNodeMove;
+						}
 					}
-					if(max) { 
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
-						double childVal = childNode.getVal();
-						if(childVal >= bestNodeMove.getVal())
-							bestNodeMove = childNode;
-						val = Math.max(val, childVal);
-						alfa = Math.max(alfa, val);
-						if(beta <= alfa)
-							return bestNodeMove;
-					}
-					else {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era true
-						double childVal = childNode.getVal();
-						if(childVal <= bestNodeMove.getVal())
-							bestNodeMove = childNode;
-						val = Math.min(val, childVal);
-						beta = Math.min(beta, val);
-						if(beta <= alfa)
-							return bestNodeMove;
-					}		
 				}
 				//MOVE UP
 				for(int i=1;i<=pawn.maxNumberBoxMoveUp(actualState);i++) {
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow()-1,pawn.getColumn());
+					captureVerification(newState, newPos);
 					updateState(newState,pawn,pawn.getRow()-1,pawn.getColumn());
-					newState = captureVerification(newState, newPos);
 					if(taken) {
 						captured++;
 						taken = false;
@@ -220,38 +223,39 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
-					if(alphaBetaDepth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode)) {
-						nodesList.add(child); //nodesList.add(0, child);
+					if(!hashCodeStateList.contains(stateHashCode)) {
+						//nodesList.add(child); //nodesList.add(0, child);
 						hashCodeStateList.add(stateHashCode);
+					
+						if(max) {
+							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
+							double childVal = childNode.getVal();
+							if(childVal >= bestNodeMove.getVal())
+								bestNodeMove = childNode;
+							val = Math.max(val, childVal);
+							alfa = Math.max(alfa, val);
+							if(beta <= alfa)
+								return bestNodeMove;
+						}
+						else {
+							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era true
+							double childVal = childNode.getVal();
+							if(childVal <= bestNodeMove.getVal())
+								bestNodeMove = childNode;
+							val = Math.min(val, childVal);
+							beta = Math.min(beta, val);
+							if(beta <= alfa)
+								return bestNodeMove;
+						}	
 					}
-					if(max) {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
-						double childVal = childNode.getVal();
-						if(childVal >= bestNodeMove.getVal())
-							bestNodeMove = childNode;
-						val = Math.max(val, childVal);
-						alfa = Math.max(alfa, val);
-						if(beta <= alfa)
-							return bestNodeMove;
-					}
-					else {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era true
-						double childVal = childNode.getVal();
-						if(childVal <= bestNodeMove.getVal())
-							bestNodeMove = childNode;
-						val = Math.min(val, childVal);
-						beta = Math.min(beta, val);
-						if(beta <= alfa)
-							return bestNodeMove;
-					}		
 				}
 				//MOVE DOWN
 				for(int i=1;i<=pawn.maxNumberBoxMoveDown(actualState);i++) {
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
-					Position newPos = new Position(pawn.getRow()+1,pawn.getColumn());
-					updateState(newState,pawn,pawn.getRow()+1,pawn.getColumn());
+					Position newPos = new Position(pawn.getRow()+1,pawn.getColumn());		
 					captureVerification(newState, newPos);
+					updateState(newState,pawn,pawn.getRow()+1,pawn.getColumn());
 					if(taken) {
 						captured++;
 						taken = false;
@@ -260,34 +264,35 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(depth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
-					if(alphaBetaDepth < MAXDEPTH && !hashCodeStateList.contains(stateHashCode)) {
-						nodesList.add(child); //nodesList.add(0, child);
+					if(!hashCodeStateList.contains(stateHashCode)) {
+						//nodesList.add(child); //nodesList.add(0, child);
 						hashCodeStateList.add(stateHashCode);
-					}
-					if(max) {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
-						double childVal = childNode.getVal();
-						if(childVal >= bestNodeMove.getVal())
-							bestNodeMove = childNode;
-						val = Math.max(val, childVal);
-						alfa = Math.max(alfa, val);
-						if(beta <= alfa) {
-							nodesList.remove(child);
-							return bestNodeMove;
+						
+						if(max) {
+							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
+							double childVal = childNode.getVal();
+							if(childVal >= bestNodeMove.getVal())
+								bestNodeMove = childNode;
+							val = Math.max(val, childVal);
+							alfa = Math.max(alfa, val);
+							if(beta <= alfa) {
+								nodesList.remove(child);
+								return bestNodeMove;
+							}
 						}
+						else {
+							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era true
+							double childVal = childNode.getVal();
+							if(childVal <= bestNodeMove.getVal())
+								bestNodeMove = childNode;
+							val = Math.min(val, childVal);
+							beta = Math.min(beta, val);
+							if(beta <= alfa) {
+								nodesList.remove(child);
+								return bestNodeMove;
+							}
+						}	
 					}
-					else {
-						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era true
-						double childVal = childNode.getVal();
-						if(childVal <= bestNodeMove.getVal())
-							bestNodeMove = childNode;
-						val = Math.min(val, childVal);
-						beta = Math.min(beta, val);
-						if(beta <= alfa) {
-							nodesList.remove(child);
-							return bestNodeMove;
-						}
-					}		
 				}
 			
 			}
