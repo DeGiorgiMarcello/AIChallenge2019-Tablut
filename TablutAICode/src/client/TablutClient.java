@@ -1,5 +1,4 @@
 package client;
-import domain.*;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -9,11 +8,9 @@ import java.net.UnknownHostException;
 import java.security.InvalidParameterException;
 
 import com.google.gson.Gson;
-/*
-import it.unibo.ai.didattica.competition.tablut.domain.Action;
-import it.unibo.ai.didattica.competition.tablut.domain.State;
-import it.unibo.ai.didattica.competition.tablut.domain.StateTablut;
-*/
+
+import domain.*;
+import util.StreamUtils;
 
 /**
  * Classe astratta di un client per il gioco Tablut
@@ -60,9 +57,7 @@ public abstract class TablutClient implements Runnable {
 		this.gson = new Gson();
 		if (player.toLowerCase().equals("white")) {
 			this.player = State.Turn.WHITE;
-			//indirizzo = "0.tcp.ngrok.io";
-			//port = 13746;
-			port=5800;
+			port = 5800;
 		} else if (player.toLowerCase().equals("black")) {
 			this.player = State.Turn.BLACK;
 			port = 5801;
@@ -87,20 +82,20 @@ public abstract class TablutClient implements Runnable {
 	 * Write an action to the server
 	 */
 	public void write(Action action) throws IOException, ClassNotFoundException {
-		out.writeUTF(this.gson.toJson(action));
+		StreamUtils.writeString(out, this.gson.toJson(action));
 	}
 	
 	/**
 	 * Write the name to the server
 	 */
 	public void declareName() throws IOException, ClassNotFoundException {
-		out.writeUTF(this.gson.toJson(this.name));
+		StreamUtils.writeString(out, this.gson.toJson(this.name));
 	}
 
 	/**
 	 * Read the state from the server
 	 */
 	public void read() throws ClassNotFoundException, IOException {
-		this.currentState = this.gson.fromJson(in.readUTF(), StateTablut.class);
+		this.currentState = this.gson.fromJson(StreamUtils.readString(in), StateTablut.class);
 	}
 }

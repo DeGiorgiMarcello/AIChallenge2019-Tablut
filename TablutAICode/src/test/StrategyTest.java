@@ -302,7 +302,7 @@ class StrategyTest {
 	//	Node node2 = new Node(2,state2,node1,0,"d8","d7");
 	//	nodesList.add(0,node2);
 		nodesList.add(node1);  
-		strategy.setPlayer("white");
+		strategy.setPlayer("black");
 		//nodesList.add(0,parent);
 		BestNode bn = strategy.alphaBeta(node1, 0, -500, 500, true);
 		Node prova = bn.getNode();

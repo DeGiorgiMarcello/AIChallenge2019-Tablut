@@ -93,12 +93,13 @@ public class TablutAIClient extends TablutClient {
 				//System.out.println(this.getCurrentState().toString());
 				
 				if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
-					System.out.println("Player \"+this.getPlayer().toString()+ \" is moving");
+					System.out.println("Player "+this.getPlayer().toString()+ " is moving.");
 					PawnMap.getInstance().createMap(this.getCurrentState());  
 					Strategy strategy = Strategy.getInstance();
 					move = strategy.getMove(this.player); 
 					actionStringFrom = move[0];
 					actionStringTo = move[1];
+					System.out.println(actionStringFrom+actionStringTo);
 					action = new Action(actionStringFrom, actionStringTo, this.getPlayer());
 					this.write(action);  // la mossa viene mandata al server
 				} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {

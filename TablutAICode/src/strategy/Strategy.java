@@ -28,7 +28,7 @@ public class Strategy {
 	private Position a3 = new Position(4,5);
 	private Position a4 = new Position(5,4);
 	private boolean taken = false; //variabile per tener conto dell'avvenuta cattura e aggiornare i nodi figli
-	final int MAXDEPTH = 3;
+	final int MAXDEPTH = 4;
 	private Heuristic heuristicInstance;
 	boolean first = true;
 		
@@ -714,195 +714,198 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 	
 	public Map<Position, PawnClass> captureVerificationBlack(Map<Position,PawnClass> map, Position newPawnPosition) {
 		Position kingPosition = PawnMap.getInstance().findKingPosition(map);
-		//black-white/king-black
-		Position abovePosition1 = new Position(newPawnPosition.getRow() -1, newPawnPosition.getColumn());
-		Position abovePosition2 = new Position(newPawnPosition.getRow() -2, newPawnPosition.getColumn());
-		
-		//CATTURO PEDINA SOPRA
-		if(map.containsKey(abovePosition1) && map.containsKey(abovePosition2)) {
+		if(kingPosition != null) {
+			//black-white/king-black
+			Position abovePosition1 = new Position(newPawnPosition.getRow() -1, newPawnPosition.getColumn());
+			Position abovePosition2 = new Position(newPawnPosition.getRow() -2, newPawnPosition.getColumn());
+			
+			//CATTURO PEDINA SOPRA
+			if(map.containsKey(abovePosition1) && map.containsKey(abovePosition2)) {
+					
+				PawnClass pawnAbove1 = map.get(abovePosition1);
+				PawnClass pawnAbove2 = map.get(abovePosition2);
 				
-			PawnClass pawnAbove1 = map.get(abovePosition1);
-			PawnClass pawnAbove2 = map.get(abovePosition2);
-			
-			if(pawnAbove1.getType().equalsPawn(Pawn.KING.toString()) 
-					&& (kingPosition.equals(castle)
-					|| !kingNotAdjacent(kingPosition))) {
-				//Se quello sopra è il re, si trova nel castello oppure è adiacente al castello, 
-				//non fare niente (l'altro metodo dopo). L'else if permette di mangiare il Re nell'altro caso
-				}
-			else if (pawnAbove1.getType().equalsPawn(Pawn.WHITE.toString()) 
-					|| pawnAbove1.getType().equalsPawn(Pawn.KING.toString())
-					&& pawnAbove2.getType().equalsPawn(Pawn.BLACK.toString())) {
-				map.remove(abovePosition1);					
-				taken = true;
-			}
-		}
-		
-		//CATTURO PEDINA SOTTO
-		Position belowPosition1 = new Position(newPawnPosition.getRow() +1, newPawnPosition.getColumn());
-		Position belowPosition2 = new Position(newPawnPosition.getRow() +2, newPawnPosition.getColumn());
-		
-		if(map.containsKey(belowPosition1) && map.containsKey(belowPosition2)){
-			
-			PawnClass pawnBelow1 = map.get(belowPosition1);
-			PawnClass pawnBelow2 = map.get(belowPosition2);
-			
-			if(pawnBelow1.getType().equalsPawn(Pawn.KING.toString()) 
-					&& (kingPosition.equals(castle)
-					|| !kingNotAdjacent(kingPosition))) {}
-			else if(pawnBelow1.getType().equalsPawn(Pawn.WHITE.toString())
-					|| pawnBelow1.getType().equalsPawn(Pawn.KING.toString()) 
-					&& pawnBelow2.getType().equalsPawn(Pawn.BLACK.toString())) {
-						
-				map.remove(belowPosition1);
-				taken = true;
-				}
-		}
-		
-		//CATTURO PEDINA A DESTRA
-		Position rightPosition1 = new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()+1);
-		Position rightPosition2 = new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()+2);
-		
-		if(map.containsKey(rightPosition1) && map.containsKey(rightPosition2)){
-			PawnClass pawnRight1 = map.get(rightPosition1);
-			PawnClass pawnRight2 = map.get(rightPosition2);
-			
-			if(pawnRight1.getType().equalsPawn(Pawn.KING.toString()) 
-					&& (kingPosition.equals(castle)
-					|| !kingNotAdjacent(kingPosition))) {}
-			else if(pawnRight1.getType().equalsPawn(Pawn.WHITE.toString())
-					|| pawnRight1.getType().equalsPawn(Pawn.KING.toString())
-					&& pawnRight2.getType().equalsPawn(Pawn.BLACK.toString())){
-						
-					map.remove(rightPosition1);
+				if(pawnAbove1.getType().equalsPawn(Pawn.KING.toString()) 
+						&& (kingPosition.equals(castle)
+						|| !kingNotAdjacent(kingPosition))) {
+					//Se quello sopra è il re, si trova nel castello oppure è adiacente al castello, 
+					//non fare niente (l'altro metodo dopo). L'else if permette di mangiare il Re nell'altro caso
+					}
+				else if (pawnAbove1.getType().equalsPawn(Pawn.WHITE.toString()) 
+						|| pawnAbove1.getType().equalsPawn(Pawn.KING.toString())
+						&& pawnAbove2.getType().equalsPawn(Pawn.BLACK.toString())) {
+					map.remove(abovePosition1);					
 					taken = true;
 				}
-		}
-		
-		//CATTURO PEDINA A SINISTRA
-		Position leftPosition1 = new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()-1);
-		Position leftPosition2 = new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()-2);
-		
-		if(map.containsKey(leftPosition1) && map.containsKey(leftPosition2)){
-			PawnClass pawnLeft1 = map.get(leftPosition1);
-			PawnClass pawnLeft2 = map.get(leftPosition2);
-			
-			if(pawnLeft1.getType().equalsPawn(Pawn.KING.toString()) 
-					&& (kingPosition.equals(castle)
-					|| !kingNotAdjacent(kingPosition))) {}	
-			else if(pawnLeft1.getType().equalsPawn(Pawn.WHITE.toString())
-					|| pawnLeft1.getType().equalsPawn(Pawn.KING.toString())
-					&& pawnLeft2.getType().equalsPawn(Pawn.BLACK.toString())){
-						
-				map.remove(leftPosition1);
-				taken = true;
 			}
-		}
-	
-		
-		//black-white-citadels/castle
-		//CATTURO PEDINA SOPRA
-		
-		if(map.containsKey(abovePosition1) && (citadels.contains(abovePosition2) || castle.equals(abovePosition2)
-				&& kingNotAdjacent(kingPosition) && !kingPosition.equals(castle))){
-			PawnClass pawnAbove1 = map.get(abovePosition1);
+			
+			//CATTURO PEDINA SOTTO
+			Position belowPosition1 = new Position(newPawnPosition.getRow() +1, newPawnPosition.getColumn());
+			Position belowPosition2 = new Position(newPawnPosition.getRow() +2, newPawnPosition.getColumn());
+			
+			if(map.containsKey(belowPosition1) && map.containsKey(belowPosition2)){
+				
+				PawnClass pawnBelow1 = map.get(belowPosition1);
+				PawnClass pawnBelow2 = map.get(belowPosition2);
+				
+				if(pawnBelow1.getType().equalsPawn(Pawn.KING.toString()) 
+						&& (kingPosition.equals(castle)
+						|| !kingNotAdjacent(kingPosition))) {}
+				else if(pawnBelow1.getType().equalsPawn(Pawn.WHITE.toString())
+						|| pawnBelow1.getType().equalsPawn(Pawn.KING.toString()) 
+						&& pawnBelow2.getType().equalsPawn(Pawn.BLACK.toString())) {
 							
-			if(pawnAbove1.getType().equalsPawn(Pawn.WHITE.toString()) 
-					|| pawnAbove1.getType().equalsPawn(Pawn.KING.toString())) {
-				map.remove(abovePosition1);
-				taken = true;
-			}
-		}	
-				
-			
-		
-		//CATTURO PEDINA SOTTO
-				if(map.containsKey(belowPosition1) && (citadels.contains(belowPosition2) || castle.equals(belowPosition2)
-					&& kingNotAdjacent(kingPosition) && !kingPosition.equals(castle))){
-					PawnClass pawnBelow1 = map.get(belowPosition1);
-					
-					if(pawnBelow1.getType().equalsPawn(Pawn.WHITE.toString())
-							|| pawnBelow1.getType().equalsPawn(Pawn.KING.toString())){
-						map.remove(belowPosition1);
-						taken = true;
+					map.remove(belowPosition1);
+					taken = true;
 					}
-				}
-	
-		
-		//CATTURO PEDINA A DESTRA
+			}
+			
+			//CATTURO PEDINA A DESTRA
+			Position rightPosition1 = new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()+1);
+			Position rightPosition2 = new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()+2);
+			
+			if(map.containsKey(rightPosition1) && map.containsKey(rightPosition2)){
+				PawnClass pawnRight1 = map.get(rightPosition1);
+				PawnClass pawnRight2 = map.get(rightPosition2);
 				
-				if(map.containsKey(rightPosition1) && (citadels.contains(rightPosition2)|| castle.equals(rightPosition2)
-						&& kingNotAdjacent(kingPosition) && !kingPosition.equals(castle))){
-					PawnClass pawnRight1 = map.get(rightPosition1);
-					if(pawnRight1.getType().equalsPawn(Pawn.WHITE.toString())
-							|| pawnRight1.getType().equalsPawn(Pawn.KING.toString())) {
+				if(pawnRight1.getType().equalsPawn(Pawn.KING.toString()) 
+						&& (kingPosition.equals(castle)
+						|| !kingNotAdjacent(kingPosition))) {}
+				else if(pawnRight1.getType().equalsPawn(Pawn.WHITE.toString())
+						|| pawnRight1.getType().equalsPawn(Pawn.KING.toString())
+						&& pawnRight2.getType().equalsPawn(Pawn.BLACK.toString())){
+							
 						map.remove(rightPosition1);
 						taken = true;
 					}
-				}
-				
-				//CATTURO A SINISTRA
-				if(map.containsKey(leftPosition1) && (citadels.contains(leftPosition2) || castle.equals(rightPosition2)
-						&& kingNotAdjacent(kingPosition) && !kingPosition.equals(castle))){
-					PawnClass pawnLeft1 = map.get(leftPosition1);
-					if(pawnLeft1.getType().equalsPawn(Pawn.WHITE.toString())
-							|| pawnLeft1.getType().equalsPawn(Pawn.KING.toString())) {
-						map.remove(leftPosition1);
-					taken = true;
-					}
-				}
-		
-		
-		/*black-king-black
-		 * già fatto sopra*/
-		
-		//black-kingInCastle
-		/*devo circondare il re sui 4 lati*/
-		if(kingPosition.equals(castle) && map.containsKey(a1) && map.containsKey(a2) && map.containsKey(a3) && map.containsKey(a4)
-				&& map.get(a1).getType().equalsPawn(Pawn.BLACK.toString())
-				&& map.get(a2).getType().equalsPawn(Pawn.BLACK.toString())
-				&& map.get(a3).getType().equalsPawn(Pawn.BLACK.toString())
-				&& map.get(a4).getType().equalsPawn(Pawn.BLACK.toString())) {
-			map.remove(kingPosition);
-			taken = true;
+			}
 			
-			/*PARTITA VINTA*/
-		}
+			//CATTURO PEDINA A SINISTRA
+			Position leftPosition1 = new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()-1);
+			Position leftPosition2 = new Position(newPawnPosition.getRow(), newPawnPosition.getColumn()-2);
+			
+			if(map.containsKey(leftPosition1) && map.containsKey(leftPosition2)){
+				PawnClass pawnLeft1 = map.get(leftPosition1);
+				PawnClass pawnLeft2 = map.get(leftPosition2);
+				
+				if(pawnLeft1.getType().equalsPawn(Pawn.KING.toString()) 
+						&& (kingPosition.equals(castle)
+						|| !kingNotAdjacent(kingPosition))) {}	
+				else if(pawnLeft1.getType().equalsPawn(Pawn.WHITE.toString())
+						|| pawnLeft1.getType().equalsPawn(Pawn.KING.toString())
+						&& pawnLeft2.getType().equalsPawn(Pawn.BLACK.toString())){
+							
+					map.remove(leftPosition1);
+					taken = true;
+				}
+			}
 		
-		//black-kingAdjacent
-		if(kingPosition.equals(a1) && map.containsKey(new Position(3,3)) && map.containsKey(new Position(3,5)) && map.containsKey(new Position(2,5))
-				&& map.get(new Position(3,3)).getType().equalsPawn(Pawn.BLACK.toString())
-				&& map.get(new Position(3,5)).getType().equalsPawn(Pawn.BLACK.toString())
-				&& map.get(new Position(2,5)).getType().equalsPawn(Pawn.BLACK.toString())) {
-			map.remove(kingPosition);
-			taken = true;
-			/*partita vinta*/
+			
+			//black-white-citadels/castle
+			//CATTURO PEDINA SOPRA
+			
+			if(map.containsKey(abovePosition1) && (citadels.contains(abovePosition2) || castle.equals(abovePosition2)
+					&& kingNotAdjacent(kingPosition) && !kingPosition.equals(castle))){
+				PawnClass pawnAbove1 = map.get(abovePosition1);
+								
+				if(pawnAbove1.getType().equalsPawn(Pawn.WHITE.toString()) 
+						|| pawnAbove1.getType().equalsPawn(Pawn.KING.toString())) {
+					map.remove(abovePosition1);
+					taken = true;
+				}
+			}	
+					
+				
+			
+			//CATTURO PEDINA SOTTO
+					if(map.containsKey(belowPosition1) && (citadels.contains(belowPosition2) || castle.equals(belowPosition2)
+						&& kingNotAdjacent(kingPosition) && !kingPosition.equals(castle))){
+						PawnClass pawnBelow1 = map.get(belowPosition1);
+						
+						if(pawnBelow1.getType().equalsPawn(Pawn.WHITE.toString())
+								|| pawnBelow1.getType().equalsPawn(Pawn.KING.toString())){
+							map.remove(belowPosition1);
+							taken = true;
+						}
+					}
+		
+			
+			//CATTURO PEDINA A DESTRA
+					
+					if(map.containsKey(rightPosition1) && (citadels.contains(rightPosition2)|| castle.equals(rightPosition2)
+							&& kingNotAdjacent(kingPosition) && !kingPosition.equals(castle))){
+						PawnClass pawnRight1 = map.get(rightPosition1);
+						if(pawnRight1.getType().equalsPawn(Pawn.WHITE.toString())
+								|| pawnRight1.getType().equalsPawn(Pawn.KING.toString())) {
+							map.remove(rightPosition1);
+							taken = true;
+						}
+					}
+					
+					//CATTURO A SINISTRA
+					if(map.containsKey(leftPosition1) && (citadels.contains(leftPosition2) || castle.equals(rightPosition2)
+							&& kingNotAdjacent(kingPosition) && !kingPosition.equals(castle))){
+						PawnClass pawnLeft1 = map.get(leftPosition1);
+						if(pawnLeft1.getType().equalsPawn(Pawn.WHITE.toString())
+								|| pawnLeft1.getType().equalsPawn(Pawn.KING.toString())) {
+							map.remove(leftPosition1);
+						taken = true;
+						}
+					}
+			
+			
+			/*black-king-black
+			 * già fatto sopra*/
+			
+			//black-kingInCastle
+			/*devo circondare il re sui 4 lati*/
+			if(kingPosition.equals(castle) && map.containsKey(a1) && map.containsKey(a2) && map.containsKey(a3) && map.containsKey(a4)
+					&& map.get(a1).getType().equalsPawn(Pawn.BLACK.toString())
+					&& map.get(a2).getType().equalsPawn(Pawn.BLACK.toString())
+					&& map.get(a3).getType().equalsPawn(Pawn.BLACK.toString())
+					&& map.get(a4).getType().equalsPawn(Pawn.BLACK.toString())) {
+				map.remove(kingPosition);
+				taken = true;
+				
+				/*PARTITA VINTA*/
+			}
+			
+			//black-kingAdjacent
+			if(kingPosition.equals(a1) && map.containsKey(new Position(3,3)) && map.containsKey(new Position(3,5)) && map.containsKey(new Position(2,5))
+					&& map.get(new Position(3,3)).getType().equalsPawn(Pawn.BLACK.toString())
+					&& map.get(new Position(3,5)).getType().equalsPawn(Pawn.BLACK.toString())
+					&& map.get(new Position(2,5)).getType().equalsPawn(Pawn.BLACK.toString())) {
+				map.remove(kingPosition);
+				taken = true;
+				/*partita vinta*/
+			}
+			if(kingPosition.equals(a2) && map.containsKey(new Position(3,3)) && map.containsKey(new Position(5,3)) && map.containsKey(new Position(4,2))
+					&& map.get(new Position(3,3)).getType().equalsPawn(Pawn.BLACK.toString())
+					&& map.get(new Position(5,3)).getType().equalsPawn(Pawn.BLACK.toString())
+					&& map.get(new Position(4,2)).getType().equalsPawn(Pawn.BLACK.toString())) {
+				map.remove(kingPosition);
+				taken = true;
+				/*partita vinta*/
+			}
+			if(kingPosition.equals(a3) && map.containsKey(new Position(5,5)) && map.containsKey(new Position(3,5)) && map.containsKey(new Position(4,6))
+					&& map.get(new Position(5,5)).getType().equalsPawn(Pawn.BLACK.toString())
+					&& map.get(new Position(3,5)).getType().equalsPawn(Pawn.BLACK.toString())
+					&& map.get(new Position(4,6)).getType().equalsPawn(Pawn.BLACK.toString())) {
+				map.remove(kingPosition);
+				taken = true;
+				/*partita vinta*/
+			}
+			if(kingPosition.equals(a4) && map.containsKey(new Position(5,3)) && map.containsKey(new Position(5,5)) && map.containsKey(new Position(6,4))
+					&& map.get(new Position(5,3)).getType().equalsPawn(Pawn.BLACK.toString())
+					&& map.get(new Position(5,5)).getType().equalsPawn(Pawn.BLACK.toString())
+					&& map.get(new Position(6,4)).getType().equalsPawn(Pawn.BLACK.toString())) {
+				map.remove(kingPosition);
+				taken = true;
+				/*partita vinta*/
+			}
+			return map;
 		}
-		if(kingPosition.equals(a2) && map.containsKey(new Position(3,3)) && map.containsKey(new Position(5,3)) && map.containsKey(new Position(4,2))
-				&& map.get(new Position(3,3)).getType().equalsPawn(Pawn.BLACK.toString())
-				&& map.get(new Position(5,3)).getType().equalsPawn(Pawn.BLACK.toString())
-				&& map.get(new Position(4,2)).getType().equalsPawn(Pawn.BLACK.toString())) {
-			map.remove(kingPosition);
-			taken = true;
-			/*partita vinta*/
-		}
-		if(kingPosition.equals(a3) && map.containsKey(new Position(5,5)) && map.containsKey(new Position(3,5)) && map.containsKey(new Position(4,6))
-				&& map.get(new Position(5,5)).getType().equalsPawn(Pawn.BLACK.toString())
-				&& map.get(new Position(3,5)).getType().equalsPawn(Pawn.BLACK.toString())
-				&& map.get(new Position(4,6)).getType().equalsPawn(Pawn.BLACK.toString())) {
-			map.remove(kingPosition);
-			taken = true;
-			/*partita vinta*/
-		}
-		if(kingPosition.equals(a4) && map.containsKey(new Position(5,3)) && map.containsKey(new Position(5,5)) && map.containsKey(new Position(6,4))
-				&& map.get(new Position(5,3)).getType().equalsPawn(Pawn.BLACK.toString())
-				&& map.get(new Position(5,5)).getType().equalsPawn(Pawn.BLACK.toString())
-				&& map.get(new Position(6,4)).getType().equalsPawn(Pawn.BLACK.toString())) {
-			map.remove(kingPosition);
-			taken = true;
-			/*partita vinta*/
-		}
-		return map;
+		else return map;  //anche se il re non c'è più ritorna la mappa senza verificare nulla -> potrebbe causare altre esplorazioni nei nodi figli
 	}
 	
 	

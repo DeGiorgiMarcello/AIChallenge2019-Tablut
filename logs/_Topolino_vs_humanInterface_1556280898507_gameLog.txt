@@ -1,0 +1,23 @@
+apr 26, 2019 2:14:58 PM domain.GameAshtonTablut <init>
+BUONO: Players:	White:	Topolino	vs	humanInterface
+apr 26, 2019 2:14:58 PM domain.GameAshtonTablut <init>
+BUONO: Repeated moves allowed:	0	Cache:	-1
+apr 26, 2019 2:14:58 PM domain.GameAshtonTablut <init>
+BUONO: Inizio partita
+apr 26, 2019 2:14:58 PM domain.GameAshtonTablut <init>
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+apr 26, 2019 2:15:00 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from e8 to d8
+apr 26, 2019 2:15:00 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Giocatore W cerca di muovere una pedina avversaria

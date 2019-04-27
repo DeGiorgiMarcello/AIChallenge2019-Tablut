@@ -1,0 +1,24 @@
+apr 27, 2019 5:17:13 PM server.Server run
+BUONO: Accensione server
+apr 27, 2019 5:17:13 PM server.Server run
+BUONO: Partita di Tablut
+apr 27, 2019 5:17:23 PM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+apr 27, 2019 5:17:23 PM server.Server run
+BUONO: Lettura nome player bianco in corso..
+apr 27, 2019 5:17:24 PM server.Server run
+BUONO: White player name:	Topolino
+apr 27, 2019 5:17:24 PM server.Server run
+BUONO: Accettata connessione con client giocatore Nero
+apr 27, 2019 5:17:24 PM server.Server run
+BUONO: Lettura nome player nero in corso..
+apr 27, 2019 5:17:24 PM server.Server run
+BUONO: Black player name:	humanInterface
+apr 27, 2019 5:17:24 PM server.Server run
+BUONO: Invio messaggio ai giocatori
+apr 27, 2019 5:17:24 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+apr 27, 2019 5:18:24 PM server.Server run
+AVVERTENZA: Timeout! Player W lose!
+apr 27, 2019 5:18:24 PM server.Server run
+AVVERTENZA: Chiusura sistema per timeout

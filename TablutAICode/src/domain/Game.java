@@ -1,8 +1,8 @@
 package domain;
 
-import domain.*;
+import domain.Action;
+import domain.State;
 import exceptions.*;
-
 
 /**
  * Contains the rules of the game
