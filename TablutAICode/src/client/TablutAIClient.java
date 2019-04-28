@@ -25,7 +25,10 @@ public class TablutAIClient extends TablutClient {
 			System.exit(-1);
 		}
 		
-		TablutClient client = new TablutAIClient(args[0],args[1]);
+		String player = args[0];
+		String name = args[1];
+		
+		TablutClient client = new TablutAIClient(player,name);
 		client.run();
 	}
 
@@ -60,7 +63,7 @@ public class TablutAIClient extends TablutClient {
 						move = strategy.getMove(this.player); 
 						actionStringFrom = move[0];
 						actionStringTo = move[1];
-						action = new Action(actionStringFrom, actionStringTo, this.getPlayer());
+						action = new Action(actionStringFrom, actionStringTo, State.Turn.WHITE);
 						this.write(action);  // la mossa viene mandata al server
 					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
 						System.out.println("Waiting for your opponent move... ");
@@ -74,9 +77,7 @@ public class TablutAIClient extends TablutClient {
 						System.out.println("DRAW!");
 						System.exit(0);
 					}
-
-				//	this.read();  //read per leggere lo stato modificato dal bianco
-					
+								
 					
 				} catch (ClassNotFoundException | IOException e) {
 					e.printStackTrace();
@@ -85,45 +86,45 @@ public class TablutAIClient extends TablutClient {
 			} 
 			
 		} else {
-			try {
-				//prende lo stato dal server
-				this.read();
-				
-				//System.out.println("Current state:");
-				//System.out.println(this.getCurrentState().toString());
-				
-				if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
-					System.out.println("Player "+this.getPlayer().toString()+ " is moving.");
-					PawnMap.getInstance().createMap(this.getCurrentState());  
-					Strategy strategy = Strategy.getInstance();
-					move = strategy.getMove(this.player); 
-					actionStringFrom = move[0];
-					actionStringTo = move[1];
-					System.out.println(actionStringFrom+actionStringTo);
-					action = new Action(actionStringFrom, actionStringTo, this.getPlayer());
-					this.write(action);  // la mossa viene mandata al server
-				} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
-					System.out.println("Waiting for your opponent move... ");
-				} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITEWIN)) {
-					System.out.println("YOU WIN!");
-					System.exit(0);
-				} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACKWIN)) {
-					System.out.println("YOU LOSE!");
-					System.exit(0);
-				} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.DRAW)) {
-					System.out.println("DRAW!");
-					System.exit(0);
-				}
-
-			//	this.read();  //read per leggere l'aggiornamento del nero
-				
-				
-			} catch (ClassNotFoundException | IOException e) {
-				e.printStackTrace();
-				System.exit(1);
+			while(true) {
+				try {
+					//prende lo stato dal server
+					this.read();
+					
+					//System.out.println("Current state:");
+					//System.out.println(this.getCurrentState().toString());
+					
+					if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
+						System.out.println("Player "+this.getPlayer().toString()+ " is moving.");
+						PawnMap.getInstance().createMap(this.getCurrentState());  
+						Strategy strategy = Strategy.getInstance();
+						move = strategy.getMove(this.player); 
+						actionStringFrom = move[0];
+						actionStringTo = move[1];
+						action = new Action(actionStringFrom, actionStringTo, State.Turn.BLACK);
+						this.write(action);  // la mossa viene mandata al server 
+						
+					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
+						System.out.println("Waiting for your opponent move... ");
+					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITEWIN)) {
+						System.out.println("YOU WIN!");
+						System.exit(0);
+					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACKWIN)) {
+						System.out.println("YOU LOSE!");
+						System.exit(0);
+					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.DRAW)) {
+						System.out.println("DRAW!");
+						System.exit(0);
+					}
+	
+					
+					
+				} catch (ClassNotFoundException | IOException e) {
+					e.printStackTrace();
+					System.exit(1);
+				} 
 			} 
-			
-		} 
+		}
 		
 	} 
 

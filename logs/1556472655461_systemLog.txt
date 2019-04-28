@@ -1,0 +1,8 @@
+apr 28, 2019 7:30:55 PM server.Server run
+BUONO: Accensione server
+apr 28, 2019 7:30:55 PM server.Server run
+BUONO: Partita di Tablut
+apr 28, 2019 7:30:55 PM server.Server run
+AVVERTENZA: Errore connessioni
+apr 28, 2019 7:30:55 PM server.Server run
+AVVERTENZA: Chiusura sistema

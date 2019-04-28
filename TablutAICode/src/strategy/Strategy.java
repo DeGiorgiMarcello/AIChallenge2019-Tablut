@@ -28,7 +28,7 @@ public class Strategy {
 	private Position a3 = new Position(4,5);
 	private Position a4 = new Position(5,4);
 	private boolean taken = false; //variabile per tener conto dell'avvenuta cattura e aggiornare i nodi figli
-	final int MAXDEPTH = 4;
+	final int MAXDEPTH = 3;
 	private Heuristic heuristicInstance;
 	boolean first = true;
 		
@@ -131,8 +131,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 			if(pawn.getType().equals(color) || isKing) {
 				
 				//MOVE LEFT
-				for(int i=1;i<=pawn.maxNumberBoxMoveLeft(actualState);i++) {
-					
+				//for(int i=1;i<=pawn.maxNumberBoxMoveLeft(actualState);i++) {
+				for(int i=pawn.maxNumberBoxMoveLeft(actualState);i>0;i--){
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow(),pawn.getColumn()-i);
@@ -175,7 +175,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 				}
 				
 				//MOVE RIGHT
-				for(int i=1;i<=pawn.maxNumberBoxMoveRight(actualState);i++) {
+				//for(int i=1;i<=pawn.maxNumberBoxMoveRight(actualState);i++) {
+				for(int i=pawn.maxNumberBoxMoveRight(actualState);i>0;i--){
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow(),pawn.getColumn()+i);
@@ -216,7 +217,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					}
 				}
 				//MOVE UP
-				for(int i=1;i<=pawn.maxNumberBoxMoveUp(actualState);i++) {
+				//for(int i=1;i<=pawn.maxNumberBoxMoveUp(actualState);i++) {
+				for(int i=pawn.maxNumberBoxMoveUp(actualState);i>0;i--){
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow()-1,pawn.getColumn());
@@ -257,7 +259,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					}
 				}
 				//MOVE DOWN
-				for(int i=1;i<=pawn.maxNumberBoxMoveDown(actualState);i++) {
+				//for(int i=1;i<=pawn.maxNumberBoxMoveDown(actualState);i++) {
+				for(int i=pawn.maxNumberBoxMoveDown(actualState);i>0;i--){
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
 					Position newPos = new Position(pawn.getRow()+1,pawn.getColumn());		

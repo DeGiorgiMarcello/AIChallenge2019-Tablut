@@ -1,0 +1,8 @@
+apr 28, 2019 7:30:14 PM server.Server run
+BUONO: Accensione server
+apr 28, 2019 7:30:14 PM server.Server run
+BUONO: Partita di Tablut
+apr 28, 2019 7:30:25 PM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+apr 28, 2019 7:30:25 PM server.Server run
+BUONO: Lettura nome player bianco in corso..

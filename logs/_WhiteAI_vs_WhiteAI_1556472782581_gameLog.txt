@@ -1,0 +1,19 @@
+apr 28, 2019 7:33:02 PM domain.GameAshtonTablut <init>
+BUONO: Players:	White:	WhiteAI	vs	WhiteAI
+apr 28, 2019 7:33:02 PM domain.GameAshtonTablut <init>
+BUONO: Repeated moves allowed:	0	Cache:	-1
+apr 28, 2019 7:33:02 PM domain.GameAshtonTablut <init>
+BUONO: Inizio partita
+apr 28, 2019 7:33:02 PM domain.GameAshtonTablut <init>
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
