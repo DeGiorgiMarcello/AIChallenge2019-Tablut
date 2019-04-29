@@ -326,7 +326,7 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 	if(max) {
 		val = -500;
 		bestNodeMove.setVal(val);
-		if(depth == MAXDEPTH ) { //NODI FOGLIA!
+		if(depth == MAXDEPTH || (maxColor.equalsPawn(Pawn.WHITE.toString()) && whiteWin(node)) || (maxColor.equalsPawn(Pawn.BLACK.toString()) && blackWin(node))) { //NODI FOGLIA!
 			//con la funzione euristica si assegna il valore al nodo
 			val = Heuristic.getInstance().evaluateNode(node);
 			bestNodeMove = new BestNode(node,val); 
@@ -370,7 +370,7 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 	else {
 		val = +500;
 		bestNodeMove.setVal(val);
-		if(depth == MAXDEPTH) { //NODI FOGLIA!
+		if(depth == MAXDEPTH || (maxColor.equalsPawn(Pawn.WHITE.toString()) && whiteWin(node)) || (maxColor.equalsPawn(Pawn.BLACK.toString()) && blackWin(node))) { //NODI FOGLIA!
 			//con la funzione euristica si assegna il valore al nodo
 			val = Heuristic.getInstance().evaluateNode(node);  
 			return new BestNode(node,val);
@@ -917,6 +917,25 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 		if(!kingPosition.equals(a1) && !kingPosition.equals(a2) && !kingPosition.equals(a3) && !kingPosition.equals(a4)){
 			return true;
 		}else
+			return false;
+	}
+	
+	public boolean whiteWin(Node node) {
+		Map<Position, PawnClass> currentState = node.getState();
+		Position kingPosition = PawnMap.getInstance().findKingPosition(currentState);
+		if(!(kingPosition == null)) {
+			if(Heuristic.getInstance().getEscapePoints().contains(kingPosition))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean blackWin(Node node) {
+		Map<Position, PawnClass> currentState = node.getState();
+		Position kingPosition = PawnMap.getInstance().findKingPosition(currentState);
+		if(kingPosition == null)
+			return true;
+		else
 			return false;
 	}
 

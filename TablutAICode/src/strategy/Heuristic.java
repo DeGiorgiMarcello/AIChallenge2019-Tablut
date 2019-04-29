@@ -52,7 +52,7 @@ public class Heuristic {
 		final int protectedKingThreeSide = 4;
 		final int protectedKingFourSide = 2;
 		final int distanceEscapePoint = 1;
-		final int rowColumnFree = 20;
+		final int rowColumnFree = 40;
 		final int kingCaptured = -100;
 		final int win = 100;
 		
@@ -84,7 +84,7 @@ public class Heuristic {
 			return capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite+protectedKingOneSide*valProtectedKingOneSide+
 					protectedKingTwoSide*valProtectedKingTwoSide+protectedKingThreeSide*valProtectedKingThreeSide+
 					protectedKingFourSide*valProtectedKingFourSide+distanceEscapePoint*valDistanceEscapePoint+
-					rowColumnFree*valRowColumnFree+kingCaptured*valKingCaptured+win*valwin;
+					rowColumnFree*valRowColumnFree+kingCaptured*valKingCaptured+win*valwin+node.getDepth();
 		}
 		
 	}
@@ -98,7 +98,7 @@ public class Heuristic {
 		final int kingTrappedTwoSide = 3;
 		final int kingTrappedThreeSide = 4;
 		final int kingTrappedFourSide = 6;
-		final int escapePointBlocked = 20;
+		final int escapePointBlocked = 40;
 		final int kingcaptured = 100;
 		final int kingWin = -100;
 		
@@ -124,7 +124,7 @@ public class Heuristic {
 			int valKingWin = kingInEscapePoint(king);
 			return capturedWhite*valCapturedWhite+capturedBlack*valCapturedBlack+kingTrappedOneSide*valKingTrappedOneSide+
 					kingTrappedTwoSide*valKingTrappedTwoSide+kingTrappedThreeSide*valKingTrappedThreeSide+kingTrappedFourSide*valKingTrappedFourSide
-					+escapePointBlocked*valEscapePointBlocked+kingcaptured*valKingcaptured+kingWin*valKingWin;
+					+escapePointBlocked*valEscapePointBlocked+kingcaptured*valKingcaptured+kingWin*valKingWin+node.getDepth();
 		}
 		
 	}
@@ -474,4 +474,14 @@ public class Heuristic {
 		escapePoints.add(new Position(8,6));
 		escapePoints.add(new Position(8,7));
 	}
+
+	public ArrayList<Position> getEscapePoints() {
+		return escapePoints;
+	}
+
+	public void setEscapePoints(ArrayList<Position> escapePoints) {
+		this.escapePoints = escapePoints;
+	}
+	
+	
 }
