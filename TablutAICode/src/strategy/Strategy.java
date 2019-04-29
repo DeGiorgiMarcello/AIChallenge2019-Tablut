@@ -28,7 +28,7 @@ public class Strategy {
 	private Position a3 = new Position(4,5);
 	private Position a4 = new Position(5,4);
 	private boolean taken = false; //variabile per tener conto dell'avvenuta cattura e aggiornare i nodi figli
-	final int MAXDEPTH = 3;
+	final int MAXDEPTH = 4;
 	private Heuristic heuristicInstance;
 	boolean first = true;
 		
