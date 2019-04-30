@@ -1,0 +1,1179 @@
+apr 30, 2019 8:34:14 PM domain.GameAshtonTablut <init>
+BUONO: Players:	White:	fake	vs	fake
+apr 30, 2019 8:34:14 PM domain.GameAshtonTablut <init>
+BUONO: Repeated moves allowed:	99	Cache:	0
+apr 30, 2019 8:34:14 PM domain.GameAshtonTablut <init>
+BUONO: Inizio partita
+apr 30, 2019 8:34:14 PM domain.GameAshtonTablut <init>
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a6 to c9
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e8 to h3
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b5 to h6
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to b6
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d9 to g4
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e9 to d4
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e9 to b1
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e2 to h4
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b5 to f8
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to c9
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i4 to f4
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:34:17 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWBOOO
+BBWOKWWBB
+BOOWWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+apr 30, 2019 8:34:20 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d9 to f8
+apr 30, 2019 8:34:20 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:20 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a6 to c6
+apr 30, 2019 8:34:20 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:34:20 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:34:20 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOWOO
+BBWOKWOBB
+OOBWWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d9 to c4
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b5 to c4
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b5 to c4
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a4 to f3
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a4 to b7
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to c7
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to b9
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to c1
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una pedina
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d9 to b9
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:34:23 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOWOOOOO
+BOOOWOWOO
+BBWOKWOBB
+OOBWWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OBOOBBOOO
+-
+W
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h5 to i3
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e8 to i3
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e8 to b7
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c6 to d9
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to g7
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e2 to g1
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a4 to c4
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkCaptureBlackPawnDown
+BUONO: Pedina bianca rimossa in: c5
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+BUONO: Capture! Draw cache cleared!
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:34:26 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOWOOOOO
+OOBOWOOOO
+BBOOKWWBB
+OOBWWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OBOOBBOOO
+-
+W
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a5 to f2
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b5 to i7
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to b2
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una pedina
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to g6
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e2 to c9
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to g6
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to h9
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c6 to h9
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to a3
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c6 to a7
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c4 to h2
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a5 to f3
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i6 to e3
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to i3
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c6 to g8
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e2 to c8
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a5 to a4
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:34:31 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOWOOOOO
+BOBOWOOOO
+OBOKTWWBB
+OOBWWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OBOOBBOOO
+-
+W
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i6 to f6
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una pedina
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to f6
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to h6
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h5 to c2
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to g2
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to e3
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e8 to a8
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:34:36 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOWOOOOO
+BOBOWOOOO
+OBOKTWOBB
+OOBWWOWOB
+OOOOWOOOO
+BOOOOOOOO
+OBOOBBOOO
+-
+W
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to e3
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e9 to a9
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una pedina
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c4 to b7
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a8 to b2
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a4 to g9
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to h7
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i6 to h4
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a4 to f6
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b5 to g7
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e2 to h9
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b5 to h7
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c4 to i3
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to i3
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a8 to g1
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i6 to g7
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b5 to b3
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:34:44 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OBOWOOOOO
+BOBOWOOOO
+OOOKTWOBB
+OOBOWOWOB
+OOOWWOOOO
+BOOOOOOOO
+OBOOBBOOO
+-
+W
+apr 30, 2019 8:34:52 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a8 to g1
+apr 30, 2019 8:34:52 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:52 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to i2
+apr 30, 2019 8:34:52 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:52 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i6 to g7
+apr 30, 2019 8:34:52 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:34:52 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e2 to e3
+apr 30, 2019 8:34:52 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:34:52 PM domain.GameAshtonTablut checkCaptureBlackPawnDown
+BUONO: Pedina bianca rimossa in: e4
+apr 30, 2019 8:34:52 PM domain.GameAshtonTablut checkMove
+BUONO: Capture! Draw cache cleared!
+apr 30, 2019 8:34:52 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:34:52 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOOOOOO
+OBOWBOOOO
+BOBOOOOOO
+OOOKTWOBB
+OOBOWOWOB
+OOOOWOOOO
+BOOWOOOOO
+OBOOBBOOO
+-
+W
+apr 30, 2019 8:35:00 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to b1
+apr 30, 2019 8:35:00 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:00 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c6 to d8
+apr 30, 2019 8:35:00 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:00 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b3 to i3
+apr 30, 2019 8:35:00 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una pedina
+apr 30, 2019 8:35:00 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b3 to b2
+apr 30, 2019 8:35:00 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:35:00 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:35:00 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OBOOOOOOO
+OOOWBOOOO
+BOBOOOOOO
+OOOKTWOBB
+OOBOWOWOB
+OOOOWOOOO
+BOWOOOOOO
+OBOOBBOOO
+-
+W
+apr 30, 2019 8:35:10 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e3 to a6
+apr 30, 2019 8:35:10 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:35:10 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b2 to i8
+apr 30, 2019 8:35:10 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:10 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to h7
+apr 30, 2019 8:35:10 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:10 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to b3
+apr 30, 2019 8:35:10 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una citadel
+apr 30, 2019 8:35:10 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b2 to g8
+apr 30, 2019 8:35:10 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:10 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c4 to c5
+apr 30, 2019 8:35:10 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:35:10 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:35:10 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OBOOOOOOO
+OOOWBOOOO
+BOOOOOOOO
+OOBKTWOBB
+OOBOWOWOB
+OOOOWOOOO
+BOOOOOOOO
+OBWOBBOOO
+-
+W
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to i7
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una pedina
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to d6
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to b1
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una pedina
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a8 to i7
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e9 to a3
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to d9
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to f4
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to e4
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c5 to g7
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a4 to e4
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:35:19 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OBOOOOOOO
+OOOWBOOOO
+OOOOBOOOO
+OOBKTWOBB
+OOBOWOWOB
+OOOOWOOOO
+BOWOOOOOO
+OBOOBBOOO
+-
+W
+apr 30, 2019 8:35:27 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b2 to b3
+apr 30, 2019 8:35:27 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:35:27 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:35:27 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOOOOOO
+OBOWBOOOO
+OOOOBOOOO
+OOBKTWOBB
+OOBOWOWOB
+OOOOWOOOO
+BOOOOOOOO
+OBWOBBOOO
+-
+W
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c5 to a4
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to h7
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a8 to d7
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e3 to h1
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e4 to d7
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to i4
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c5 to i1
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to f4
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i6 to a6
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to f2
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e4 to h3
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to f6
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to f8
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e9 to h1
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to a6
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i6 to d8
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c5 to b5
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e9 to b4
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e4 to i8
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to d6
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una pedina
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to f3
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i6 to c3
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i6 to a4
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to h2
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e3 to d9
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to g9
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a8 to f4
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e3 to h6
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b3 to f8
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h5 to i3
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e4 to b2
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to h3
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e3 to h3
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:35:34 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOOOOOO
+OBOWOOOBO
+OOOOBOOOO
+OOBKTWOBB
+OOBOWOWOB
+OOOOWOOOO
+BOWOOOOOO
+OBOOBBOOO
+-
+W
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h5 to i2
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to b1
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b3 to h8
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to f6
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to g7
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to f3
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to a5
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b3 to h1
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c5 to d5
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:35:42 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOOOOOO
+OBOWOOOBO
+OOOOBOOOO
+OOOBTWOBB
+OOBOWOWOB
+OOOKWOOOO
+BOWOOOOOO
+OBOOBBOOO
+-
+W
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d5 to f6
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h3 to b7
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to a1
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b3 to h8
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to i4
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e4 to g3
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h5 to h7
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:35:58 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOOOOOO
+OBOWOOOBO
+OOOOBOOOO
+OOOBTWOOB
+OOBOWOWOB
+OOOKWOOBO
+BOOOOOOOO
+OBWOBBOOO
+-
+W
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to a1
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una pedina
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h3 to i4
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d5 to f2
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to f3
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e9 to h4
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a8 to a2
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una citadel
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to g9
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una citadel
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h3 to f7
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to c1
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c6 to f7
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e4 to h5
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d5 to d2
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una pedina
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h3 to b8
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to f3
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e9 to b8
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h7 to e2
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e4 to a7
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to a5
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a8 to e3
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to b8
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to d6
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a8 to a7
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:36:13 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOOOOOO
+OBOWOOOBO
+OOOOBOOOO
+OOOBTWOOB
+OOBOWOWOB
+BOOKWOOBO
+OOWOOOOOO
+OBOOBBOOO
+-
+W
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to i4
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to f7
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b3 to f6
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to e3
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to h2
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to h9
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to a8
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to b8
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to g3
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to h6
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a7 to f8
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e4 to b2
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d5 to a8
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to i1
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una pedina
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a7 to c4
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h7 to h8
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:36:33 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOOOOOO
+OBOWOOOBO
+OOOOBOOOO
+OOOBTWOOB
+OOBOWOWOB
+BOOKWOOOO
+OOOOOOOBO
+OBWOBBOOO
+-
+W
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d5 to g1
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to e8
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h8 to f7
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e9 to i8
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a7 to i3
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to c4
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to h7
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a7 to g7
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una pedina
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d5 to d9
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a7 to f7
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che scavalca una pedina
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to e8
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h3 to a6
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to d6
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d5 to c8
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e9 to a8
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e9 to f7
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d5 to a4
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to e3
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c6 to g4
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d5 to b4
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to d4
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to i4
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to e8
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b3 to i7
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to d2
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to g8
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i6 to g8
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b9 to b6
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:37:03 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOOOOOO
+OBOWOOOBO
+OOOOBOOOO
+OOOBTWOOB
+OBBOWOWOB
+BOWKWOOOO
+OOOOOOOBO
+OOOOBBOOO
+-
+W
+apr 30, 2019 8:37:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b3 to f7
+apr 30, 2019 8:37:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa in diagonale
+apr 30, 2019 8:37:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b6 to i4
+apr 30, 2019 8:37:34 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Mossa che arriva sopra una citadel
+apr 30, 2019 8:37:34 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h8 to h7
+apr 30, 2019 8:37:34 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:37:34 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:37:34 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOOOOOO
+OBOWOOOBO
+OOOOBOOOO
+OOOBTWOOB
+OBBOWOWOB
+BOOKWOOBO
+OOOOOOOOO
+OOWOBBOOO
+-
+W
+apr 30, 2019 8:38:05 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to c1
+apr 30, 2019 8:38:05 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+apr 30, 2019 8:38:05 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+apr 30, 2019 8:38:05 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOBOBBOOO
+OOOOOOOOO
+OBOWOOOBO
+OOOOBOOOO
+OOOBTWOOB
+OBBOWOWOB
+BOWKWOOBO
+OOOOOOOOO
+OOOOBBOOO
+-
+W

@@ -175,9 +175,15 @@ class HeuristicTest {
 		}
 	}*/
 	
-	@Test
+	/*@Test
 	void testdistanceBetweenKingEscape() {
 		int result = Heuristic.getInstance().distanceBetweenKingEscape(new Position(6,3));
 		assertEquals(3,result);
+	}*/
+	@Test
+	void testKingInEscapePoint() {
+		Position king = new Position(6,0);
+		int expected = Heuristic.getInstance().kingInEscapePoint(king);
+		assertEquals(1, expected);
 	}
 }
