@@ -175,11 +175,10 @@ public class Heuristic {
 		int result = 0;
 		int pawnParent = 0;
 		int pawnChild = 0;
-		//Map<Position, PawnClass> rootState = PawnMap.getInstance().getMap();
-		Map<Position, PawnClass> parentState = PawnMap.getInstance().getMap();
+		Map<Position, PawnClass> rootState = PawnMap.getInstance().getMap();
 		//System.out.println("\nfrom Heuristic "+rootState.size());
 		//Map<Position, PawnClass> parentState = node.getParent().getState();
-		pawnParent = numberOfPawn(parentState, pawn);
+		pawnParent = numberOfPawn(rootState, pawn);
 		pawnChild = numberOfPawn(node.getState(), pawn);
 		result = pawnParent - pawnChild;
 		return result;
