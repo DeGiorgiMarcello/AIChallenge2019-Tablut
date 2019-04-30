@@ -57,16 +57,17 @@ public class TablutAIClient extends TablutClient {
 					System.out.println(this.getCurrentState().toString());
 					*/
 					if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITE)) {
-						System.out.println("Player "+this.getPlayer().toString()+ " is moving.");
+						//System.out.println("Player "+this.getPlayer().toString()+ " is moving.");
 						PawnMap.getInstance().createMap(this.getCurrentState());  
 						Strategy strategy = Strategy.getInstance();
 						move = strategy.getMove(this.player); 
 						actionStringFrom = move[0];
 						actionStringTo = move[1];
 						action = new Action(actionStringFrom, actionStringTo, State.Turn.WHITE);
+						System.out.println(action.toString());
 						this.write(action);  // la mossa viene mandata al server
 					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
-						System.out.println("Waiting for your opponent move... ");
+						//System.out.println("Waiting for your opponent move... ");
 					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITEWIN)) {
 						System.out.println("YOU WIN!");
 						System.exit(0);
@@ -95,17 +96,18 @@ public class TablutAIClient extends TablutClient {
 					//System.out.println(this.getCurrentState().toString());
 					
 					if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
-						System.out.println("Player "+this.getPlayer().toString()+ " is moving.");
+						//System.out.println("Player "+this.getPlayer().toString()+ " is moving.");
 						PawnMap.getInstance().createMap(this.getCurrentState());  
 						Strategy strategy = Strategy.getInstance();
 						move = strategy.getMove(this.player); 
 						actionStringFrom = move[0];
 						actionStringTo = move[1];
 						action = new Action(actionStringFrom, actionStringTo, State.Turn.BLACK);
+						System.out.println(action.toString());
 						this.write(action);  // la mossa viene mandata al server 
 						
-					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
-						System.out.println("Waiting for your opponent move... ");
+					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITE)) {
+						//System.out.println("Waiting for your opponent move... ");
 					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITEWIN)) {
 						System.out.println("YOU WIN!");
 						System.exit(0);

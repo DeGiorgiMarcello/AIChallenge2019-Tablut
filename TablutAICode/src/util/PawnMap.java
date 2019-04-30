@@ -64,6 +64,26 @@ public class PawnMap {
 		this.map = map;
 	}
 	
+	public void printMap(Map<Position,PawnClass> state) {
+		for(int i=0;i<9;i++) {
+			for(int j=0;j<9;j++) {
+				if(state.containsKey((new Position(i,j)))) {
+					if(state.get(new Position(i,j)).getType().equalsPawn(Pawn.BLACK.toString()))
+					System.out.print("B ");
+					else if(state.get(new Position(i,j)).getType().equalsPawn(Pawn.WHITE.toString())) {
+						System.out.print("W ");
+					}
+					else
+						System.out.print("K ");
+				}
+				else System.out.print("- ");		
+			}
+			if(i!=9) System.out.println(i+1+" ");
+		}
+		System.out.println("\na b c d e f g h i");
+		
+	}
+	
 	public Position findKingPosition(Map<Position, PawnClass> map) {
 		ArrayList<Position> list = new ArrayList();
 		map.forEach((position, pawnClass) -> {

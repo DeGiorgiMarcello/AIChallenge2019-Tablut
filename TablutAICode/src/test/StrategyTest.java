@@ -1,9 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import domain.State;
 import domain.State.Pawn;
 import domain.StateTablut;
+import gui.Gui;
 import strategy.Strategy;
 import util.BestNode;
 import util.Node;
@@ -315,7 +314,7 @@ class StrategyTest {
 		
 		System.out.println("Valore mossa consigliata "+bn.getVal()+"\nMossa consigliata "+prova.getPawnMoveFrom()+"-"+prova.getPawnMoveTo());
 	}*/
-	
+	/*
 	@Test
 	protected void whiteWinTest() {
 		Map<Position,PawnClass> state1 = new HashMap<Position,PawnClass>();
@@ -351,5 +350,34 @@ class StrategyTest {
 		else
 			System.out.println("Black win");
 		assertEquals(true, result);
+	} */
+	
+	@Test
+	protected void prova() {
+		Map<Position,PawnClass> state1 = new HashMap<Position,PawnClass>();
+		state1.put(new Position(0,2), new PawnClass(0,2,Pawn.BLACK));
+		state1.put(new Position(0,3), new PawnClass(0,3,Pawn.BLACK));
+		state1.put(new Position(0,8), new PawnClass(0,8,Pawn.BLACK));
+		state1.put(new Position(1,2), new PawnClass(1,2,Pawn.BLACK));
+		state1.put(new Position(1,8), new PawnClass(1,8,Pawn.BLACK));
+		state1.put(new Position(2,6), new PawnClass(2,6,Pawn.KING));
+		state1.put(new Position(4,5), new PawnClass(4,5,Pawn.WHITE));
+		state1.put(new Position(4,8), new PawnClass(4,8,Pawn.BLACK));
+		state1.put(new Position(5,4), new PawnClass(5,4,Pawn.WHITE));
+		state1.put(new Position(6,5), new PawnClass(6,5,Pawn.WHITE));
+		state1.put(new Position(6,8), new PawnClass(6,8,Pawn.BLACK));
+		state1.put(new Position(7,2), new PawnClass(7,2,Pawn.WHITE));
+		state1.put(new Position(7,8), new PawnClass(7,8,Pawn.BLACK));
+		state1.put(new Position(8,0), new PawnClass(8,0,Pawn.BLACK));
+		state1.put(new Position(8,5), new PawnClass(8,5,Pawn.BLACK));
+		strategy.setPlayer("white");
+		Node node1 = new Node(0,state1,parent,0,"d5","d8");
+		//PawnMap.getInstance().printMap(state1);
+		
+	/*	BestNode bn = strategy.alphaBeta(node1, 0, -500, 500, true);
+		Node bestNode = bn.getNode();
+		//La mossa migliore è g3-g1 oppure g3-i3
+		System.out.println(bestNode.getPawnMoveFrom()+"-"+bestNode.getPawnMoveTo());
+		//System.out.println(bn.getVal()); */
 	}
 }

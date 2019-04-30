@@ -1,0 +1,20 @@
+apr 30, 2019 6:52:15 PM server.Server run
+BUONO: Accensione server
+apr 30, 2019 6:52:15 PM server.Server run
+BUONO: Partita di Tablut
+apr 30, 2019 6:52:26 PM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+apr 30, 2019 6:52:26 PM server.Server run
+BUONO: Lettura nome player bianco in corso..
+apr 30, 2019 6:52:27 PM server.Server run
+BUONO: White player name:	WhiteAI
+apr 30, 2019 6:52:27 PM server.Server run
+BUONO: Accettata connessione con client giocatore Nero
+apr 30, 2019 6:52:27 PM server.Server run
+BUONO: Lettura nome player nero in corso..
+apr 30, 2019 6:52:28 PM server.Server run
+BUONO: Black player name:	WhiteAI
+apr 30, 2019 6:52:28 PM server.Server run
+BUONO: Errore invio messaggio ai giocatori
+apr 30, 2019 6:52:28 PM server.Server run
+AVVERTENZA: Chiusura sistema
