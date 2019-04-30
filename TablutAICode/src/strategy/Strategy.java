@@ -28,7 +28,7 @@ public class Strategy {
 	private Position a3 = new Position(4,5);
 	private Position a4 = new Position(5,4);
 	private boolean taken = false; //variabile per tener conto dell'avvenuta cattura e aggiornare i nodi figli
-	final int MAXDEPTH = 4;
+	final int MAXDEPTH = 3;
 	private Heuristic heuristicInstance;
 	boolean first = true;
 		
@@ -129,7 +129,7 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 				isKing = true;
 			}
 			if(pawn.getType().equals(color) || isKing) {
-				
+				System.out.println("Espando pedina "+convertCoordinates(entry.getKey()));
 				//MOVE LEFT
 				//for(int i=1;i<=pawn.maxNumberBoxMoveLeft(actualState);i++) {
 				for(int i=pawn.maxNumberBoxMoveLeft(actualState);i>0;i--){
@@ -356,6 +356,7 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 			val = Math.max(val, childVal);
 			alfa = Math.max(alfa, val);
 			if(beta <= alfa) {
+				System.out.println("taglio effettuato");
 				return bestNodeMove;
 			}
 		} 
@@ -396,8 +397,10 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 				bestNodeMove = childNode;
 			val = Math.max(val, childVal);
 			beta = Math.min(beta, val);
-			if(beta <= alfa)
+			if(beta <= alfa) {
+				System.out.println("taglio effettuato");
 				return bestNodeMove;
+			}
 		}
 		return bestNodeMove;
 	}

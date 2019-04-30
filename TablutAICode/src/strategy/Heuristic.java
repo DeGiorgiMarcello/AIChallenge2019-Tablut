@@ -49,12 +49,13 @@ public class Heuristic {
 		final int capturedWhite = -1;
 		final int protectedKingOneSide = 3;
 		final int protectedKingTwoSide = 6;
-		final int protectedKingThreeSide = 4;
-		final int protectedKingFourSide = 2;
+		final int protectedKingThreeSide = 2; //c'era 4
+		final int protectedKingFourSide = -2; //c'era 2
 		final int distanceEscapePoint = 1;
 		final int rowColumnFree = 40;
 		final int kingCaptured = -100;
 		final int win = 100;
+		final int kingInCastle = -15;
 		
 		if(king == null) { //se kingPosition è null il king non c'è, ho perso.
 			return -200;
@@ -81,10 +82,18 @@ public class Heuristic {
 			//RE IN UN PUNTO DI FUGA => VITTORIA
 			int valwin = kingInEscapePoint(king);
 			/*CALCOLARE SOMMA PESATA*/
-			return capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite+protectedKingOneSide*valProtectedKingOneSide+
+			int valKingInCastle=0;
+			//RE NEL CASTELLO
+			if(king.equals(new Position(4,4))) {
+				valKingInCastle=1;
+			}else
+				valKingInCastle=-1;
+			
+			
+			return kingInCastle*valKingInCastle+capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite+protectedKingOneSide*valProtectedKingOneSide+
 					protectedKingTwoSide*valProtectedKingTwoSide+protectedKingThreeSide*valProtectedKingThreeSide+
 					protectedKingFourSide*valProtectedKingFourSide+distanceEscapePoint*valDistanceEscapePoint+
-					rowColumnFree*valRowColumnFree+kingCaptured*valKingCaptured+win*valwin+node.getDepth();
+					rowColumnFree*valRowColumnFree+kingCaptured*valKingCaptured+win*valwin;
 		}
 		
 	}
@@ -124,7 +133,7 @@ public class Heuristic {
 			int valKingWin = kingInEscapePoint(king);
 			return capturedWhite*valCapturedWhite+capturedBlack*valCapturedBlack+kingTrappedOneSide*valKingTrappedOneSide+
 					kingTrappedTwoSide*valKingTrappedTwoSide+kingTrappedThreeSide*valKingTrappedThreeSide+kingTrappedFourSide*valKingTrappedFourSide
-					+escapePointBlocked*valEscapePointBlocked+kingcaptured*valKingcaptured+kingWin*valKingWin+node.getDepth();
+					+escapePointBlocked*valEscapePointBlocked+kingcaptured*valKingcaptured+kingWin*valKingWin;
 		}
 		
 	}
