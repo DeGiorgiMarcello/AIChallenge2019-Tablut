@@ -16,6 +16,7 @@ public class Heuristic {
 	private ArrayList<Position> escapePoints = new ArrayList();
 	private Position escape = null; //salvo la posizione del punto di fuga più vicino
 	private Position castle = new Position(4,4);
+	private final int maxMove = 8;
 	/*posizioni adiacenti al castello*/
 	private ArrayList<Position> adjacentPointsCastle = new ArrayList();
 	
@@ -51,11 +52,11 @@ public class Heuristic {
 		final int protectedKingTwoSide = 6;
 		final int protectedKingThreeSide = 2; //c'era 4
 		final int protectedKingFourSide = -2; //c'era 2
-		final int distanceEscapePoint = 1;
+		final int distanceEscapePoint = 3; //c'era 1
 		final int rowColumnFree = 40;
 		final int kingCaptured = -100;
 		final int win = 100;
-		final int kingInCastle = -15;
+		final int kingInCastle = -20;
 		
 		if(king == null) { //se kingPosition è null il king non c'è, ho perso.
 			return -200;
@@ -92,7 +93,7 @@ public class Heuristic {
 			
 			return kingInCastle*valKingInCastle+capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite+protectedKingOneSide*valProtectedKingOneSide+
 					protectedKingTwoSide*valProtectedKingTwoSide+protectedKingThreeSide*valProtectedKingThreeSide+
-					protectedKingFourSide*valProtectedKingFourSide+distanceEscapePoint*valDistanceEscapePoint+
+					protectedKingFourSide*valProtectedKingFourSide+distanceEscapePoint*(maxMove - valDistanceEscapePoint)+
 					rowColumnFree*valRowColumnFree+kingCaptured*valKingCaptured+win*valwin;
 		}
 		
@@ -174,10 +175,11 @@ public class Heuristic {
 		int result = 0;
 		int pawnParent = 0;
 		int pawnChild = 0;
-		Map<Position, PawnClass> rootState = PawnMap.getInstance().getMap();
+		//Map<Position, PawnClass> rootState = PawnMap.getInstance().getMap();
+		Map<Position, PawnClass> parentState = PawnMap.getInstance().getMap();
 		//System.out.println("\nfrom Heuristic "+rootState.size());
 		//Map<Position, PawnClass> parentState = node.getParent().getState();
-		pawnParent = numberOfPawn(rootState, pawn);
+		pawnParent = numberOfPawn(parentState, pawn);
 		pawnChild = numberOfPawn(node.getState(), pawn);
 		result = pawnParent - pawnChild;
 		return result;

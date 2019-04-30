@@ -221,8 +221,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 				for(int i=pawn.maxNumberBoxMoveUp(actualState);i>0;i--){
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
-					Position newPos = new Position(pawn.getRow()-1,pawn.getColumn());
-					updateState(newState,pawn,pawn.getRow()-1,pawn.getColumn());
+					Position newPos = new Position(pawn.getRow()-i,pawn.getColumn());
+					updateState(newState,pawn,pawn.getRow()-i,pawn.getColumn());
 					captureVerification(newState, newPos);
 					if(taken) {
 						captured++;
@@ -263,8 +263,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 				for(int i=pawn.maxNumberBoxMoveDown(actualState);i>0;i--){
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
-					Position newPos = new Position(pawn.getRow()+1,pawn.getColumn());		
-					updateState(newState,pawn,pawn.getRow()+1,pawn.getColumn());
+					Position newPos = new Position(pawn.getRow()+i,pawn.getColumn());		
+					updateState(newState,pawn,pawn.getRow()+i,pawn.getColumn());
 					captureVerification(newState, newPos);
 					if(taken) {
 						captured++;

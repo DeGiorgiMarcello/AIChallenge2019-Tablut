@@ -1,0 +1,20 @@
+apr 30, 2019 7:04:38 PM server.Server run
+BUONO: Accensione server
+apr 30, 2019 7:04:38 PM server.Server run
+BUONO: Partita di Tablut
+apr 30, 2019 7:04:46 PM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+apr 30, 2019 7:04:46 PM server.Server run
+BUONO: Lettura nome player bianco in corso..
+apr 30, 2019 7:04:47 PM server.Server run
+BUONO: White player name:	humanInter
+apr 30, 2019 7:04:51 PM server.Server run
+BUONO: Accettata connessione con client giocatore Nero
+apr 30, 2019 7:04:51 PM server.Server run
+BUONO: Lettura nome player nero in corso..
+apr 30, 2019 7:04:52 PM server.Server run
+BUONO: Black player name:	humanInterface
+apr 30, 2019 7:04:53 PM server.Server run
+BUONO: Invio messaggio ai giocatori
+apr 30, 2019 7:04:53 PM server.Server run
+BUONO: Lettura mossa player W in corso..

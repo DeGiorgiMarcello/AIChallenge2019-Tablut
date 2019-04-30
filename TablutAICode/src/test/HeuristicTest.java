@@ -2,6 +2,9 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +25,7 @@ class HeuristicTest {
 	State state;
 	
 	
-	@BeforeEach
+	/*@BeforeEach
 	void setUp() throws Exception {
 		state = new StateTablut();
 		PawnMap.getInstance().createMap(state); 
@@ -55,7 +58,7 @@ class HeuristicTest {
 		child.getState().remove(new Position(4,3));
 		child.getState().remove(new Position(4,5));
 		child.getState().remove(new Position(5,4));*/
-	}
+	//}
 
 	/*@AfterEach
 	void tearDown() throws Exception {
@@ -149,14 +152,14 @@ class HeuristicTest {
 		int actual = Heuristic.getInstance().blockEscapeRoute(child, king);
 		assertEquals(3, actual);
 	}*/
-	
+	/*
 	@Test
 	void testWhiteHeuristic() {
 		root.getState().remove(new Position(4,4));
 		int result = Heuristic.getInstance().BlackHeuristic(root);
 		System.out.println("result "+result);
 		assertEquals(200, result);
-	}
+	}*/
 	
 	/*
 	@Test
@@ -171,4 +174,10 @@ class HeuristicTest {
 			System.out.println("Diversi");
 		}
 	}*/
+	
+	@Test
+	void testdistanceBetweenKingEscape() {
+		int result = Heuristic.getInstance().distanceBetweenKingEscape(new Position(6,3));
+		assertEquals(3,result);
+	}
 }
