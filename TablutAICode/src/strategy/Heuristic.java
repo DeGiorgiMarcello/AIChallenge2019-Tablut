@@ -65,8 +65,8 @@ public class Heuristic {
 			int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se ho mangiato pedine avversarie
 			int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se sono state mangiate delle mie pedine
 			//RE PROTETTO aggiungo 1 unità al risultato per ogni lato su cui il re è protetto
-			/*int[] valProtectedKing = kingProtected(node, king, Pawn.WHITE);
-			int valProtectedKingOneSide = valProtectedKing[0];
+			int[] valProtectedKing = kingProtected(node, king, Pawn.WHITE);
+			/*int valProtectedKingOneSide = valProtectedKing[0];
 			int valProtectedKingTwoSide = valProtectedKing[1];
 			int valProtectedKingThreeSide = valProtectedKing[2];
 			int valProtectedKingFourSide = valProtectedKing[3];*/
@@ -91,9 +91,9 @@ public class Heuristic {
 				valKingInCastle=-1;
 			
 			
-			return kingInCastle*valKingInCastle+capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite+/*protectedKingOneSide*valProtectedKingOneSide+
+			return kingInCastle*valKingInCastle+capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite/*+protectedKingOneSide*valProtectedKingOneSide+
 					protectedKingTwoSide*valProtectedKingTwoSide+protectedKingThreeSide*valProtectedKingThreeSide+
-					protectedKingFourSide*valProtectedKingFourSide+*/distanceEscapePoint*(maxMove - valDistanceEscapePoint)+
+					protectedKingFourSide*valProtectedKingFourSide*/+distanceEscapePoint*(maxMove - valDistanceEscapePoint)+
 					rowColumnFree*valRowColumnFree+kingCaptured*valKingCaptured+win*valwin;
 		}
 		

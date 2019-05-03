@@ -57,8 +57,8 @@ class HeuristicTest {
 		/*child.getState().remove(new Position(3,4));
 		child.getState().remove(new Position(4,3));
 		child.getState().remove(new Position(4,5));
-		child.getState().remove(new Position(5,4));*/
-	//}
+		child.getState().remove(new Position(5,4));
+	}
 
 	/*@AfterEach
 	void tearDown() throws Exception {
@@ -143,15 +143,22 @@ class HeuristicTest {
 		assertEquals(1, actual);
 	}*/
 	
-	/*@Test
+	@Test
 	void testBlockEscapeRoute() {
-		child.getState().remove(new Position(4,4));
+		/*child.getState().remove(new Position(4,4));
 		Position king = new Position(2,2);
 		child.getState().put(king, new PawnClass(2,2, Pawn.KING));
 		child.getState().put(new Position(2,1), new PawnClass(2,1, Pawn.BLACK));
 		int actual = Heuristic.getInstance().blockEscapeRoute(child, king);
-		assertEquals(3, actual);
-	}*/
+		assertEquals(3, actual);*/
+		Map<Position, PawnClass> testMap = new HashMap<Position, PawnClass>();
+		Node testNode = new Node(1, testMap, null, 0, "c4", "c5");
+		testMap.put(new Position(2,2), new PawnClass(2, 2, Pawn.KING));
+		testMap.put(new Position(1,2), new PawnClass(1, 2, Pawn.BLACK));
+		testMap.put(new Position(2,1), new PawnClass(2, 1, Pawn.BLACK));
+		int actual = Heuristic.getInstance().blockEscapeRoute(testNode, new Position(2,2));
+		assertEquals(2, actual);
+	}
 	/*
 	@Test
 	void testWhiteHeuristic() {
