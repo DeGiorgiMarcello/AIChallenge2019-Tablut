@@ -53,8 +53,8 @@ public class Strategy {
 		this.player = player;
 		//----------------
 		//Node partialTree = generatePartialTree();
-		int alfa = -500;  //-infinito
-		int beta = 500;   //+infinito
+		int alfa = -3000;  //-infinito
+		int beta = 3000;   //+infinito
 		nodesList.add(new Node());
 		BestNode alphaBetaBestNode = alphaBeta(new Node(),0,alfa,beta,true);  //si inizializza con la root
 		Node bestNode = alphaBetaBestNode.getNode();
@@ -129,7 +129,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 				isKing = true;
 			}
 			if(pawn.getType().equals(color) || isKing) {
-				System.out.println("Espando pedina "+convertCoordinates(entry.getKey()));
+				//System.out.println("Espando pedina "+convertCoordinates(entry.getKey()));
+				
 				//MOVE LEFT
 				//for(int i=1;i<=pawn.maxNumberBoxMoveLeft(actualState);i++) {
 				for(int i=pawn.maxNumberBoxMoveLeft(actualState);i>0;i--){
@@ -147,9 +148,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
 					if(!hashCodeStateList.contains(stateHashCode)) {   //eliminata condizione che depth<MAXDEPTH e inglobato tutto il resto
-						//nodesList.add(child); //nodesList.add(0, child);
 						hashCodeStateList.add(stateHashCode);
-						nodesList.add(child);
+						
 						if(max) {
 							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
 							double childVal = childNode.getVal();
@@ -159,7 +159,7 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 							val = Math.max(val, childVal);
 							alfa = Math.max(alfa, val);
 							if(beta <= alfa)
-								return bestNodeMove ;
+								return bestNodeMove;
 						}
 						else {
 							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
@@ -191,9 +191,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
 					if(!hashCodeStateList.contains(stateHashCode)) {
-						//nodesList.add(child); //nodesList.add(0, child);
-						hashCodeStateList.add(stateHashCode);
-						nodesList.add(child);
+						
+						hashCodeStateList.add(stateHashCode);					
 						if(max) { 
 							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
 							double childVal = childNode.getVal();
@@ -233,9 +232,7 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
 					if(!hashCodeStateList.contains(stateHashCode)) {
-						//nodesList.add(child); //nodesList.add(0, child);
 						hashCodeStateList.add(stateHashCode);
-						nodesList.add(child);
 						if(max) {
 							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
 							double childVal = childNode.getVal();
@@ -274,10 +271,8 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					String moveTo = convertCoordinates(newPos);
 					Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
 					int stateHashCode = newState.hashCode();
-					if(!hashCodeStateList.contains(stateHashCode)) {
-						//nodesList.add(child); //nodesList.add(0, child);
-						hashCodeStateList.add(stateHashCode);
-						nodesList.add(child);
+					if(!hashCodeStateList.contains(stateHashCode)) {						
+						hashCodeStateList.add(stateHashCode);					
 						if(max) {
 							BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max); //c'era false
 							double childVal = childNode.getVal();
@@ -331,24 +326,9 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 			val = Heuristic.getInstance().evaluateNode(node);
 			bestNodeMove = new BestNode(node,val); 
 			return bestNodeMove;
-		}else{ //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
-				/*
-			for(Node child : (ArrayList<Node>) nodesList) {
-				if(child.getParent() == node) {
-					childCounter++;
-					BestNode childNode = alphaBeta(child,depth+1,alfa,beta,max); //c'era false
-					double childVal = childNode.getVal();
-					if(childVal >= bestNodeMove.getVal())
-						bestNodeMove = childNode;
-					val = Math.max(val, childVal);
-					alfa = Math.max(alfa, val);
-					if(beta <= alfa) {
-						nodesList.remove(child);
-						return bestNodeMove;
-					}
-				}
-			} */
-			//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
+		}
+		else { 
+			
 			BestNode childNode = expandNodeAlphaBeta(node, maxColor, depth, val, alfa, beta,max); //c'era true e depth -val
 			double childVal = childNode.getVal();
 			if(childVal >= bestNodeMove.getVal())
@@ -356,16 +336,11 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 			val = Math.max(val, childVal);
 			alfa = Math.max(alfa, val);
 			if(beta <= alfa) {
-				System.out.println("taglio effettuato");
+				//System.out.println("taglio effettuato");
 				return bestNodeMove;
 			}
 		} 
 		
-		//DA RIVEDERE!
-		/*if(depth == 0 && nodesList.get(0) == node ) {  
-			bestNodeMove = new BestNode(node,val);
-			return bestNodeMove;
-		}*/
 		return bestNodeMove;
 	}
 	else {
@@ -375,7 +350,8 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 			//con la funzione euristica si assegna il valore al nodo
 			val = Heuristic.getInstance().evaluateNode(node);  
 			return new BestNode(node,val);
-		}else { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
+		}
+		else { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
 			/*
 			for(Node child : (ArrayList<Node>) nodesList) {
 				if(child.getParent() == node) {
@@ -398,7 +374,7 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 			val = Math.max(val, childVal);
 			beta = Math.min(beta, val);
 			if(beta <= alfa) {
-				System.out.println("taglio effettuato");
+				//System.out.println("taglio effettuato");
 				return bestNodeMove;
 			}
 		}

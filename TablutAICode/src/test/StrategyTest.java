@@ -351,9 +351,9 @@ class StrategyTest {
 			System.out.println("Black win");
 		assertEquals(true, result);
 	} */
-	
+	/*
 	@Test
-	protected void prova() {
+	protected void bestMoveWhiteCase() {
 		Map<Position,PawnClass> state1 = new HashMap<Position,PawnClass>();
 		state1.put(new Position(0,2), new PawnClass(0,2,Pawn.BLACK));
 		state1.put(new Position(0,3), new PawnClass(0,3,Pawn.BLACK));
@@ -374,10 +374,32 @@ class StrategyTest {
 		Node node1 = new Node(0,state1,parent,0,"d5","d8");
 		//PawnMap.getInstance().printMap(state1);
 		
-	/*	BestNode bn = strategy.alphaBeta(node1, 0, -500, 500, true);
+		BestNode bn = strategy.alphaBeta(node1, 0, -3000, 3000, true);
 		Node bestNode = bn.getNode();
-		//La mossa migliore è g3-g1 oppure g3-i3
-		System.out.println(bestNode.getPawnMoveFrom()+"-"+bestNode.getPawnMoveTo());
-		//System.out.println(bn.getVal()); */
+		assertTrue(bestNode.getPawnMoveTo().equals("g9"));
+		//La mossa migliore è g3-g1 oppure g3-i3 oppure g3-g9
+		//System.out.println(bestNode.getPawnMoveFrom()+"-"+bestNode.getPawnMoveTo());
+		//System.out.println(bn.getVal()); 
+	} */
+	
+	@Test
+	protected void bestMoveBlackCase() {
+		Map<Position,PawnClass> state1 = new HashMap<Position,PawnClass>();
+		state1.put(new Position(2,6), new PawnClass(2,6,Pawn.KING));
+		state1.put(new Position(0,8), new PawnClass(0,8,Pawn.BLACK));
+		state1.put(new Position(2,8), new PawnClass(2,8,Pawn.BLACK));
+		//state1.put(new Position(2,0), new PawnClass(2,0,Pawn.BLACK));
+		state1.put(new Position(8,6), new PawnClass(8,6,Pawn.BLACK));
+		PawnMap.getInstance().printMap(state1);
+		strategy.setPlayer("black");
+		Node node1 = new Node(0,state1,parent,0,"d5","d8");
+		BestNode bn = strategy.alphaBeta(node1, 0, -3000, 3000, true);
+		
+		Node bestNode = bn.getNode();
+		while(bestNode.getDepth() != 1) {
+			bestNode = bestNode.getParent();
+		}
+		System.out.println("Mossa migliore: "+bestNode.getPawnMoveFrom()+"-"+bestNode.getPawnMoveTo());
+	
 	}
 }

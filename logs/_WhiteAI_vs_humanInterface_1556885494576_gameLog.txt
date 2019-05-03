@@ -1,0 +1,162 @@
+mag 03, 2019 2:11:34 PM domain.GameAshtonTablut <init>
+BUONO: Players:	White:	WhiteAI	vs	humanInterface
+mag 03, 2019 2:11:34 PM domain.GameAshtonTablut <init>
+BUONO: Repeated moves allowed:	0	Cache:	-1
+mag 03, 2019 2:11:34 PM domain.GameAshtonTablut <init>
+BUONO: Inizio partita
+mag 03, 2019 2:11:34 PM domain.GameAshtonTablut <init>
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 03, 2019 2:11:35 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from g5 to g6
+mag 03, 2019 2:11:35 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 03, 2019 2:11:35 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+mag 03, 2019 2:11:35 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWOBB
+BOOOWOWOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+mag 03, 2019 2:12:09 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h5 to g5
+mag 03, 2019 2:12:09 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 03, 2019 2:12:09 PM domain.GameAshtonTablut checkCaptureBlackPawnLeft
+BUONO: Pedina bianca rimossa in: f5
+mag 03, 2019 2:12:09 PM domain.GameAshtonTablut checkMove
+BUONO: Capture! Draw cache cleared!
+mag 03, 2019 2:12:09 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+mag 03, 2019 2:12:09 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKOBOB
+BOOOWOWOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 03, 2019 2:12:10 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from e5 to f5
+mag 03, 2019 2:12:10 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 03, 2019 2:12:10 PM domain.GameAshtonTablut checkCaptureWhite
+BUONO: Pedina nera rimossa in: g5
+mag 03, 2019 2:12:10 PM domain.GameAshtonTablut checkMove
+BUONO: Capture! Draw cache cleared!
+mag 03, 2019 2:12:10 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+mag 03, 2019 2:12:10 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWTKOOB
+BOOOWOWOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+mag 03, 2019 2:12:29 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to g5
+mag 03, 2019 2:12:29 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 03, 2019 2:12:29 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 2
+mag 03, 2019 2:12:29 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWTKBOO
+BOOOWOWOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 03, 2019 2:12:30 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from f5 to f7
+mag 03, 2019 2:12:30 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 03, 2019 2:12:30 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 3
+mag 03, 2019 2:12:30 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWTOBOO
+BOOOWOWOB
+OOOOWKOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+mag 03, 2019 2:12:48 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to f6
+mag 03, 2019 2:12:48 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 03, 2019 2:12:48 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 4
+mag 03, 2019 2:12:48 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBOOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWTOBOO
+BOOOWBWOB
+OOOOWKOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 03, 2019 2:12:49 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from f7 to i7
+mag 03, 2019 2:12:49 PM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 03, 2019 2:12:49 PM domain.GameAshtonTablut checkCaptureWhite
+BUONO: Bianco vince con re in i7
+mag 03, 2019 2:12:49 PM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 5
+mag 03, 2019 2:12:49 PM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBOOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWTOBOO
+BOOOWBWOB
+OOOOWOOOK
+OOOOBOOOO
+OOOBBBOOO
+-
+WW

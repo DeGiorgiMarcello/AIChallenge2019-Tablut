@@ -54,12 +54,12 @@ public class Heuristic {
 		final int protectedKingFourSide = -2; //c'era 2
 		final int distanceEscapePoint = 3; //c'era 1
 		final int rowColumnFree = 40;
-		final int kingCaptured = -100;
-		final int win = 200;
+		final int kingCaptured = -1000;
+		final int win = 1000;
 		final int kingInCastle = -20;
 		
 		if(king == null) { //se kingPosition è null il king non c'è, ho perso.
-			return -200;
+			return kingCaptured;
 		}else {
 			//AVENUTA CATTURA
 			int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se ho mangiato pedine avversarie
@@ -108,12 +108,12 @@ public class Heuristic {
 		final int kingTrappedTwoSide = 3;
 		final int kingTrappedThreeSide = 4;
 		final int kingTrappedFourSide = 6;
-		final int escapePointBlocked = 40;
-		final int kingcaptured = 100;
-		final int kingWin = -100;
+		final int escapePointBlocked = 700; //c'era 40
+		final int kingcaptured = 1000;
+		final int kingWin = -1000;
 		
 		if(king == null) {
-			return 200;
+			return kingcaptured;
 		}else {
 			//AVVENUTA CATTURA
 			int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se ho catturato pedine avversarie

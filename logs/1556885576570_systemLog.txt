@@ -1,0 +1,44 @@
+mag 03, 2019 2:12:56 PM server.Server run
+BUONO: Accensione server
+mag 03, 2019 2:12:56 PM server.Server run
+BUONO: Partita di Tablut
+mag 03, 2019 2:12:57 PM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+mag 03, 2019 2:12:57 PM server.Server run
+BUONO: Lettura nome player bianco in corso..
+mag 03, 2019 2:12:58 PM server.Server run
+BUONO: White player name:	WhiteAI
+mag 03, 2019 2:13:01 PM server.Server run
+BUONO: Accettata connessione con client giocatore Nero
+mag 03, 2019 2:13:01 PM server.Server run
+BUONO: Lettura nome player nero in corso..
+mag 03, 2019 2:13:02 PM server.Server run
+BUONO: Black player name:	random
+mag 03, 2019 2:13:03 PM server.Server run
+BUONO: Invio messaggio ai giocatori
+mag 03, 2019 2:13:03 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 03, 2019 2:13:04 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from g5 to g6
+mag 03, 2019 2:13:04 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 03, 2019 2:13:04 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 03, 2019 2:13:06 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from i6 to h6
+mag 03, 2019 2:13:06 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 03, 2019 2:13:06 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 03, 2019 2:13:07 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from d5 to d6
+mag 03, 2019 2:13:07 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 03, 2019 2:13:07 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 03, 2019 2:13:09 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from b5 to b8
+mag 03, 2019 2:13:09 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 03, 2019 2:13:09 PM server.Server run
+BUONO: Lettura mossa player W in corso..

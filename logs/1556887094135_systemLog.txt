@@ -1,0 +1,20 @@
+mag 03, 2019 2:38:14 PM server.Server run
+BUONO: Accensione server
+mag 03, 2019 2:38:14 PM server.Server run
+BUONO: Partita di Tablut
+mag 03, 2019 2:38:45 PM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+mag 03, 2019 2:38:45 PM server.Server run
+BUONO: Lettura nome player bianco in corso..
+mag 03, 2019 2:38:46 PM server.Server run
+BUONO: White player name:	humanInter
+mag 03, 2019 2:38:46 PM server.Server run
+BUONO: Accettata connessione con client giocatore Nero
+mag 03, 2019 2:38:46 PM server.Server run
+BUONO: Lettura nome player nero in corso..
+mag 03, 2019 2:38:46 PM server.Server run
+BUONO: Black player name:	humanInterface
+mag 03, 2019 2:38:46 PM server.Server run
+BUONO: Errore invio messaggio ai giocatori
+mag 03, 2019 2:38:46 PM server.Server run
+AVVERTENZA: Chiusura sistema
