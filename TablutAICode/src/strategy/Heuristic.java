@@ -50,13 +50,13 @@ public class Heuristic {
 		final int capturedWhite = -1;
 		final int protectedKingOneSide = 3;
 		final int protectedKingTwoSide = 6;
-		final int protectedKingThreeSide = 2; //c'era 4
-		final int protectedKingFourSide = -2; //c'era 2
+		final int protectedKingThreeSide = -10; //c'era 3
+		final int protectedKingFourSide = -15; //c'era -2
 		final int distanceEscapePoint = 3; //c'era 1
-		final int rowColumnFree = 40;
+		final int rowColumnFree = 70;//c'era 40
 		final int kingCaptured = -1000;
 		final int win = 1000;
-		final int kingInCastle = -20;
+		final int kingInCastle = -50;
 		
 		if(king == null) { //se kingPosition è null il king non c'è, ho perso.
 			return kingCaptured;
@@ -66,10 +66,10 @@ public class Heuristic {
 			int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se sono state mangiate delle mie pedine
 			//RE PROTETTO aggiungo 1 unità al risultato per ogni lato su cui il re è protetto
 			int[] valProtectedKing = kingProtected(node, king, Pawn.WHITE);
-			/*int valProtectedKingOneSide = valProtectedKing[0];
+			int valProtectedKingOneSide = valProtectedKing[0];
 			int valProtectedKingTwoSide = valProtectedKing[1];
 			int valProtectedKingThreeSide = valProtectedKing[2];
-			int valProtectedKingFourSide = valProtectedKing[3];*/
+			int valProtectedKingFourSide = valProtectedKing[3];
 			//DISTANZA DEL RE DAL PUNTO DI FUGA PIù VICINO
 			int valDistanceEscapePoint = distanceBetweenKingEscape(king);
 			
@@ -91,9 +91,9 @@ public class Heuristic {
 				valKingInCastle=-1;
 			
 			
-			return kingInCastle*valKingInCastle+capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite/*+protectedKingOneSide*valProtectedKingOneSide+
+			return kingInCastle*valKingInCastle+capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite+protectedKingOneSide*valProtectedKingOneSide+
 					protectedKingTwoSide*valProtectedKingTwoSide+protectedKingThreeSide*valProtectedKingThreeSide+
-					protectedKingFourSide*valProtectedKingFourSide*/+distanceEscapePoint*(maxMove - valDistanceEscapePoint)+
+					protectedKingFourSide*valProtectedKingFourSide+distanceEscapePoint*(maxMove - valDistanceEscapePoint)+
 					rowColumnFree*valRowColumnFree+kingCaptured*valKingCaptured+win*valwin;
 		}
 		
