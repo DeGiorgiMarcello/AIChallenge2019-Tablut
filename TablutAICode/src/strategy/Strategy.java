@@ -16,8 +16,6 @@ import util.PawnMap;
 public class Strategy {
 	//calcola tutte le possibili mosse a partire da uno stato
 	private static Strategy instance;
-	private ArrayList nodesList = new ArrayList<Node>();
-	private ArrayList firstNodes = new ArrayList<Node>();   //lista dei primi nodi per ogni depth
 	private ArrayList hashCodeStateList = new ArrayList<Integer>();
 	private String player; 
 	private int depth = 0;
@@ -28,9 +26,14 @@ public class Strategy {
 	private Position a3 = new Position(4,5);
 	private Position a4 = new Position(5,4);
 	private boolean taken = false; //variabile per tener conto dell'avvenuta cattura e aggiornare i nodi figli
-	final int MAXDEPTH = 3;
 	private Heuristic heuristicInstance;
-	boolean first = true;
+	private long startTime;
+	long actualTime;
+	long elapsedTime;
+	
+
+	final int MAXDEPTH = 4;
+	final int MAXTIME = 20;
 		
 	private Strategy() {
 		initCitadels();
@@ -46,17 +49,16 @@ public class Strategy {
 	/*A partire dalla mappa, per ogni pedina calcola tutte le possibili mosse*/
 	
 	public String[] getMove(String player) {
+		startTime = System.currentTimeMillis();
 		String[] move = new String[2];
 		//Inizializzazione variabili globali
 		depth = 0;
-		nodesList.clear();
 		this.player = player;
 		//----------------
-		//Node partialTree = generatePartialTree();
 		int alfa = -3000;  //-infinito
 		int beta = 3000;   //+infinito
-		nodesList.add(new Node());
-		BestNode alphaBetaBestNode = alphaBeta(new Node(),0,alfa,beta,true);  //si inizializza con la root
+		Node root = new Node();
+		BestNode alphaBetaBestNode = alphaBeta(root,0,alfa,beta,true);  //si inizializza con la root
 		Node bestNode = alphaBetaBestNode.getNode();
 		
 		while(bestNode.getDepth() != 1) {
@@ -68,71 +70,23 @@ public class Strategy {
 		return move;
 	}
 	
-	/*
-	public Node generatePartialTree() {
-		String player = this.player;
-		Node root = new Node();
-		nodesList.add(0,root);
-		firstNodes.add(root);
-		hashCodeStateList.add(root.getState().hashCode());
-		 
-		
-		while(depth < MAXDEPTH) {
-			if(getPlayer().equals("white")) {
-				Node actualNode = (Node)nodesList.get(0);
-				expandNode(actualNode,Pawn.WHITE);	
-				depth++;
-				first = true;
-				setPlayer("black");
-			
-			}
-		
-			else {
-				Node actualNode = (Node)nodesList.get(0);
-				expandNode(actualNode,Pawn.BLACK);
-				depth++;
-				first = true;	
-				setPlayer("white");
-		
-			}
-		}
-		setPlayer(player);
-		return root;  //ritorna l'albero intero
-	} */
-	
-	public void expandNode(Node actualNode,Pawn color) {
-		Map<Position,PawnClass> actualState = actualNode.getState();
-		for(Map.Entry<Position, PawnClass> entry : actualState.entrySet()) {
-			PawnClass pawn = entry.getValue();
-			if(color.equals(Pawn.KING))
-				color = Pawn.WHITE;
-			//si prendono tutte le pedine nello stato iniziale e si spostano di tutte le possibili posizioni, generando 
-			//nodi figli di root -> i nodi sono quindi posti in testa al nodesList.
-			if(pawn.getType().equals(color)) {  
-				moveLeft(pawn,actualNode);
-				moveRight(pawn,actualNode);
-				moveUp(pawn,actualNode);
-				moveDown(pawn,actualNode);
-			}
-		}
-	}
 public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDepth,double val,double alfa, double beta,boolean max) {
 		
-		boolean isKing = false;
-		BestNode bestNodeMove = new BestNode(actualNode,val); 
-		Map<Position,PawnClass> actualState = PawnMap.getInstance().cloneState(actualNode.getState());
-		for(Map.Entry<Position, PawnClass> entry : actualState.entrySet()) {
+	boolean isKing = false;
+	BestNode bestNodeMove = new BestNode(actualNode,val); 
+	Map<Position,PawnClass> actualState = PawnMap.getInstance().cloneState(actualNode.getState());
+	
+	for(Map.Entry<Position, PawnClass> entry : actualState.entrySet()) {	
+		actualTime = System.currentTimeMillis();
+		elapsedTime = (actualTime - startTime)/1000;
+		//if(elapsedTime < MAXTIME) {
 			PawnClass pawn = entry.getValue();
 			int captured = actualNode.getCaptured();
-			if(pawn.getType().equalsPawn(Pawn.KING.toString()) && color.equalsPawn(Pawn.WHITE.toString())) { //
-				//color = Pawn.WHITE;
+			if(pawn.getType().equalsPawn(Pawn.KING.toString()) && color.equalsPawn(Pawn.WHITE.toString())) 
 				isKing = true;
-			}
 			if(pawn.getType().equals(color) || isKing) {
-				//System.out.println("Espando pedina "+convertCoordinates(entry.getKey()));
-				
+						
 				//MOVE LEFT
-				//for(int i=1;i<=pawn.maxNumberBoxMoveLeft(actualState);i++) {
 				for(int i=pawn.maxNumberBoxMoveLeft(actualState);i>0;i--){
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
@@ -175,7 +129,7 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 				}
 				
 				//MOVE RIGHT
-				//for(int i=1;i<=pawn.maxNumberBoxMoveRight(actualState);i++) {
+	
 				for(int i=pawn.maxNumberBoxMoveRight(actualState);i>0;i--){
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
@@ -216,7 +170,7 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					}
 				}
 				//MOVE UP
-				//for(int i=1;i<=pawn.maxNumberBoxMoveUp(actualState);i++) {
+				
 				for(int i=pawn.maxNumberBoxMoveUp(actualState);i>0;i--){
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
@@ -256,7 +210,7 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 					}
 				}
 				//MOVE DOWN
-				//for(int i=1;i<=pawn.maxNumberBoxMoveDown(actualState);i++) {
+				
 				for(int i=pawn.maxNumberBoxMoveDown(actualState);i>0;i--){
 					Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 					Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
@@ -297,98 +251,74 @@ public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDep
 						}	
 					}
 				}
-			
-			}
-			isKing = false;
-		}
-		return bestNodeMove;
+			}	
+		//} // fine timer
+	//	else 
+		//	return bestNodeMove;
 	}
+	isKing = false;
+	return bestNodeMove;
+}
 	
 public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean max) {
-	double val;
-	int childCounter = 0;
+	actualTime = System.currentTimeMillis();
+	elapsedTime = (actualTime-startTime)/1000;
 	BestNode bestNodeMove = new BestNode(node, 0);
-	Pawn maxColor,minColor;
-	if(player.equals("white")) {
-		 maxColor = Pawn.WHITE;
-		 minColor = Pawn.BLACK;
-	}
-	else {
-		 maxColor = Pawn.BLACK;
-		 minColor = Pawn.WHITE;
+	
+	while(elapsedTime < MAXTIME) {
 		
-	}
-	if(max) {
-		val = -500;
-		bestNodeMove.setVal(val);
-		if(depth == MAXDEPTH || whiteWin(node) || blackWin(node)) { //NODI FOGLIA!
-			//con la funzione euristica si assegna il valore al nodo
-			val = Heuristic.getInstance().evaluateNode(node,maxColor);
-			bestNodeMove = new BestNode(node,val); 
+		double val;
+		int childCounter = 0;
+		Pawn maxColor,minColor;
+		if(player.equals("white")) {
+			 maxColor = Pawn.WHITE;
+			 minColor = Pawn.BLACK;
+		}
+		else {
+			 maxColor = Pawn.BLACK;
+			 minColor = Pawn.WHITE;
+			
+		}
+		if(max) {
+			val = -500;
+			bestNodeMove.setVal(val);
+			if(depth == MAXDEPTH || whiteWin(node) || blackWin(node)) { //NODI FOGLIA!
+				//con la funzione euristica si assegna il valore al nodo
+				val = Heuristic.getInstance().evaluateNode(node,maxColor);
+				bestNodeMove = new BestNode(node,val); 
+				return bestNodeMove;
+			}
+			else { 
+				
+				BestNode childNode = expandNodeAlphaBeta(node, maxColor, depth, val, alfa, beta,max); //c'era true e depth -val
+				double childVal = childNode.getVal();
+				if(childVal >= bestNodeMove.getVal())
+					bestNodeMove = childNode;
+			} 
+			
 			return bestNodeMove;
 		}
-		else { 
-			
-			BestNode childNode = expandNodeAlphaBeta(node, maxColor, depth, val, alfa, beta,max); //c'era true e depth -val
-			double childVal = childNode.getVal();
-			if(childVal >= bestNodeMove.getVal())
-				bestNodeMove = childNode;
-			val = Math.max(val, childVal);
-			alfa = Math.max(alfa, val);
-			if(beta <= alfa) {
-				//System.out.println("taglio effettuato");
-				return bestNodeMove;
+		else {
+			val = +500;
+			bestNodeMove.setVal(val);
+			if(depth == MAXDEPTH || whiteWin(node) || blackWin(node)) { //NODI FOGLIA!
+				//con la funzione euristica si assegna il valore al nodo
+				val = Heuristic.getInstance().evaluateNode(node,maxColor);  
+				return new BestNode(node,val);
 			}
-		} 
-		
-		return bestNodeMove;
-	}
-	else {
-		val = +500;
-		bestNodeMove.setVal(val);
-		if(depth == MAXDEPTH || whiteWin(node) || blackWin(node)) { //NODI FOGLIA!
-			//con la funzione euristica si assegna il valore al nodo
-			val = Heuristic.getInstance().evaluateNode(node,maxColor);  
-			return new BestNode(node,val);
-		}
-		else { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
-			/*
-			for(Node child : (ArrayList<Node>) nodesList) {
-				if(child.getParent() == node) {
-					BestNode childNode = alphaBeta(child,depth+1,alfa,beta,max); //c'era false
-					double childVal = childNode.getVal();
-					if(childVal <= bestNodeMove.getVal())
-						bestNodeMove = childNode;
-					val = Math.max(val, childVal);
-					beta = Math.min(beta, val);
-					if(beta <= alfa)
-						nodesList.remove(child);
-						return bestNodeMove;
-				}
-			} */
-			//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
-			BestNode childNode = expandNodeAlphaBeta(node, minColor, depth, val, alfa, beta,max); //c'era true -
-			double childVal = childNode.getVal();
-			if(childVal <= bestNodeMove.getVal())
-				bestNodeMove = childNode;
-			val = Math.max(val, childVal);
-			beta = Math.min(beta, val);
-			if(beta <= alfa) {
-				//System.out.println("taglio effettuato");
-				return bestNodeMove;
+			else { 
+				//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
+				BestNode childNode = expandNodeAlphaBeta(node, minColor, depth, val, alfa, beta,max); //c'era true -
+				double childVal = childNode.getVal();
+				if(childVal <= bestNodeMove.getVal())
+					bestNodeMove = childNode;
 			}
+			return bestNodeMove;
 		}
-		return bestNodeMove;
 	}
+	System.out.println("Depth: "+depth+"Time: "+elapsedTime);
+	return bestNodeMove;
 }
-
-	/*public boolean whiteWin(Node node) {
-		boolean result = false;
-		Position king;
-		for(Map.Entry<Position, PawnClass> entry : node.getState().entrySet()) {
-			
-		}
-	}*/
 	
 	public String convertCoordinates(Position pos) {
 		String result = "";
@@ -416,109 +346,6 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 		}
 		return result;
 	}
-	
-	public void moveLeft(PawnClass pawn,Node parent) {
-		taken = false;
-		
-		int captured = parent.getCaptured();
-		
-		for(int i=1;i<=pawn.maxNumberBoxMoveLeft(parent.getState());i++) {
-			Map newState = PawnMap.getInstance().cloneState(parent.getState());
-			Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
-			Position newPos = new Position(pawn.getRow(),pawn.getColumn()-i);
-			updateState(newState,pawn,pawn.getRow(),pawn.getColumn()-i);	//genera un nuovo stato dallo stato vecchio spostando la pedina a sx
-			captureVerification(newState, newPos);
-			if(taken) {
-				captured++;
-				taken = false;
-			}
-			String moveFrom = convertCoordinates(oldPos);
-			String moveTo = convertCoordinates(newPos);
-			Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-			int stateHashCode = newState.hashCode();
-			if(depth < MAXDEPTH-1 && !hashCodeStateList.contains(stateHashCode)) {
-				nodesList.add(0, child); 
-				hashCodeStateList.add(stateHashCode);
-			}
-			if(first) {
-				firstNodes.add(child);
-				first = false;
-			}
-		}
-	}
-	public void moveRight(PawnClass pawn,Node parent) {
-		taken = false;
-		int captured = parent.getCaptured();
-		
-		for(int i=1;i<=pawn.maxNumberBoxMoveRight(parent.getState());i++) {
-			Map newState = PawnMap.getInstance().cloneState(parent.getState());
-			Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
-			Position newPos = new Position(pawn.getRow(),pawn.getColumn()+i);
-			updateState(newState,pawn,pawn.getRow(),pawn.getColumn()+i);	//genera un nuovo stato dallo stato vecchio spostando la pedina a dx
-			captureVerification(newState, newPos);
-			if(taken) {
-				captured++;
-				taken = false;
-			}
-			String moveFrom = convertCoordinates(oldPos);
-			String moveTo = convertCoordinates(newPos);
-			Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-			int stateHashCode = newState.hashCode();
-			if(depth < MAXDEPTH-1 && !hashCodeStateList.contains(stateHashCode)) {
-				nodesList.add(0, child); 
-				hashCodeStateList.add(stateHashCode);
-			}
-		}
-	}
-		public void moveUp(PawnClass pawn,Node parent) {
-			taken = false;
-			int captured = parent.getCaptured();
-			
-			for(int i=1;i<=pawn.maxNumberBoxMoveUp(parent.getState());i++) {
-				Map newState = PawnMap.getInstance().cloneState(parent.getState());
-				Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
-				Position newPos = new Position(pawn.getRow()-i,pawn.getColumn());
-				updateState(newState,pawn,pawn.getRow()-i,pawn.getColumn());	//genera un nuovo stato dallo stato vecchio spostando la pedina su
-				captureVerification(newState, newPos);
-				if(taken) {
-					captured++;
-					taken = false;
-				}
-				String moveFrom = convertCoordinates(oldPos);
-				String moveTo = convertCoordinates(newPos);
-				Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-				int stateHashCode = newState.hashCode();
-				if(depth < MAXDEPTH-1 && !hashCodeStateList.contains(stateHashCode)) {
-					nodesList.add(0, child); 
-					hashCodeStateList.add(stateHashCode);
-				}
-			}
-		}
-		public void moveDown(PawnClass pawn,Node parent) {
-			taken = false;
-			
-			int captured = parent.getCaptured();
-			
-			for(int i=1;i<=pawn.maxNumberBoxMoveDown(parent.getState());i++) {
-				Map newState = PawnMap.getInstance().cloneState(parent.getState());
-				Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
-				Position newPos = new Position(pawn.getRow()+i,pawn.getColumn());
-				updateState(newState,pawn,pawn.getRow()+i,pawn.getColumn());	//genera un nuovo stato dallo stato vecchio spostando la pedina giù
-				captureVerification(newState, newPos);
-				if(taken) {
-					captured++;
-					taken = false;
-				}
-				String moveFrom = convertCoordinates(oldPos);
-				String moveTo = convertCoordinates(newPos);
-				Node child = new Node(depth+1,newState,parent,captured,moveFrom,moveTo);
-				int stateHashCode = newState.hashCode();
-				if(depth < MAXDEPTH-1 && !hashCodeStateList.contains(stateHashCode)) {
-					nodesList.add(0, child); 
-					hashCodeStateList.add(stateHashCode);
-				}
-			}
-		}
 	
 	public Map<Position,PawnClass> updateState(Map<Position,PawnClass> state,PawnClass pawn,int newRow,int newColumn){
 		
@@ -918,15 +745,6 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 			return false;
 	}
 
-	public ArrayList getNodesList() {
-		return nodesList;
-	}
-
-	public void setNodesList(ArrayList nodesList) {
-		this.nodesList = nodesList;
-	}
-
-
 	public String getPlayer() {
 		return player;
 	}
@@ -949,6 +767,10 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 
 	public void setCastle(Position castle) {
 		this.castle = castle;
+	}
+	
+	public void setStartTime(long startTime) {
+		this.startTime = startTime;
 	}
 	
 	

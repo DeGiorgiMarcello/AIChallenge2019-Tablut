@@ -1,4 +1,3 @@
-/client/
 /domain/
 /exceptions/
 /gui/
@@ -6,3 +5,4 @@
 /strategy/
 /test/
 /util/
+/client/

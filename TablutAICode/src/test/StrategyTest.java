@@ -405,7 +405,7 @@ class StrategyTest {
 	@Test
 	protected void prova() {
 		Map<Position,PawnClass> state1 = new HashMap<Position,PawnClass>();
-		state1.put(new Position(0,0), new PawnClass(0,0,Pawn.BLACK));
+		//state1.put(new Position(0,0), new PawnClass(0,0,Pawn.BLACK));
 		state1.put(new Position(0,2), new PawnClass(0,2,Pawn.BLACK));
 		state1.put(new Position(0,6), new PawnClass(0,6,Pawn.BLACK));
 		state1.put(new Position(3,0), new PawnClass(3,0,Pawn.BLACK));
@@ -430,15 +430,17 @@ class StrategyTest {
 		state1.put(new Position(7,3), new PawnClass(7,3,Pawn.WHITE));
 		strategy.setPlayer("white");
 		Node node1 = new Node(0,state1,parent,0,"a2","a1");
-		//PawnMap.getInstance().printMap(state1);
 		
-		BestNode bn = strategy.alphaBeta(node1, 0, -3000, 3000, true);
+		strategy.setStartTime(System.currentTimeMillis());
+		Node root = new Node();
+		PawnMap.getInstance().printMap(root.getState());
+		BestNode bn = strategy.alphaBeta(root, 0, -3000, 3000, true);
 		Node bestNode = bn.getNode();
-		//La mossa migliore è g3-g1 oppure g3-i3
+		
 		while(bestNode.getDepth() != 1) {
 			bestNode = bestNode.getParent();
 		}
 		System.out.println(bestNode.getPawnMoveFrom()+"-"+bestNode.getPawnMoveTo());
-		//System.out.println(bn.getVal()); 
+		System.out.println(bn.getVal()); 
 	}
 }

@@ -1,0 +1,20 @@
+mag 07, 2019 5:51:01 PM server.Server run
+BUONO: Accensione server
+mag 07, 2019 5:51:01 PM server.Server run
+BUONO: Partita di Tablut
+mag 07, 2019 5:51:05 PM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+mag 07, 2019 5:51:05 PM server.Server run
+BUONO: Lettura nome player bianco in corso..
+mag 07, 2019 5:51:06 PM server.Server run
+BUONO: White player name:	WhiteAI
+mag 07, 2019 5:51:06 PM server.Server run
+BUONO: Accettata connessione con client giocatore Nero
+mag 07, 2019 5:51:06 PM server.Server run
+BUONO: Lettura nome player nero in corso..
+mag 07, 2019 5:51:07 PM server.Server run
+BUONO: Black player name:	BlackAI
+mag 07, 2019 5:51:08 PM server.Server run
+BUONO: Invio messaggio ai giocatori
+mag 07, 2019 5:51:08 PM server.Server run
+BUONO: Lettura mossa player W in corso..

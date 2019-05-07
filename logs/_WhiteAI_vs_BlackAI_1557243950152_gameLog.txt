@@ -1,0 +1,23 @@
+mag 07, 2019 5:45:50 PM domain.GameAshtonTablut <init>
+BUONO: Players:	White:	WhiteAI	vs	BlackAI
+mag 07, 2019 5:45:50 PM domain.GameAshtonTablut <init>
+BUONO: Repeated moves allowed:	0	Cache:	-1
+mag 07, 2019 5:45:50 PM domain.GameAshtonTablut <init>
+BUONO: Inizio partita
+mag 07, 2019 5:45:50 PM domain.GameAshtonTablut <init>
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 07, 2019 5:46:06 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from a4 to a3
+mag 07, 2019 5:46:06 PM domain.GameAshtonTablut checkMove
+AVVERTENZA: Giocatore W cerca di muovere una pedina avversaria

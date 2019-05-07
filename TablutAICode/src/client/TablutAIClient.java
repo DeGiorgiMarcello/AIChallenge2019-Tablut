@@ -52,10 +52,7 @@ public class TablutAIClient extends TablutClient {
 					
 					//prende lo stato dal server
 					this.read();
-					/*
-					System.out.println("Current state:");
-					System.out.println(this.getCurrentState().toString());
-					*/
+					
 					if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITE)) {
 						//System.out.println("Player "+this.getPlayer().toString()+ " is moving.");
 						PawnMap.getInstance().createMap(this.getCurrentState());  

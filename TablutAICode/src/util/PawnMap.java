@@ -80,7 +80,7 @@ public class PawnMap {
 			}
 			if(i!=9) System.out.println(i+1+" ");
 		}
-		System.out.println("\na b c d e f g h i");
+		System.out.println("a b c d e f g h i");
 		
 	}
 	
