@@ -33,10 +33,10 @@ public class Heuristic {
 		initAdjacentPointsCaste();
 	}
 	
-	public int evaluateNode(Node node) {
-		Position position = convertLetterToInt(node.getPawnMoveTo());
-		PawnClass pawn = (PawnClass) node.getState().get(position);
-		if(pawn.getType().equalsPawn(Pawn.WHITE.toString()) || pawn.getType().equalsPawn(Pawn.KING.toString()) ) {
+	public int evaluateNode(Node node,Pawn color) {
+		//Position position = convertLetterToInt(node.getPawnMoveTo());
+		//PawnClass pawn = (PawnClass) node.getState().get(position);
+		if(color.equalsPawn(Pawn.WHITE.toString())){
 			return whiteHeuristic(node);
 		}else {
 			return BlackHeuristic(node);

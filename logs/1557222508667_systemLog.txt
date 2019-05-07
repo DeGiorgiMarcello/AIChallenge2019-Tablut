@@ -1,0 +1,50 @@
+mag 07, 2019 11:48:28 AM server.Server run
+BUONO: Accensione server
+mag 07, 2019 11:48:28 AM server.Server run
+BUONO: Partita di Tablut
+mag 07, 2019 11:48:30 AM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+mag 07, 2019 11:48:30 AM server.Server run
+BUONO: Lettura nome player bianco in corso..
+mag 07, 2019 11:48:31 AM server.Server run
+BUONO: White player name:	pippo
+mag 07, 2019 11:48:32 AM server.Server run
+BUONO: Accettata connessione con client giocatore Nero
+mag 07, 2019 11:48:32 AM server.Server run
+BUONO: Lettura nome player nero in corso..
+mag 07, 2019 11:48:33 AM server.Server run
+BUONO: Black player name:	pluto
+mag 07, 2019 11:48:33 AM server.Server run
+BUONO: Invio messaggio ai giocatori
+mag 07, 2019 11:48:33 AM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 07, 2019 11:49:17 AM server.Server run
+BUONO: Move received.	Turn: W Pawn from g5 to g6
+mag 07, 2019 11:49:17 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 07, 2019 11:49:17 AM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 07, 2019 11:49:26 AM server.Server run
+BUONO: Move received.	Turn: B Pawn from i6 to i7
+mag 07, 2019 11:49:26 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 07, 2019 11:49:26 AM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 07, 2019 11:50:23 AM server.Server run
+BUONO: Move received.	Turn: W Pawn from d5 to d6
+mag 07, 2019 11:50:23 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 07, 2019 11:50:23 AM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 07, 2019 11:50:37 AM server.Server run
+BUONO: Move received.	Turn: B Pawn from i7 to i8
+mag 07, 2019 11:50:37 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 07, 2019 11:50:37 AM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 07, 2019 11:51:50 AM server.Server run
+BUONO: Move received.	Turn: W Pawn from e3 to f3
+mag 07, 2019 11:51:50 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 07, 2019 11:51:50 AM server.Server run
+BUONO: Lettura mossa player B in corso..

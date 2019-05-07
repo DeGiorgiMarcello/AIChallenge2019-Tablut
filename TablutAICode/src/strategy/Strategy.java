@@ -321,9 +321,9 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 	if(max) {
 		val = -500;
 		bestNodeMove.setVal(val);
-		if(depth == MAXDEPTH || (maxColor.equalsPawn(Pawn.WHITE.toString()) && whiteWin(node)) || (maxColor.equalsPawn(Pawn.BLACK.toString()) && blackWin(node))) { //NODI FOGLIA!
+		if(depth == MAXDEPTH || whiteWin(node) || blackWin(node)) { //NODI FOGLIA!
 			//con la funzione euristica si assegna il valore al nodo
-			val = Heuristic.getInstance().evaluateNode(node);
+			val = Heuristic.getInstance().evaluateNode(node,maxColor);
 			bestNodeMove = new BestNode(node,val); 
 			return bestNodeMove;
 		}
@@ -346,9 +346,9 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 	else {
 		val = +500;
 		bestNodeMove.setVal(val);
-		if(depth == MAXDEPTH || (maxColor.equalsPawn(Pawn.WHITE.toString()) && whiteWin(node)) || (maxColor.equalsPawn(Pawn.BLACK.toString()) && blackWin(node))) { //NODI FOGLIA!
+		if(depth == MAXDEPTH || whiteWin(node) || blackWin(node)) { //NODI FOGLIA!
 			//con la funzione euristica si assegna il valore al nodo
-			val = Heuristic.getInstance().evaluateNode(node);  
+			val = Heuristic.getInstance().evaluateNode(node,maxColor);  
 			return new BestNode(node,val);
 		}
 		else { //se il nodo non è un nodo foglia, prendi tutti i figli del nodo
