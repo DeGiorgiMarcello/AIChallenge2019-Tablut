@@ -48,15 +48,15 @@ public class Heuristic {
 		Position king = PawnMap.getInstance().findKingPosition(node.getState());
 		final int capturedBlack = 1;
 		final int capturedWhite = -1;
-		final int protectedKingOneSide = 3;
-		final int protectedKingTwoSide = 6;
+		final int protectedKingOneSide = 6;
+		final int protectedKingTwoSide = 3;
 		final int protectedKingThreeSide = -10; //c'era 3
 		final int protectedKingFourSide = -15; //c'era -2
 		final int distanceEscapePoint = 3; //c'era 1
 		final int rowColumnFree = 70;//c'era 40
 		final int kingCaptured = -1000;
 		final int win = 1000;
-		final int kingInCastle = -50;
+		final int kingInCastle = -200;
 		
 		if(king == null) { //se kingPosition è null il king non c'è, ho perso.
 			return kingCaptured;
@@ -91,9 +91,9 @@ public class Heuristic {
 				valKingInCastle=-1;
 			
 			
-			return kingInCastle*valKingInCastle+capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite+protectedKingOneSide*valProtectedKingOneSide+
+			return kingInCastle*valKingInCastle+capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite/*+protectedKingOneSide*valProtectedKingOneSide+
 					protectedKingTwoSide*valProtectedKingTwoSide+protectedKingThreeSide*valProtectedKingThreeSide+
-					protectedKingFourSide*valProtectedKingFourSide+distanceEscapePoint*(maxMove - valDistanceEscapePoint)+
+					protectedKingFourSide*valProtectedKingFourSide*/+distanceEscapePoint*(maxMove - valDistanceEscapePoint)+
 					rowColumnFree*valRowColumnFree+kingCaptured*valKingCaptured+win*valwin;
 		}
 		
@@ -104,8 +104,8 @@ public class Heuristic {
 		int sum = 0;
 		final int capturedWhite = 1;
 		final int capturedBlack = -1;
-		final int kingTrappedOneSide = 2;
-		final int kingTrappedTwoSide = 3;
+		final int kingTrappedOneSide = 15; //c'era2
+		final int kingTrappedTwoSide = 10; //c'era2
 		final int kingTrappedThreeSide = 4;
 		final int kingTrappedFourSide = 6;
 		final int escapePointBlocked = 700; //c'era 40

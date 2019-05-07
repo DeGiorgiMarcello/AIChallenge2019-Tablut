@@ -1,0 +1,176 @@
+mag 04, 2019 1:03:16 PM server.Server run
+BUONO: Accensione server
+mag 04, 2019 1:03:16 PM server.Server run
+BUONO: Partita di Tablut
+mag 04, 2019 1:03:23 PM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+mag 04, 2019 1:03:23 PM server.Server run
+BUONO: Lettura nome player bianco in corso..
+mag 04, 2019 1:03:24 PM server.Server run
+BUONO: White player name:	random
+mag 04, 2019 1:03:24 PM server.Server run
+BUONO: Accettata connessione con client giocatore Nero
+mag 04, 2019 1:03:24 PM server.Server run
+BUONO: Lettura nome player nero in corso..
+mag 04, 2019 1:03:24 PM server.Server run
+BUONO: Black player name:	pluto
+mag 04, 2019 1:03:24 PM server.Server run
+BUONO: Invio messaggio ai giocatori
+mag 04, 2019 1:03:24 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 04, 2019 1:03:26 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from c5 to c7
+mag 04, 2019 1:03:26 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:03:26 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 04, 2019 1:03:30 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from i6 to h6
+mag 04, 2019 1:03:30 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:03:30 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 04, 2019 1:03:32 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from c7 to c9
+mag 04, 2019 1:03:32 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:03:32 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 04, 2019 1:03:37 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from e2 to f2
+mag 04, 2019 1:03:37 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:03:37 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 04, 2019 1:03:39 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from g5 to g4
+mag 04, 2019 1:03:39 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:03:39 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 04, 2019 1:03:42 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from e1 to e2
+mag 04, 2019 1:03:42 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:03:42 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 04, 2019 1:03:44 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from e6 to c6
+mag 04, 2019 1:03:44 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:03:44 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 04, 2019 1:03:54 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from e2 to e1
+mag 04, 2019 1:03:54 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:03:54 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 04, 2019 1:03:56 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from e3 to h3
+mag 04, 2019 1:03:56 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:03:56 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 04, 2019 1:04:13 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from i5 to i6
+mag 04, 2019 1:04:13 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:04:13 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 04, 2019 1:04:15 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from e7 to c7
+mag 04, 2019 1:04:15 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:04:15 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 04, 2019 1:04:19 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from b5 to b9
+mag 04, 2019 1:04:19 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:04:19 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 04, 2019 1:04:21 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from e4 to b4
+mag 04, 2019 1:04:21 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:04:21 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 04, 2019 1:04:25 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from h6 to h7
+mag 04, 2019 1:04:25 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:04:25 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 04, 2019 1:04:27 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from c6 to c4
+mag 04, 2019 1:04:27 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:04:27 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 04, 2019 1:04:33 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from i6 to e6
+mag 04, 2019 1:04:33 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:04:33 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 04, 2019 1:04:35 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from g4 to g3
+mag 04, 2019 1:04:35 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:04:35 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 04, 2019 1:04:41 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from h5 to h6
+mag 04, 2019 1:04:41 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:04:41 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 04, 2019 1:04:43 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from c4 to d4
+mag 04, 2019 1:04:43 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:04:43 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 04, 2019 1:04:49 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from h6 to g6
+mag 04, 2019 1:04:49 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:04:49 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 04, 2019 1:04:51 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from b4 to b2
+mag 04, 2019 1:04:51 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:04:51 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 04, 2019 1:04:56 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from d1 to d2
+mag 04, 2019 1:04:56 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:04:56 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 04, 2019 1:04:58 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from g3 to g1
+mag 04, 2019 1:04:58 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:04:58 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 04, 2019 1:05:06 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from d2 to d3
+mag 04, 2019 1:05:06 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:05:06 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 04, 2019 1:05:08 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from g1 to g3
+mag 04, 2019 1:05:08 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:05:08 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 04, 2019 1:05:13 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from e1 to e2
+mag 04, 2019 1:05:13 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 04, 2019 1:05:13 PM server.Server run
+BUONO: Lettura mossa player W in corso..
