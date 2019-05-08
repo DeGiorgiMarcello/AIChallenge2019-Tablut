@@ -32,7 +32,7 @@ public class Strategy {
 	
 
 	final int MAXDEPTH = 3;
-	final int MAXTIME = 59;
+	final int MAXTIME = 200;
 		
 	private Strategy() {
 		initCitadels();
