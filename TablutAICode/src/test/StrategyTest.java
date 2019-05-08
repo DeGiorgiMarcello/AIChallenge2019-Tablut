@@ -428,13 +428,13 @@ class StrategyTest {
 		state1.put(new Position(5,6), new PawnClass(5,6,Pawn.WHITE));
 		state1.put(new Position(6,4), new PawnClass(6,4,Pawn.WHITE));
 		state1.put(new Position(7,3), new PawnClass(7,3,Pawn.WHITE));
-		strategy.setPlayer("white");
+		strategy.setPlayer("black");
 		Node node1 = new Node(0,state1,parent,0,"a2","a1");
 		
 		strategy.setStartTime(System.currentTimeMillis());
-		Node root = new Node();
-		PawnMap.getInstance().printMap(root.getState());
-		BestNode bn = strategy.alphaBeta(root, 0, -3000, 3000, true);
+		//Node root = new Node();
+		PawnMap.getInstance().printMap(node1.getState());
+		BestNode bn = strategy.alphaBeta(node1, 0, -3000, 3000, true);
 		Node bestNode = bn.getNode();
 		
 		while(bestNode.getDepth() != 1) {
