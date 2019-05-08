@@ -2,6 +2,7 @@ package strategy;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import domain.State;
 import domain.State.Pawn;
@@ -53,7 +54,7 @@ public class Heuristic {
 		final int protectedKingThreeSide = -10; //c'era 3
 		final int protectedKingFourSide = -15; //c'era -2
 		final int distanceEscapePoint = 3; //c'era 1
-		final int rowColumnFree = 70;//c'era 40
+		final int rowColumnFree = 700;//c'era 40
 		final int kingCaptured = -1000;
 		final int win = 1000;
 		final int kingInCastle = -200;
@@ -111,7 +112,7 @@ public class Heuristic {
 		final int escapePointBlocked = 700; //c'era 40
 		final int kingcaptured = 1000;
 		final int kingWin = -1000;
-		
+		final int blackProtectEscape = 20;
 		if(king == null) {
 			return kingcaptured;
 		}else {
@@ -132,9 +133,10 @@ public class Heuristic {
 			int valKingcaptured = kingCaptured(node);
 			//vedere se il re è in un punto di fuga
 			int valKingWin = kingInEscapePoint(king);
+			int valBlackProtect = blackProtectEscape(node);
 			return capturedWhite*valCapturedWhite+capturedBlack*valCapturedBlack+kingTrappedOneSide*valKingTrappedOneSide+
 					kingTrappedTwoSide*valKingTrappedTwoSide+kingTrappedThreeSide*valKingTrappedThreeSide+kingTrappedFourSide*valKingTrappedFourSide
-					+escapePointBlocked*valEscapePointBlocked+kingcaptured*valKingcaptured+kingWin*valKingWin;
+					+escapePointBlocked*valEscapePointBlocked+kingcaptured*valKingcaptured+kingWin*valKingWin+valBlackProtect*blackProtectEscape;
 		}
 		
 	}
@@ -429,6 +431,27 @@ public class Heuristic {
 			return 1;
 		else
 			return 0;
+	}
+	
+	public int blackProtectEscape(Node node) {
+		ArrayList<Position> protectPosition = new ArrayList<Position>();
+		protectPosition.add(new Position(1,2));
+		protectPosition.add(new Position(2,1));
+		protectPosition.add(new Position(1,6));
+		protectPosition.add(new Position(6,1));
+		protectPosition.add(new Position(7,2));
+		protectPosition.add(new Position(2,7));
+		protectPosition.add(new Position(6,7));
+		protectPosition.add(new Position(7,6));
+		int cont = 0;
+		for(Entry<Position, PawnClass> entry : node.getState().entrySet()) {
+			if(protectPosition.contains(entry.getKey())){
+				if(entry.getValue().getType().equalsPawn(Pawn.BLACK.toString())) {
+					cont++;
+				}
+			}
+		}
+		return cont;
 	}
 	
 	public Position convertLetterToInt(String position) {
