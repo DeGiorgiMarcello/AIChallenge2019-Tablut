@@ -16,10 +16,9 @@ public class Heuristic {
 	private static Heuristic instance;
 	private ArrayList<Position> escapePoints = new ArrayList();
 	private ArrayList<Position> protectPosition = new ArrayList<Position>();
-	private Position escape = null; //salvo la posizione del punto di fuga più vicino
+	private Position escape = null;
 	private Position castle = new Position(4,4);
 	private final int maxMove = 8;
-	/*posizioni adiacenti al castello*/
 	private ArrayList<Position> adjacentPointsCastle = new ArrayList();
 	
 	public static Heuristic getInstance() {
@@ -33,11 +32,10 @@ public class Heuristic {
 		/*inizializzo la lista solo la prima volta che chiamo la classse Heuristic*/
 		initEscapePoint();
 		initAdjacentPointsCaste();
+		initProtectPosition();
 	}
 	
 	public int evaluateNode(Node node,Pawn color) {
-		//Position position = convertLetterToInt(node.getPawnMoveTo());
-		//PawnClass pawn = (PawnClass) node.getState().get(position);
 		if(color.equalsPawn(Pawn.WHITE.toString())){
 			return whiteHeuristic(node);
 		}else {
@@ -52,10 +50,10 @@ public class Heuristic {
 		final int capturedWhite = -1;
 		final int protectedKingOneSide = 8;
 		final int protectedKingTwoSide = 6;
-		final int protectedKingThreeSide = -10; //c'era 3
-		final int protectedKingFourSide = -15; //c'era -2
-		final int distanceEscapePoint = 5; //c'era 1
-		final int rowColumnFree = 800;//c'era 40
+		final int protectedKingThreeSide = -10; 
+		final int protectedKingFourSide = -15;
+		final int distanceEscapePoint = 5; 
+		final int rowColumnFree = 800;
 		final int kingCaptured = -2500;
 		final int win = 2000;
 		final int kingInCastle = -200;
@@ -74,12 +72,8 @@ public class Heuristic {
 			int valProtectedKingFourSide = valProtectedKing[3];
 			//DISTANZA DEL RE DAL PUNTO DI FUGA PIù VICINO
 			int valDistanceEscapePoint = distanceBetweenKingEscape(king);
-			
 			//RE HA RIGA/COLONNA LIBERA VERSO UN PUNTO DI FUGA
 			int valRowColumnFree = freeEscapeRoute(node, king);
-			
-			//PEDINA VIENE CATTURATA
-			
 			//RE VIENE CATTURATO
 			int valKingCaptured = kingCaptured(node);
 			//RE IN UN PUNTO DI FUGA => VITTORIA
@@ -91,8 +85,6 @@ public class Heuristic {
 				valKingInCastle=1;
 			}else
 				valKingInCastle=-1;
-			
-			
 			return kingInCastle*valKingInCastle+capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite+protectedKingOneSide*valProtectedKingOneSide+
 					protectedKingTwoSide*valProtectedKingTwoSide+protectedKingThreeSide*valProtectedKingThreeSide+
 					protectedKingFourSide*valProtectedKingFourSide+distanceEscapePoint*(maxMove - valDistanceEscapePoint)+
@@ -120,7 +112,6 @@ public class Heuristic {
 			//AVVENUTA CATTURA
 			int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se ho catturato pedine avversarie
 			int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se sono state catturate le mie pedine
-			
 			//re chiuso sui lati
 			int[] valKingTrapped = kingProtected(node, king, Pawn.BLACK);
 			int valKingTrappedOneSide = valKingTrapped[0];
@@ -129,7 +120,6 @@ public class Heuristic {
 			int valKingTrappedFourSide = valKingTrapped[3];
 			//numeor di vie di fuga bloccate al re
 			int valEscapePointBlocked = blockEscapeRoute(node, king);
-			
 			//vedere se ho catturato il re
 			int valKingcaptured = kingCaptured(node);
 			//vedere se il re è in un punto di fuga
@@ -147,8 +137,6 @@ public class Heuristic {
 		int pawnParent = 0;
 		int pawnChild = 0;
 		Map<Position, PawnClass> rootState = PawnMap.getInstance().getMap();
-		//System.out.println("\nfrom Heuristic "+rootState.size());
-		//Map<Position, PawnClass> parentState = node.getParent().getState();
 		pawnParent = numberOfPawn(rootState, pawn);
 		pawnChild = numberOfPawn(node.getState(), pawn);
 		result = pawnParent - pawnChild;
@@ -234,7 +222,6 @@ public class Heuristic {
 				cont++;
 			block = false;
 		}
-		
 		if(king.getColumn() == 1 || king.getColumn() == 2 || king.getColumn() == 6 || king.getColumn() == 7) {
 			/*il re è su una colonna in corrispondenza di un punto di fuga*/
 			//verifico sopra libera
@@ -336,11 +323,6 @@ public class Heuristic {
 			block = false;
 		}
 		return cont;
-		/*if(cont > 0)
-			return 1;
-		else
-			return 0;*/
-		
 	}
 	
 	public int distanceBetweenKingEscape(Position king) {
