@@ -29,11 +29,12 @@ public class Strategy {
 	private long startTime;
 	private long actualTime;
 	private long elapsedTime;
+	private int oldSizeMap = 0;
 	
 
-	final int MAXDEPTH = 3;
-	final int MAXTIME = 58;
-		
+	private int MAXDEPTH = 4;
+	private int MAXTIME = 59;
+	
 	private Strategy() {
 		initCitadels();
 		heuristicInstance.getInstance();
@@ -48,6 +49,8 @@ public class Strategy {
 	/*A partire dalla mappa, per ogni pedina calcola tutte le possibili mosse*/
 	
 	public String[] getMove(String player) {
+		
+		
 		startTime = System.currentTimeMillis();
 		String[] move = new String[2];
 		int depth = 0;
@@ -55,6 +58,11 @@ public class Strategy {
 		int alfa = -3000;  //-infinito
 		int beta = 3000;   //+infinito
 		Node root = new Node();
+		int sizeMap = root.getState().size();
+		if(sizeMap != oldSizeMap) {
+			hashCodeStateList.clear();
+			oldSizeMap = sizeMap;
+		} 
 		int stateHashCode = root.getState().hashCode(); 
 		hashCodeStateList.add(stateHashCode);
 		BestNode alphaBetaBestNode = alphaBeta(root,depth,alfa,beta,true);  //si inizializza con la root
@@ -756,6 +764,18 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 	
 	public void setStartTime(long startTime) {
 		this.startTime = startTime;
+	}
+
+	public int getMAXTIME() {
+		return MAXTIME;
+	}
+
+	public void setMAXTIME(int mAXTIME) {
+		MAXTIME = mAXTIME;
+	}
+
+	public void setMAXDEPTH(int mAXDEPTH) {
+		MAXDEPTH = mAXDEPTH;
 	}
 	
 	

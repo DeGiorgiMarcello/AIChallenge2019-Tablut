@@ -1,0 +1,2 @@
+YOU WIN! Memoria usata: 4733520  senza hashCode.clear()
+YOU WIN! Memoria usata: 2870600

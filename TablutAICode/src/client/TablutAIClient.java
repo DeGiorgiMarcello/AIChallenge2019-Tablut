@@ -10,24 +10,93 @@ import util.PawnMap;
 public class TablutAIClient extends TablutClient {
 	
 	String player;
+	long beforeUsedMemory;
+	long afterUsedMemory;
+	Strategy strategy;
 
 	public TablutAIClient(String player, String name) throws UnknownHostException, IOException {
 		super(player, name);
 		// TODO Auto-generated constructor stub
 		player = player.toLowerCase();
 		this.player = player;
+		beforeUsedMemory=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 	}
 	
 	//per lanciarlo inserire giocatore e nome come argomenti
 	public static void main(String args[]) throws UnknownHostException, IOException{
-		if(args.length < 2 ) {
-			System.out.println("Error. Player/name not inserted.");
-			System.exit(-1);
+		int maxTime = 59;
+		int maxDepth = 3;
+		String name = "aBitBetterThanRandom";
+		String player = "";
+		
+		String usage = "Usage: java TablutAIClient [-n <name>] [-p <player>] [-t <time>] [-d <maxDepth>]\n"
+				+ "\tname can be everything; default \"aBitBetterThanRandom\""
+				+ "\tplayer must white or black\n"
+				+ "time must be an integer (number of seconds); default: 60"
+				+ "\tmaxDepth must be an integer >= 0; default: 3\n";
+		
+		for(int i=0;i<args.length-1;i++) {
+			if(args[i].equals("-t")) {
+				i++;
+				try {
+					 maxTime = Integer.parseInt(args[i]);
+					 if (maxTime < 1) {
+							System.out.println("Time format not allowed!");
+							System.out.println(args[i]);
+							System.out.println(usage);
+							System.exit(1);
+						}
+				}catch(Exception e) {
+					System.out.println("The time format is not correct!");
+					System.out.println(args[i]);
+					System.out.println(usage);
+					System.exit(1);
+				}
+			}
+			if(args[i].equals("-d")) {
+				i++;
+				try {
+					maxDepth = Integer.parseInt(args[i]);
+					if(maxDepth < 1) {
+						System.out.println("Depth is too low. It must be at least 1!");
+						System.out.println(args[i]);
+						System.out.println(usage);
+						System.exit(1);
+						
+					}
+				} catch(Exception e) {
+					System.out.println("Number format is not correct!");
+					System.out.println(args[i]);
+					System.out.println(usage);
+					System.exit(1);
+				}
+				
+			}
+			if(args[i].equals("-n")) {
+				i++;
+				name = args[i];
+			}
+			if(args[i].equals("-p")) {
+				i++;
+				player = args[i];
+				player = player.toLowerCase();
+				if(!player.equals("white") && !player.equals("black")) {
+					System.out.println("Color not valid!");
+					System.out.println(args[i]);
+					System.out.println(usage);
+					System.exit(1);	
+				}
+			}
+		}
+		if(player.isEmpty()) {
+			System.out.println("A player must be specified!");
+			System.out.println(usage);
+			System.exit(1);	
 		}
 		
-		String player = args[0];
-		String name = args[1];
-		
+		Strategy strategy = Strategy.getInstance();
+		strategy.setMAXDEPTH(maxDepth);
+		strategy.setMAXTIME(maxTime);
 		TablutClient client = new TablutAIClient(player,name);
 		client.run();
 	}
@@ -56,8 +125,7 @@ public class TablutAIClient extends TablutClient {
 					if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITE)) {
 						//System.out.println("Player "+this.getPlayer().toString()+ " is moving.");
 						PawnMap.getInstance().createMap(this.getCurrentState());  
-						Strategy strategy = Strategy.getInstance();
-						move = strategy.getMove(this.player); 
+						move = strategy.getMove(this.player);  
 						actionStringFrom = move[0];
 						actionStringTo = move[1];
 						action = new Action(actionStringFrom, actionStringTo, State.Turn.WHITE);
@@ -66,13 +134,19 @@ public class TablutAIClient extends TablutClient {
 					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
 						//System.out.println("Waiting for your opponent move... ");
 					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITEWIN)) {
-						System.out.println("YOU WIN!");
+						afterUsedMemory=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+						long actualMemUsed=afterUsedMemory-beforeUsedMemory;
+						System.out.println("YOU WIN! Memoria usata: "+actualMemUsed);
 						System.exit(0);
 					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACKWIN)) {
-						System.out.println("YOU LOSE!");
+						afterUsedMemory=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+						long actualMemUsed=afterUsedMemory-beforeUsedMemory;
+						System.out.println("YOU LOSE! Memoria usata: "+actualMemUsed);
 						System.exit(0);
 					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.DRAW)) {
-						System.out.println("DRAW!");
+						afterUsedMemory=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+						long actualMemUsed=afterUsedMemory-beforeUsedMemory;
+						System.out.println("DRAW! Memoria usata: "+actualMemUsed);
 						System.exit(0);
 					}
 								
@@ -95,7 +169,6 @@ public class TablutAIClient extends TablutClient {
 					if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
 						//System.out.println("Player "+this.getPlayer().toString()+ " is moving.");
 						PawnMap.getInstance().createMap(this.getCurrentState());  
-						Strategy strategy = Strategy.getInstance();
 						move = strategy.getMove(this.player); 
 						actionStringFrom = move[0];
 						actionStringTo = move[1];
@@ -105,10 +178,10 @@ public class TablutAIClient extends TablutClient {
 						
 					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITE)) {
 						//System.out.println("Waiting for your opponent move... ");
-					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITEWIN)) {
+					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACKWIN)) {
 						System.out.println("YOU WIN!");
 						System.exit(0);
-					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACKWIN)) {
+					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITEWIN)) {
 						System.out.println("YOU LOSE!");
 						System.exit(0);
 					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.DRAW)) {
