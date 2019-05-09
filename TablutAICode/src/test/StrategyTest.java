@@ -430,16 +430,16 @@ class StrategyTest {
 		state1.put(new Position(7,3), new PawnClass(7,3,Pawn.WHITE));
 		strategy.setPlayer("white");
 		strategy.setStartTime(System.currentTimeMillis());
-	//	Node node1 = new Node(0,state1,parent,0,"a2","a1");
-		Node root = new Node();
+		Node node1 = new Node(0,state1,parent,0,"a2","a1");
+		/*Node root = new Node();
 		Map<Position,PawnClass> state2 = PawnMap.getInstance().cloneState(root.getState());
 		state2.put(new Position(1,6), new PawnClass(1,6,Pawn.BLACK));
 		state2.put(new Position(5,6), new PawnClass(5,6,Pawn.WHITE));
 		state2.remove(new Position(4,6));
 		state2.remove(new Position(1,4));
-		Node node2 = new Node(0,state2,parent,0,"a2","a1");
-		PawnMap.getInstance().printMap(state2);
-		BestNode bn = strategy.alphaBeta(node2, 0, -3000, 3000, true);
+		Node node2 = new Node(0,state2,parent,0,"a2","a1");*/
+		PawnMap.getInstance().printMap(state1);
+		BestNode bn = strategy.alphaBeta(node1, 0, -3000, 3000, true);
 		Node bestNode = bn.getNode();
 		
 		while(bestNode.getDepth() != 1) {
@@ -447,6 +447,6 @@ class StrategyTest {
 		}
 		System.out.println(bestNode.getPawnMoveFrom()+"-"+bestNode.getPawnMoveTo());
 		System.out.println(bn.getVal());
-		PawnMap.getInstance().printMap(state2);
+		PawnMap.getInstance().printMap(state1);
 	}
 }

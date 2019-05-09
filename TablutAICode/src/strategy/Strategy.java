@@ -32,7 +32,7 @@ public class Strategy {
 	
 
 	final int MAXDEPTH = 3;
-	final int MAXTIME = 200;
+	final int MAXTIME = 58;
 		
 	private Strategy() {
 		initCitadels();
@@ -55,6 +55,8 @@ public class Strategy {
 		int alfa = -3000;  //-infinito
 		int beta = 3000;   //+infinito
 		Node root = new Node();
+		int stateHashCode = root.getState().hashCode(); 
+		hashCodeStateList.add(stateHashCode);
 		BestNode alphaBetaBestNode = alphaBeta(root,depth,alfa,beta,true);  //si inizializza con la root
 		Node bestNode = alphaBetaBestNode.getNode();
 		
@@ -138,13 +140,13 @@ public class Strategy {
 	public BestNode updateAlfaBetaValues(double alfa,double beta, double val,double childVal,BestNode bestNodeMove,BestNode childNode, boolean max) {
 			
 		if(max) {											
-			if(childVal >= bestNodeMove.getVal())
+			if(childVal > bestNodeMove.getVal())
 				bestNodeMove = childNode;
 			val = Math.max(val, childVal);
 			alfa = Math.max(alfa, val);	
 		}
 		else {
-			if(childVal <= bestNodeMove.getVal())
+			if(childVal < bestNodeMove.getVal())
 				bestNodeMove = childNode;
 			val = Math.min(val, childVal);
 			beta = Math.min(beta, val);
@@ -237,8 +239,9 @@ public class Strategy {
 					}				
 				}
 			}
+			isKing = false;
 		}
-		isKing = false;
+		
 		return bestNodeMove;
 	}
 	
@@ -262,7 +265,7 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 			
 		}
 		if(max) {
-			val = -500;
+			val = -3000;
 			bestNodeMove.setVal(val);
 			if(depth == MAXDEPTH || whiteWin(node) || blackWin(node)) { //NODI FOGLIA!
 				//con la funzione euristica si assegna il valore al nodo
@@ -274,14 +277,14 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 				
 				BestNode childNode = expandNodeAlphaBeta(node, maxColor, depth, val, alfa, beta,max); //c'era true e depth -val
 				double childVal = childNode.getVal();
-				if(childVal >= bestNodeMove.getVal())
+				if(childVal > bestNodeMove.getVal())
 					bestNodeMove = childNode;
 			} 
 			
 			return bestNodeMove;
 		}
 		else {
-			val = +500;
+			val = +3000;
 			bestNodeMove.setVal(val);
 			if(depth == MAXDEPTH || whiteWin(node) || blackWin(node)) { //NODI FOGLIA!
 				//con la funzione euristica si assegna il valore al nodo
@@ -292,7 +295,7 @@ public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean m
 				//se nella lista dei nodi da espandere non ci sono figli di questo nodo, espandilo!
 				BestNode childNode = expandNodeAlphaBeta(node, minColor, depth, val, alfa, beta,max); //c'era true -
 				double childVal = childNode.getVal();
-				if(childVal <= bestNodeMove.getVal())
+				if(childVal < bestNodeMove.getVal())
 					bestNodeMove = childNode;
 			}
 			return bestNodeMove;

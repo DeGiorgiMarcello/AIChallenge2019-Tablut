@@ -1,0 +1,21 @@
+mag 09, 2019 9:12:59 AM domain.GameAshtonTablut <init>
+BUONO: Players:	White:	WhiteAI	vs	random
+mag 09, 2019 9:12:59 AM domain.GameAshtonTablut <init>
+BUONO: Repeated moves allowed:	0	Cache:	-1
+mag 09, 2019 9:12:59 AM domain.GameAshtonTablut <init>
+BUONO: Inizio partita
+mag 09, 2019 9:12:59 AM domain.GameAshtonTablut <init>
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 09, 2019 9:13:07 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from null to null

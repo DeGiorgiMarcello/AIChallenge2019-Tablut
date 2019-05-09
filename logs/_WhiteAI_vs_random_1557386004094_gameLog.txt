@@ -1,0 +1,1023 @@
+mag 09, 2019 9:13:24 AM domain.GameAshtonTablut <init>
+BUONO: Players:	White:	WhiteAI	vs	random
+mag 09, 2019 9:13:24 AM domain.GameAshtonTablut <init>
+BUONO: Repeated moves allowed:	0	Cache:	-1
+mag 09, 2019 9:13:24 AM domain.GameAshtonTablut <init>
+BUONO: Inizio partita
+mag 09, 2019 9:13:24 AM domain.GameAshtonTablut <init>
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 09, 2019 9:13:25 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from d5 to d6
+mag 09, 2019 9:13:25 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:13:25 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+mag 09, 2019 9:13:25 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWOKWWBB
+BOOWWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+mag 09, 2019 9:13:27 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to f3
+mag 09, 2019 9:13:27 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:13:27 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 2
+mag 09, 2019 9:13:27 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBOOOO
+OOOOBOOOO
+OOOOWBOOO
+BOOOWOOOB
+BBWOKWWBB
+BOOWWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 09, 2019 9:13:28 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from d6 to d3
+mag 09, 2019 9:13:28 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:13:28 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 3
+mag 09, 2019 9:13:28 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBOOOO
+OOOOBOOOO
+OOOWWBOOO
+BOOOWOOOB
+BBWOKWWBB
+BOOOWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+mag 09, 2019 9:13:30 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i6 to f6
+mag 09, 2019 9:13:30 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:13:30 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 4
+mag 09, 2019 9:13:30 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBOOOO
+OOOOBOOOO
+OOOWWBOOO
+BOOOWOOOB
+BBWOKWWBB
+BOOOWBOOO
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 09, 2019 9:13:31 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from g5 to g6
+mag 09, 2019 9:13:31 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:13:31 AM domain.GameAshtonTablut checkCaptureWhite
+BUONO: Pedina nera rimossa in: f6
+mag 09, 2019 9:13:31 AM domain.GameAshtonTablut checkMove
+BUONO: Capture! Draw cache cleared!
+mag 09, 2019 9:13:31 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+mag 09, 2019 9:13:31 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBOOOO
+OOOOBOOOO
+OOOWWBOOO
+BOOOWOOOB
+BBWOKWOBB
+BOOOWOWOO
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+mag 09, 2019 9:13:33 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b5 to b2
+mag 09, 2019 9:13:33 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:13:33 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 2
+mag 09, 2019 9:13:33 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBOOOO
+OBOOBOOOO
+OOOWWBOOO
+BOOOWOOOB
+BOWOKWOBB
+BOOOWOWOO
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 09, 2019 9:13:36 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from e5 to d5
+mag 09, 2019 9:13:36 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:13:36 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 3
+mag 09, 2019 9:13:36 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBOOOO
+OBOOBOOOO
+OOOWWBOOO
+BOOOWOOOB
+BOWKTWOBB
+BOOOWOWOO
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+mag 09, 2019 9:13:38 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i5 to i6
+mag 09, 2019 9:13:38 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:13:38 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 4
+mag 09, 2019 9:13:38 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBOOOO
+OBOOBOOOO
+OOOWWBOOO
+BOOOWOOOB
+BOWKTWOBO
+BOOOWOWOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 09, 2019 9:13:42 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from e7 to f7
+mag 09, 2019 9:13:42 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:13:42 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 5
+mag 09, 2019 9:13:42 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+OOOBBOOOO
+OBOOBOOOO
+OOOWWBOOO
+BOOOWOOOB
+BOWKTWOBO
+BOOOWOWOB
+OOOOOWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+mag 09, 2019 9:13:44 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a4 to a1
+mag 09, 2019 9:13:44 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:13:44 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 6
+mag 09, 2019 9:13:44 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOBBOOOO
+OBOOBOOOO
+OOOWWBOOO
+OOOOWOOOB
+BOWKTWOBO
+BOOOWOWOB
+OOOOOWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 09, 2019 9:13:49 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from c5 to c6
+mag 09, 2019 9:13:49 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:13:49 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 7
+mag 09, 2019 9:13:49 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOBBOOOO
+OBOOBOOOO
+OOOWWBOOO
+OOOOWOOOB
+BOOKTWOBO
+BOWOWOWOB
+OOOOOWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+mag 09, 2019 9:13:51 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b2 to c2
+mag 09, 2019 9:13:51 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:13:51 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 8
+mag 09, 2019 9:13:51 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOBBOOOO
+OOBOBOOOO
+OOOWWBOOO
+OOOOWOOOB
+BOOKTWOBO
+BOWOWOWOB
+OOOOOWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 09, 2019 9:13:57 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from c6 to c7
+mag 09, 2019 9:13:57 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:13:57 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 9
+mag 09, 2019 9:13:57 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOBBOOOO
+OOBOBOOOO
+OOOWWBOOO
+OOOOWOOOB
+BOOKTWOBO
+BOOOWOWOB
+OOWOOWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+mag 09, 2019 9:13:59 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to i1
+mag 09, 2019 9:13:59 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:13:59 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 10
+mag 09, 2019 9:13:59 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOBOOOOB
+OOBOBOOOO
+OOOWWBOOO
+OOOOWOOOB
+BOOKTWOBO
+BOOOWOWOB
+OOWOOWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 09, 2019 9:14:05 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from c7 to c8
+mag 09, 2019 9:14:05 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:05 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 11
+mag 09, 2019 9:14:05 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOBOOOOB
+OOBOBOOOO
+OOOWWBOOO
+OOOOWOOOB
+BOOKTWOBO
+BOOOWOWOB
+OOOOOWOOO
+OOWOBOOOO
+OOOBBBOOO
+-
+B
+mag 09, 2019 9:14:07 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d9 to d7
+mag 09, 2019 9:14:07 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:07 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 12
+mag 09, 2019 9:14:07 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOBOOOOB
+OOBOBOOOO
+OOOWWBOOO
+OOOOWOOOB
+BOOKTWOBO
+BOOOWOWOB
+OOOBOWOOO
+OOWOBOOOO
+OOOOBBOOO
+-
+W
+mag 09, 2019 9:14:14 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from d3 to d2
+mag 09, 2019 9:14:14 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:14 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 13
+mag 09, 2019 9:14:14 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOBOOOOB
+OOBWBOOOO
+OOOOWBOOO
+OOOOWOOOB
+BOOKTWOBO
+BOOOWOWOB
+OOOBOWOOO
+OOWOBOOOO
+OOOOBBOOO
+-
+B
+mag 09, 2019 9:14:16 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i1 to i2
+mag 09, 2019 9:14:16 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:16 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 14
+mag 09, 2019 9:14:16 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOBOOOOO
+OOBWBOOOB
+OOOOWBOOO
+OOOOWOOOB
+BOOKTWOBO
+BOOOWOWOB
+OOOBOWOOO
+OOWOBOOOO
+OOOOBBOOO
+-
+W
+mag 09, 2019 9:14:21 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from e3 to d3
+mag 09, 2019 9:14:21 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:21 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 15
+mag 09, 2019 9:14:21 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOBOOOOO
+OOBWBOOOB
+OOOWOBOOO
+OOOOWOOOB
+BOOKTWOBO
+BOOOWOWOB
+OOOBOWOOO
+OOWOBOOOO
+OOOOBBOOO
+-
+B
+mag 09, 2019 9:14:23 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a6 to c6
+mag 09, 2019 9:14:23 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:23 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 16
+mag 09, 2019 9:14:23 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOBOOOOO
+OOBWBOOOB
+OOOWOBOOO
+OOOOWOOOB
+BOOKTWOBO
+OOBOWOWOB
+OOOBOWOOO
+OOWOBOOOO
+OOOOBBOOO
+-
+W
+mag 09, 2019 9:14:31 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from d3 to e3
+mag 09, 2019 9:14:31 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:31 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 17
+mag 09, 2019 9:14:31 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOBOOOOO
+OOBWBOOOB
+OOOOWBOOO
+OOOOWOOOB
+BOOKTWOBO
+OOBOWOWOB
+OOOBOWOOO
+OOWOBOOOO
+OOOOBBOOO
+-
+B
+mag 09, 2019 9:14:33 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i4 to g4
+mag 09, 2019 9:14:33 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:33 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 18
+mag 09, 2019 9:14:33 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOBOOOOO
+OOBWBOOOB
+OOOOWBOOO
+OOOOWOBOO
+BOOKTWOBO
+OOBOWOWOB
+OOOBOWOOO
+OOWOBOOOO
+OOOOBBOOO
+-
+W
+mag 09, 2019 9:14:36 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from e3 to d3
+mag 09, 2019 9:14:36 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:36 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 19
+mag 09, 2019 9:14:36 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOBOOOOO
+OOBWBOOOB
+OOOWOBOOO
+OOOOWOBOO
+BOOKTWOBO
+OOBOWOWOB
+OOOBOWOOO
+OOWOBOOOO
+OOOOBBOOO
+-
+B
+mag 09, 2019 9:14:38 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d1 to f1
+mag 09, 2019 9:14:38 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:38 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 20
+mag 09, 2019 9:14:38 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOOBOOO
+OOBWBOOOB
+OOOWOBOOO
+OOOOWOBOO
+BOOKTWOBO
+OOBOWOWOB
+OOOBOWOOO
+OOWOBOOOO
+OOOOBBOOO
+-
+W
+mag 09, 2019 9:14:45 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from d3 to e3
+mag 09, 2019 9:14:45 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:45 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 21
+mag 09, 2019 9:14:45 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOOBOOO
+OOBWBOOOB
+OOOOWBOOO
+OOOOWOBOO
+BOOKTWOBO
+OOBOWOWOB
+OOOBOWOOO
+OOWOBOOOO
+OOOOBBOOO
+-
+B
+mag 09, 2019 9:14:47 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f3 to f4
+mag 09, 2019 9:14:47 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:47 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 22
+mag 09, 2019 9:14:47 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOOBOOO
+OOBWBOOOB
+OOOOWOOOO
+OOOOWBBOO
+BOOKTWOBO
+OOBOWOWOB
+OOOBOWOOO
+OOWOBOOOO
+OOOOBBOOO
+-
+W
+mag 09, 2019 9:14:50 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from e3 to f3
+mag 09, 2019 9:14:50 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:50 AM domain.GameAshtonTablut checkCaptureWhite
+BUONO: Pedina nera rimossa in: f4
+mag 09, 2019 9:14:50 AM domain.GameAshtonTablut checkMove
+BUONO: Capture! Draw cache cleared!
+mag 09, 2019 9:14:50 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+mag 09, 2019 9:14:50 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOOBOOO
+OOBWBOOOB
+OOOOOWOOO
+OOOOWOBOO
+BOOKTWOBO
+OOBOWOWOB
+OOOBOWOOO
+OOWOBOOOO
+OOOOBBOOO
+-
+B
+mag 09, 2019 9:14:52 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d7 to d8
+mag 09, 2019 9:14:52 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:52 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 2
+mag 09, 2019 9:14:52 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOOBOOO
+OOBWBOOOB
+OOOOOWOOO
+OOOOWOBOO
+BOOKTWOBO
+OOBOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OOOOBBOOO
+-
+W
+mag 09, 2019 9:14:54 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from d2 to d3
+mag 09, 2019 9:14:54 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:54 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 3
+mag 09, 2019 9:14:54 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOOBOOO
+OOBOBOOOB
+OOOWOWOOO
+OOOOWOBOO
+BOOKTWOBO
+OOBOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OOOOBBOOO
+-
+B
+mag 09, 2019 9:14:56 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c6 to c5
+mag 09, 2019 9:14:56 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:14:56 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 4
+mag 09, 2019 9:14:56 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOOBOOO
+OOBOBOOOB
+OOOWOWOOO
+OOOOWOBOO
+BOBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OOOOBBOOO
+-
+W
+mag 09, 2019 9:15:02 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from f3 to f4
+mag 09, 2019 9:15:02 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:02 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 5
+mag 09, 2019 9:15:02 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOOBOOO
+OOBOBOOOB
+OOOWOOOOO
+OOOOWWBOO
+BOBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OOOOBBOOO
+-
+B
+mag 09, 2019 9:15:03 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from a5 to b5
+mag 09, 2019 9:15:03 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:03 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 6
+mag 09, 2019 9:15:03 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOOBOOO
+OOBOBOOOB
+OOOWOOOOO
+OOOOWWBOO
+OBBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OOOOBBOOO
+-
+W
+mag 09, 2019 9:15:07 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from f4 to f3
+mag 09, 2019 9:15:07 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:07 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 7
+mag 09, 2019 9:15:07 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOOBOOO
+OOBOBOOOB
+OOOWOWOOO
+OOOOWOBOO
+OBBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OOOOBBOOO
+-
+B
+mag 09, 2019 9:15:09 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from f1 to e1
+mag 09, 2019 9:15:09 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:09 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 8
+mag 09, 2019 9:15:09 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOOOO
+OOBOBOOOB
+OOOWOWOOO
+OOOOWOBOO
+OBBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OOOOBBOOO
+-
+W
+mag 09, 2019 9:15:16 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from f3 to f4
+mag 09, 2019 9:15:16 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:16 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 9
+mag 09, 2019 9:15:16 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOOOO
+OOBOBOOOB
+OOOWOOOOO
+OOOOWWBOO
+OBBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OOOOBBOOO
+-
+B
+mag 09, 2019 9:15:18 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e2 to e3
+mag 09, 2019 9:15:18 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:18 AM domain.GameAshtonTablut checkCaptureBlackPawnDown
+BUONO: Pedina bianca rimossa in: e4
+mag 09, 2019 9:15:18 AM domain.GameAshtonTablut checkMove
+BUONO: Capture! Draw cache cleared!
+mag 09, 2019 9:15:18 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+mag 09, 2019 9:15:18 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOOOO
+OOBOOOOOB
+OOOWBOOOO
+OOOOOWBOO
+OBBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OOOOBBOOO
+-
+W
+mag 09, 2019 9:15:23 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from f4 to f3
+mag 09, 2019 9:15:23 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:23 AM domain.GameAshtonTablut checkCaptureWhite
+BUONO: Pedina nera rimossa in: e3
+mag 09, 2019 9:15:23 AM domain.GameAshtonTablut checkMove
+BUONO: Capture! Draw cache cleared!
+mag 09, 2019 9:15:23 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 1
+mag 09, 2019 9:15:23 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOOOO
+OOBOOOOOB
+OOOWOWOOO
+OOOOOOBOO
+OBBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OOOOBBOOO
+-
+B
+mag 09, 2019 9:15:25 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from i2 to g2
+mag 09, 2019 9:15:25 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:25 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 2
+mag 09, 2019 9:15:25 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOOOO
+OOBOOOBOO
+OOOWOWOOO
+OOOOOOBOO
+OBBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OOOOBBOOO
+-
+W
+mag 09, 2019 9:15:31 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from f3 to f4
+mag 09, 2019 9:15:31 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:31 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 3
+mag 09, 2019 9:15:31 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOOOO
+OOBOOOBOO
+OOOWOOOOO
+OOOOOWBOO
+OBBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OOOOBBOOO
+-
+B
+mag 09, 2019 9:15:33 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e9 to d9
+mag 09, 2019 9:15:33 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:33 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 4
+mag 09, 2019 9:15:33 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOOOO
+OOBOOOBOO
+OOOWOOOOO
+OOOOOWBOO
+OBBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OOOBOBOOO
+-
+W
+mag 09, 2019 9:15:38 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from f4 to f3
+mag 09, 2019 9:15:38 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:38 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 5
+mag 09, 2019 9:15:38 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOOOO
+OOBOOOBOO
+OOOWOWOOO
+OOOOOOBOO
+OBBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OOOBOBOOO
+-
+B
+mag 09, 2019 9:15:40 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from b5 to b9
+mag 09, 2019 9:15:40 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:40 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 6
+mag 09, 2019 9:15:40 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOOOO
+OOBOOOBOO
+OOOWOWOOO
+OOOOOOBOO
+OOBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OBOBOBOOO
+-
+W
+mag 09, 2019 9:15:46 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from f3 to f4
+mag 09, 2019 9:15:46 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:46 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 7
+mag 09, 2019 9:15:46 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOOOO
+OOBOOOBOO
+OOOWOOOOO
+OOOOOWBOO
+OOBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OBOBOBOOO
+-
+B
+mag 09, 2019 9:15:48 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from d9 to c9
+mag 09, 2019 9:15:48 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:48 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 8
+mag 09, 2019 9:15:48 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOOOO
+OOBOOOBOO
+OOOWOOOOO
+OOOOOWBOO
+OOBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OBBOOBOOO
+-
+W
+mag 09, 2019 9:15:52 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from f4 to f3
+mag 09, 2019 9:15:52 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:52 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 9
+mag 09, 2019 9:15:52 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOOOO
+OOBOOOBOO
+OOOWOWOOO
+OOOOOOBOO
+OOBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OBBOOBOOO
+-
+B
+mag 09, 2019 9:15:54 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from g2 to g1
+mag 09, 2019 9:15:54 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:15:54 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 10
+mag 09, 2019 9:15:54 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOBOO
+OOBOOOOOO
+OOOWOWOOO
+OOOOOOBOO
+OOBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OBBOOBOOO
+-
+W
+mag 09, 2019 9:16:00 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from f3 to f4
+mag 09, 2019 9:16:00 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:16:00 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 11
+mag 09, 2019 9:16:00 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOBOO
+OOBOOOOOO
+OOOWOOOOO
+OOOOOWBOO
+OOBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OBBOOBOOO
+-
+B
+mag 09, 2019 9:16:02 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from c2 to c3
+mag 09, 2019 9:16:02 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:16:02 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 12
+mag 09, 2019 9:16:02 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOBOO
+OOOOOOOOO
+OOBWOOOOO
+OOOOOWBOO
+OOBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OBBOOBOOO
+-
+W
+mag 09, 2019 9:16:05 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from f4 to f3
+mag 09, 2019 9:16:05 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:16:05 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 13
+mag 09, 2019 9:16:05 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BOOOBOBOO
+OOOOOOOOO
+OOBWOWOOO
+OOOOOOBOO
+OOBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OBBOOBOOO
+-
+B
+mag 09, 2019 9:16:07 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from e1 to b1
+mag 09, 2019 9:16:07 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:16:07 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 14
+mag 09, 2019 9:16:07 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BBOOOOBOO
+OOOOOOOOO
+OOBWOWOOO
+OOOOOOBOO
+OOBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OBBOOBOOO
+-
+W
+mag 09, 2019 9:16:11 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from f3 to f4
+mag 09, 2019 9:16:11 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:16:11 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 15
+mag 09, 2019 9:16:11 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BBOOOOBOO
+OOOOOOOOO
+OOBWOOOOO
+OOOOOWBOO
+OOBKTWOBO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OBBOOBOOO
+-
+B
+mag 09, 2019 9:16:12 AM domain.GameAshtonTablut checkMove
+BUONO: Turn: B Pawn from h5 to h3
+mag 09, 2019 9:16:12 AM domain.GameAshtonTablut movePawn
+BUONO: Movimento pedina
+mag 09, 2019 9:16:12 AM domain.GameAshtonTablut checkMove
+BUONO: Current draw cache size: 16
+mag 09, 2019 9:16:12 AM domain.GameAshtonTablut checkMove
+BUONO: Stato:
+BBOOOOBOO
+OOOOOOOOO
+OOBWOOOBO
+OOOOOWBOO
+OOBKTWOOO
+OOOOWOWOB
+OOOOOWOOO
+OOWBBOOOO
+OBBOOBOOO
+-
+W

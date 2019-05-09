@@ -49,14 +49,14 @@ public class Heuristic {
 		Position king = PawnMap.getInstance().findKingPosition(node.getState());
 		final int capturedBlack = 1;
 		final int capturedWhite = -1;
-		final int protectedKingOneSide = 6;
-		final int protectedKingTwoSide = 3;
+		final int protectedKingOneSide = 8;
+		final int protectedKingTwoSide = 6;
 		final int protectedKingThreeSide = -10; //c'era 3
 		final int protectedKingFourSide = -15; //c'era -2
-		final int distanceEscapePoint = 3; //c'era 1
-		final int rowColumnFree = 700;//c'era 40
-		final int kingCaptured = -1000;
-		final int win = 1000;
+		final int distanceEscapePoint = 5; //c'era 1
+		final int rowColumnFree = 800;//c'era 40
+		final int kingCaptured = -2500;
+		final int win = 2000;
 		final int kingInCastle = -200;
 		
 		if(king == null) { //se kingPosition è null il king non c'è, ho perso.
@@ -92,9 +92,9 @@ public class Heuristic {
 				valKingInCastle=-1;
 			
 			
-			return kingInCastle*valKingInCastle+capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite/*+protectedKingOneSide*valProtectedKingOneSide+
+			return kingInCastle*valKingInCastle+capturedBlack*valCapturedBlack+capturedWhite*valCapturedWhite+protectedKingOneSide*valProtectedKingOneSide+
 					protectedKingTwoSide*valProtectedKingTwoSide+protectedKingThreeSide*valProtectedKingThreeSide+
-					protectedKingFourSide*valProtectedKingFourSide*/+distanceEscapePoint*(maxMove - valDistanceEscapePoint)+
+					protectedKingFourSide*valProtectedKingFourSide+distanceEscapePoint*(maxMove - valDistanceEscapePoint)+
 					rowColumnFree*valRowColumnFree+kingCaptured*valKingCaptured+win*valwin;
 		}
 		
@@ -103,16 +103,16 @@ public class Heuristic {
 	public int BlackHeuristic(Node node) {
 		Position king = PawnMap.getInstance().findKingPosition(node.getState());
 		int sum = 0;
-		final int capturedWhite = 1;
+		final int capturedWhite = 20;
 		final int capturedBlack = -1;
-		final int kingTrappedOneSide = 15; //c'era2
-		final int kingTrappedTwoSide = 10; //c'era2
-		final int kingTrappedThreeSide = 4;
-		final int kingTrappedFourSide = 6;
-		final int escapePointBlocked = 700; //c'era 40
-		final int kingcaptured = 1000;
-		final int kingWin = -1000;
-		final int blackProtectEscape = 20;
+		final int kingTrappedOneSide = 20; //c'era2
+		final int kingTrappedTwoSide = 25; //c'era2
+		final int kingTrappedThreeSide = 35;
+		final int kingTrappedFourSide = 45;
+		final int escapePointBlocked = 900; //c'era 40
+		final int kingcaptured = 2000;
+		final int kingWin = -2000;
+		final int blackProtectEscape = 7;
 		if(king == null) {
 			return kingcaptured;
 		}else {
