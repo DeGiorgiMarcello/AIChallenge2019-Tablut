@@ -9,6 +9,8 @@ import strategy.Strategy;
 public class PawnClass {
 	private int row, column;
 	private Pawn type;
+	private final int length = PawnMap.getInstance().getLength();
+	private final int width = PawnMap.getInstance().getWidth();
 	private Position castle = new Position(4,4);
 	//private ArrayList<Position> citadels = new ArrayList<Position>();
 	/*

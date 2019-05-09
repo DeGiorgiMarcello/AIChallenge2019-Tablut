@@ -11,6 +11,8 @@ public class PawnMap {
 	private static PawnMap instance;
 	
 	private Map<Position, PawnClass> map = new HashMap<Position, PawnClass>();
+	private int length = 0;
+	private int width = 0;
 	
 	private PawnMap() {
 		
@@ -34,6 +36,8 @@ public class PawnMap {
 		if(!map.isEmpty()) {
 			map.clear();
 		}
+		length = state.getBoard().length;
+		width = state.getBoard().length;
 		for(int i = 0; i < state.getBoard().length; i++) {
 			for(int j = 0; j < state.getBoard().length; j++) {
 				switch(state.getBoard()[i][j]) {
@@ -97,7 +101,12 @@ public class PawnMap {
 		}
 		
 	}
-	
-	
-	
+
+	public int getLength() {
+		return length;
+	}
+
+	public int getWidth() {
+		return width;
+	}
 }

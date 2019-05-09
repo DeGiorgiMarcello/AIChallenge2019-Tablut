@@ -14,11 +14,13 @@ import util.Position;
 
 public class Heuristic {
 	private static Heuristic instance;
+	private final int length = PawnMap.getInstance().getLength();
+	private final int width = PawnMap.getInstance().getWidth();
 	private ArrayList<Position> escapePoints = new ArrayList();
 	private ArrayList<Position> protectPosition = new ArrayList<Position>();
 	private Position escape = null;
 	private Position castle = new Position(4,4);
-	private final int maxMove = 8;
+	private final int maxMove = length-1;
 	private ArrayList<Position> adjacentPointsCastle = new ArrayList();
 	
 	public static Heuristic getInstance() {

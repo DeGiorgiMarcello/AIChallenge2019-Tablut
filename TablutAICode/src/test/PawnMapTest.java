@@ -36,6 +36,7 @@ public class PawnMapTest {
 		Assert.assertEquals("Mappe hanno la stessa dimensione",testUtil.mapCreated.size(), underTest.getMap().size());
 		Assert.assertEquals("Key Set diversi", testUtil.mapCreated.keySet(), underTest.getMap().keySet());
 		Assert.assertTrue(testUtil.mapCreated.equals(underTest.getMap()));
+		System.out.println("length = "+underTest.getLength()+ "width= "+underTest.getWidth());
 	}
 	
 	
