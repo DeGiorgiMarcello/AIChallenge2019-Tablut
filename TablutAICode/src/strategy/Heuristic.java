@@ -15,6 +15,7 @@ import util.Position;
 public class Heuristic {
 	private static Heuristic instance;
 	private ArrayList<Position> escapePoints = new ArrayList();
+	private ArrayList<Position> protectPosition = new ArrayList<Position>();
 	private Position escape = null; //salvo la posizione del punto di fuga più vicino
 	private Position castle = new Position(4,4);
 	private final int maxMove = 8;
@@ -140,38 +141,6 @@ public class Heuristic {
 		}
 		
 	}
-	
-	/*public int possibleCaptureKingInOneMove(Node node, Position king, int valKingTrappeThreeSide, int valKingTrappeOneSide, int valKingTrappeTwoSide) {
-		int result = 0;
-		Map<Position, PawnClass> map = node.getState();
-		if(king.equals(castle)) {
-			//se il re è nel castello lo devo circondare su 4 lati per vincere
-			
-			if(valKingTrappeThreeSide == 1) {
-				//il re ha tre pedine nere su tre lati, verifico se il quarto lato è libero
-				for(Position position: adjacentPointsCastle) {
-					if(!(map.containsKey(position) && map.get(position).getType().equalsPawn(Pawn.BLACK.toString()))) {
-						//o la casella è vuota o c'è una pedina bianca
-						if(!map.containsKey(position)) {
-							//la casella è libera
-							result = 1;
-						}
-					}
-				}
-			}
-		}else {
-			if(adjacentPointsCastle.contains(king)) {
-				//re si trova adiacente al castello
-				if(valKingTrappeTwoSide == 1) {
-					if(map.containsKey() && map.get(position).getType().equalsPawn(Pawn.BLACK.toString())) {
-						
-					}
-				}
-			}else {
-				//re in un'altra posizione 
-			}
-		}
-	}*/
 	
 	public int numberOfPawnCaptured(Node node, Pawn pawn) {
 		int result = 0;
@@ -434,15 +403,6 @@ public class Heuristic {
 	}
 	
 	public int blackProtectEscape(Node node) {
-		ArrayList<Position> protectPosition = new ArrayList<Position>();
-		protectPosition.add(new Position(1,2));
-		protectPosition.add(new Position(2,1));
-		protectPosition.add(new Position(1,6));
-		protectPosition.add(new Position(6,1));
-		protectPosition.add(new Position(7,2));
-		protectPosition.add(new Position(2,7));
-		protectPosition.add(new Position(6,7));
-		protectPosition.add(new Position(7,6));
 		int cont = 0;
 		for(Entry<Position, PawnClass> entry : node.getState().entrySet()) {
 			if(protectPosition.contains(entry.getKey())){
@@ -480,6 +440,17 @@ public class Heuristic {
 			break;
 		}
 		return result;
+	}
+	
+	public void initProtectPosition() {
+		protectPosition.add(new Position(1,2));
+		protectPosition.add(new Position(2,1));
+		protectPosition.add(new Position(1,6));
+		protectPosition.add(new Position(6,1));
+		protectPosition.add(new Position(7,2));
+		protectPosition.add(new Position(2,7));
+		protectPosition.add(new Position(6,7));
+		protectPosition.add(new Position(7,6));
 	}
 	
 	public void initAdjacentPointsCaste() {
