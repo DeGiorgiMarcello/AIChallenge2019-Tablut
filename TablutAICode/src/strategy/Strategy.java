@@ -45,8 +45,33 @@ public class Strategy {
 			instance = new Strategy();
 		return instance;
 	}
+	/**
+	 * this method verifies if a pawn has been ate. In that case it clears the old hashcode state list.
+	 * @param root
+	 * the node from where the method gets the actual map
+	 */
+	public void updateHashCodeStateList(Node root) {
+		int sizeMap = root.getState().size();
+		if(sizeMap != oldSizeMap) {
+			hashCodeStateList.clear();
+			oldSizeMap = sizeMap;
+		}
+		int stateHashCode = root.getState().hashCode(); 
+		hashCodeStateList.add(stateHashCode);
+	}
 	
-	/*A partire dalla mappa, per ogni pedina calcola tutte le possibili mosse*/
+	/**
+	 * Gets the first node walking through the parents.
+	 * @param bestNode
+	 * @return
+	 */
+	
+	public Node getFirstNode(Node bestNode) {
+		while(bestNode.getDepth() != 1) {
+			bestNode = bestNode.getParent();
+		}
+		return bestNode;
+	}
 	
 	public String[] getMove(String player) {
 		
@@ -58,19 +83,10 @@ public class Strategy {
 		int alfa = -3000;  //-infinito
 		int beta = 3000;   //+infinito
 		Node root = new Node();
-		int sizeMap = root.getState().size();
-		if(sizeMap != oldSizeMap) {
-			hashCodeStateList.clear();
-			oldSizeMap = sizeMap;
-		} 
-		int stateHashCode = root.getState().hashCode(); 
-		hashCodeStateList.add(stateHashCode);
-		BestNode alphaBetaBestNode = alphaBeta(root,depth,alfa,beta,true);  //si inizializza con la root
+		updateHashCodeStateList(root);
+		BestNode alphaBetaBestNode = alphaBeta(root,depth,alfa,beta,true); 
 		Node bestNode = alphaBetaBestNode.getNode();
-		
-		while(bestNode.getDepth() != 1) {
-			bestNode = bestNode.getParent();
-		}
+		bestNode = getFirstNode(bestNode);
 		move[0] = bestNode.getPawnMoveFrom();
 		move[1] = bestNode.getPawnMoveTo();
 		
@@ -83,7 +99,15 @@ public class Strategy {
 		else
 			return false;
 	}
-	
+	/**
+	 * Gets the actual pawn and moves it to the left, updating the state and verifying if a capture occurred. Then it creates and returns a new child of the actual node.
+	 * @param pawn 
+	 * @param actualNode
+	 * @param alphaBetaDepth
+	 * @param captured
+	 * @param i
+	 * @return
+	 */
 	public Node movePawnLeft(PawnClass pawn,Node actualNode,int alphaBetaDepth,int captured,int i) {
 		Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 		Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
@@ -99,6 +123,15 @@ public class Strategy {
 		Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
 		return child;
 	}
+	/**
+	 * Gets the actual pawn and moves it to the right, updating the state and verifying if a capture occurred. Then it creates and returns a new child of the actual node.
+	 * @param pawn 
+	 * @param actualNode
+	 * @param alphaBetaDepth
+	 * @param captured
+	 * @param i
+	 * @return
+	 */
 	public Node movePawnRight(PawnClass pawn,Node actualNode,int alphaBetaDepth,int captured,int i) {
 		Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 		Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
@@ -114,6 +147,15 @@ public class Strategy {
 		Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
 		return child;
 	}
+	/**
+	 * Gets the actual pawn and moves it down, updating the state and verifying if a capture occurred. Then it creates and returns a new child of the actual node.
+	 * @param pawn 
+	 * @param actualNode
+	 * @param alphaBetaDepth
+	 * @param captured
+	 * @param i
+	 * @return
+	 */
 	public Node movePawnDown(PawnClass pawn,Node actualNode,int alphaBetaDepth,int captured,int i) {
 		Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 		Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
@@ -129,6 +171,15 @@ public class Strategy {
 		Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
 		return child;
 	}
+	/**
+	 * Gets the actual pawn and moves it up, updating the state and verifying if a capture occurred. Then it creates and returns a new child of the actual node.
+	 * @param pawn 
+	 * @param actualNode
+	 * @param alphaBetaDepth
+	 * @param captured
+	 * @param i
+	 * @return
+	 */
 	public Node movePawnUp(PawnClass pawn,Node actualNode,int alphaBetaDepth,int captured,int i) {
 		Map newState = PawnMap.getInstance().cloneState(actualNode.getState());
 		Position oldPos = new Position(pawn.getRow(),pawn.getColumn());
@@ -144,8 +195,18 @@ public class Strategy {
 		Node child = new Node(alphaBetaDepth+1,newState,actualNode,captured,moveFrom,moveTo);
 		return child;
 	}
-	
-	public BestNode updateAlfaBetaValues(double alfa,double beta, double val,double childVal,BestNode bestNodeMove,BestNode childNode, boolean max) {
+	/**
+	 * updates alfa-beta values and verifies if the most recently calculated node is better than the actual best node. 
+	 * @param alfa
+	 * @param beta
+	 * @param val
+	 * @param childVal
+	 * @param bestNodeMove
+	 * @param childNode
+	 * @param max
+	 * @return
+	 */
+	public BestNode updateAlphaBetaValues(double alfa,double beta, double val,double childVal,BestNode bestNodeMove,BestNode childNode, boolean max) {
 			
 		if(max) {											
 			if(childVal > bestNodeMove.getVal())
@@ -163,6 +224,26 @@ public class Strategy {
 		return new BestNode(bestNodeMove.getNode(),bestNodeMove.getVal(),alfa,beta,val);
 	}
 	
+	
+	public boolean pawnIsKing(PawnClass pawn) {
+		if(pawn.getType().equalsPawn(Pawn.KING.toString())) {
+			return true;
+		}
+		return false;	
+	}
+	/**
+	 * For each entry in the PawnMap the method verifies if it has the same pawn color of the player at this depth then,
+	 *  moving the pawn in any direction it generates a new child at an higher depth and calls the alphaBeta method. Then
+	 *  it updates all the alpha-beta values. If an alpha-beta cut occur the method returns.
+	 * @param actualNode
+	 * @param color
+	 * @param alphaBetaDepth
+	 * @param val
+	 * @param alfa
+	 * @param beta
+	 * @param max
+	 * @return
+	 */
 	public BestNode expandNodeAlphaBeta(Node actualNode, Pawn color,int alphaBetaDepth,double val,double alfa, double beta,boolean max) {
 			
 		boolean isKing = false;
@@ -174,7 +255,7 @@ public class Strategy {
 		
 			PawnClass pawn = entry.getValue();
 			int captured = actualNode.getCaptured();
-			if(pawn.getType().equalsPawn(Pawn.KING.toString()) && color.equalsPawn(Pawn.WHITE.toString())) 
+			if(pawnIsKing(pawn)) 
 				isKing = true;
 			if(pawn.getType().equals(color) || isKing) {
 						
@@ -186,7 +267,7 @@ public class Strategy {
 						hashCodeStateList.add(stateHashCode);
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max);
 						childVal = childNode.getVal();
-						bestNodeMove = updateAlfaBetaValues(alfa, beta, val, childVal, bestNodeMove, childNode, max); //aggiorna alfa,beta,val e all'occasione bestNodeMove
+						bestNodeMove = updateAlphaBetaValues(alfa, beta, val, childVal, bestNodeMove, childNode, max); //aggiorna alfa,beta,val e all'occasione bestNodeMove
 						val = bestNodeMove.getAlfaBetaVal();
 						alfa = bestNodeMove.getAlfa();
 						beta = bestNodeMove.getBeta();
@@ -196,7 +277,6 @@ public class Strategy {
 				}
 				
 				//MOVE RIGHT
-	
 				for(int i=pawn.maxNumberBoxMoveRight(actualState);i>0;i--){
 					Node child = movePawnRight(pawn,actualNode,alphaBetaDepth,captured,i);
 					int stateHashCode = child.getState().hashCode();
@@ -204,7 +284,7 @@ public class Strategy {
 						hashCodeStateList.add(stateHashCode);
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max);
 						childVal = childNode.getVal();
-						bestNodeMove = updateAlfaBetaValues(alfa, beta, val, childVal, bestNodeMove, childNode, max); //aggiorna alfa,beta,val e all'occasione bestNodeMove
+						bestNodeMove = updateAlphaBetaValues(alfa, beta, val, childVal, bestNodeMove, childNode, max); //aggiorna alfa,beta,val e all'occasione bestNodeMove
 						val = bestNodeMove.getAlfaBetaVal();
 						alfa = bestNodeMove.getAlfa();
 						beta = bestNodeMove.getBeta();
@@ -213,7 +293,6 @@ public class Strategy {
 					}				
 				}
 				//MOVE UP
-				
 				for(int i=pawn.maxNumberBoxMoveUp(actualState);i>0;i--){
 					Node child = movePawnUp(pawn,actualNode,alphaBetaDepth,captured,i);
 					int stateHashCode = child.getState().hashCode();
@@ -221,7 +300,7 @@ public class Strategy {
 						hashCodeStateList.add(stateHashCode);
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max);
 						childVal = childNode.getVal();
-						bestNodeMove = updateAlfaBetaValues(alfa, beta, val, childVal, bestNodeMove, childNode, max); //aggiorna alfa,beta,val e all'occasione bestNodeMove
+						bestNodeMove = updateAlphaBetaValues(alfa, beta, val, childVal, bestNodeMove, childNode, max); //aggiorna alfa,beta,val e all'occasione bestNodeMove
 						val = bestNodeMove.getAlfaBetaVal();
 						alfa = bestNodeMove.getAlfa();
 						beta = bestNodeMove.getBeta();
@@ -229,8 +308,7 @@ public class Strategy {
 							return bestNodeMove;
 					}				
 				}
-				//MOVE DOWN
-				
+				//MOVE DOWN		
 				for(int i=pawn.maxNumberBoxMoveDown(actualState);i>0;i--){
 					Node child = movePawnDown(pawn,actualNode,alphaBetaDepth,captured,i);
 					int stateHashCode = child.getState().hashCode();
@@ -238,7 +316,7 @@ public class Strategy {
 						hashCodeStateList.add(stateHashCode);
 						BestNode childNode = alphaBeta(child,alphaBetaDepth+1,alfa,beta,!max);
 						childVal = childNode.getVal();
-						bestNodeMove = updateAlfaBetaValues(alfa, beta, val, childVal, bestNodeMove, childNode, max); //aggiorna alfa,beta,val e all'occasione bestNodeMove
+						bestNodeMove = updateAlphaBetaValues(alfa, beta, val, childVal, bestNodeMove, childNode, max); //aggiorna alfa,beta,val e all'occasione bestNodeMove
 						val = bestNodeMove.getAlfaBetaVal();
 						alfa = bestNodeMove.getAlfa();
 						beta = bestNodeMove.getBeta();
@@ -248,30 +326,35 @@ public class Strategy {
 				}
 			}
 			isKing = false;
-		}
-		
+		}		
 		return bestNodeMove;
+	}
+	
+	public Pawn setMaxColor(String player) {
+		if(player.equals("white"))
+			return Pawn.WHITE;
+		else
+			return Pawn.BLACK;
+	}
+	public Pawn setMinColor(String player) {
+		if(player.equals("white"))
+			return Pawn.BLACK;
+		else
+			return Pawn.WHITE;
 	}
 	
 public BestNode alphaBeta(Node node,int depth,double alfa,double beta, boolean max) {
 	actualTime = System.currentTimeMillis();
 	elapsedTime = (actualTime-startTime)/1000;
-	BestNode bestNodeMove = new BestNode(node, 0);
+	BestNode bestNodeMove = new BestNode(node, 0);  
 	
 	while(elapsedTime < MAXTIME) {
 		
 		double val;
 		int childCounter = 0;
-		Pawn maxColor,minColor;
-		if(player.equals("white")) {
-			 maxColor = Pawn.WHITE;
-			 minColor = Pawn.BLACK;
-		}
-		else {
-			 maxColor = Pawn.BLACK;
-			 minColor = Pawn.WHITE;
-			
-		}
+		Pawn maxColor = setMaxColor(player);
+		Pawn minColor = setMinColor(player);
+		
 		if(max) {
 			val = -3000;
 			bestNodeMove.setVal(val);
