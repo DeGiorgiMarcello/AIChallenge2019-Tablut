@@ -75,7 +75,6 @@ public class Strategy {
 	
 	public String[] getMove(String player) {
 		
-		
 		startTime = System.currentTimeMillis();
 		String[] move = new String[2];
 		int depth = 0;
@@ -231,6 +230,12 @@ public class Strategy {
 		}
 		return false;	
 	}
+	
+	public boolean playerIsWhite(Pawn color) {
+		if(color.equalsPawn(Pawn.WHITE.toString()))
+			return true;
+		return false;
+	}
 	/**
 	 * For each entry in the PawnMap the method verifies if it has the same pawn color of the player at this depth then,
 	 *  moving the pawn in any direction it generates a new child at an higher depth and calls the alphaBeta method. Then
@@ -255,7 +260,7 @@ public class Strategy {
 		
 			PawnClass pawn = entry.getValue();
 			int captured = actualNode.getCaptured();
-			if(pawnIsKing(pawn)) 
+			if(pawnIsKing(pawn) && playerIsWhite(color)) 
 				isKing = true;
 			if(pawn.getType().equals(color) || isKing) {
 						

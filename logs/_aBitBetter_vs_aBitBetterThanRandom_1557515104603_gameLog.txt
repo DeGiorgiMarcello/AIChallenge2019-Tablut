@@ -1,0 +1,21 @@
+mag 10, 2019 9:05:04 PM domain.GameAshtonTablut <init>
+BUONO: Players:	White:	aBitBetter	vs	aBitBetterThanRandom
+mag 10, 2019 9:05:04 PM domain.GameAshtonTablut <init>
+BUONO: Repeated moves allowed:	0	Cache:	-1
+mag 10, 2019 9:05:04 PM domain.GameAshtonTablut <init>
+BUONO: Inizio partita
+mag 10, 2019 9:05:04 PM domain.GameAshtonTablut <init>
+BUONO: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+mag 10, 2019 9:05:06 PM domain.GameAshtonTablut checkMove
+BUONO: Turn: W Pawn from null to null

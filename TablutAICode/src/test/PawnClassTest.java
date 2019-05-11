@@ -9,25 +9,28 @@ import org.junit.*;
 
 import domain.State.Pawn;
 import util.PawnClass;
+import util.PawnMap;
 import util.Position;
 
 public class PawnClassTest {
-
-	/*@Test
+/*
+	@Test
 	public void testEquals() throws Throwable{
 		PawnClass underTest = new PawnClass(1, 1, Pawn.BLACK);
 		
 		boolean result = underTest.equals(new PawnClass(1, 1, Pawn.WHITE));
 		
 		assertEquals(false, result);
-	}*/
+	}
 	
-	/*@Test
+	@Test
 	public void testMaxNumberBoxMoveUp() {
 		Map<Position, PawnClass> test = new HashMap<Position, PawnClass>();
 		Position pos = new Position(0,4);
 		test.put(new Position(1,4), new PawnClass(1,4, Pawn.BLACK));
 		test.put(pos, new PawnClass(0,4, Pawn.BLACK));
+		test.put(new Position(4,4), new PawnClass(4,4, Pawn.KING));
+		PawnMap.getInstance().printMap(test);
 		
 		int cont = test.get(pos).maxNumberBoxMoveUp(test);
 		if(cont == 0)
@@ -37,9 +40,9 @@ public class PawnClassTest {
 			System.out.println("Posso spostarla in riga="+row+" colonna="+test.get(pos).getColumn());
 		}
 		assertEquals(3, cont);
-	}*/
+	}
 	
-	/*@Test
+	@Test
 	public void testMaxNumberBoxMoveDown() {
 		Map<Position, PawnClass> test = new HashMap<Position, PawnClass>();
 		Position pos = new Position(0,3);
@@ -54,7 +57,7 @@ public class PawnClassTest {
 			System.out.println("Posso spostarla in riga="+row+" colonna="+test.get(pos).getColumn());
 		}
 		assertEquals(3, cont);
-	}*/
+	}
 	
 	@Test
 	public void testMaxNumberBoxMoveRight() {
@@ -73,7 +76,7 @@ public class PawnClassTest {
 		assertEquals(1, cont);
 	}
 	
-	/*
+	
 	@Test
 	public void testMaxNumberBoxMoveLeft() {
 		Map<Position, PawnClass> test = new HashMap<Position, PawnClass>();
@@ -89,6 +92,6 @@ public class PawnClassTest {
 			System.out.println("Posso spostarla in riga="+test.get(pos).getRow()+" colonna="+column);
 		}
 		assertEquals(2, cont);
-	}*/
+	} */
 }
 

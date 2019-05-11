@@ -12,7 +12,7 @@ public class TablutAIClient extends TablutClient {
 	String player;
 	long beforeUsedMemory;
 	long afterUsedMemory;
-	Strategy strategy;
+	static Strategy strategy;
 
 	public TablutAIClient(String player, String name) throws UnknownHostException, IOException {
 		super(player, name);
@@ -94,7 +94,7 @@ public class TablutAIClient extends TablutClient {
 			System.exit(1);	
 		}
 		
-		Strategy strategy = Strategy.getInstance();
+		strategy = Strategy.getInstance();
 		strategy.setMAXDEPTH(maxDepth);
 		strategy.setMAXTIME(maxTime);
 		TablutClient client = new TablutAIClient(player,name);

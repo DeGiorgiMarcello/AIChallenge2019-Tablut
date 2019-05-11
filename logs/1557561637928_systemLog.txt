@@ -1,0 +1,30 @@
+mag 11, 2019 10:00:38 AM server.Server run
+BUONO: Accensione server
+mag 11, 2019 10:00:38 AM server.Server run
+BUONO: Partita di Tablut
+mag 11, 2019 10:00:39 AM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+mag 11, 2019 10:00:39 AM server.Server run
+BUONO: Lettura nome player bianco in corso..
+mag 11, 2019 10:00:40 AM server.Server run
+BUONO: White player name:	aBitBetter
+mag 11, 2019 10:00:43 AM server.Server run
+BUONO: Accettata connessione con client giocatore Nero
+mag 11, 2019 10:00:43 AM server.Server run
+BUONO: Lettura nome player nero in corso..
+mag 11, 2019 10:00:44 AM server.Server run
+BUONO: Black player name:	aBitBetterThanRandom
+mag 11, 2019 10:00:44 AM server.Server run
+BUONO: Invio messaggio ai giocatori
+mag 11, 2019 10:00:44 AM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 11, 2019 10:00:45 AM server.Server run
+BUONO: Move received.	Turn: W Pawn from e4 to b4
+mag 11, 2019 10:00:45 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 11, 2019 10:00:45 AM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 11, 2019 10:01:46 AM server.Server run
+AVVERTENZA: Timeout! Player B lose!
+mag 11, 2019 10:01:46 AM server.Server run
+AVVERTENZA: Chiusura sistema per timeout
