@@ -44,6 +44,11 @@ public class Heuristic {
 		}
 	}
 	
+	/**
+	 * This method calculates the value of the node for white player
+	 * @param node
+	 * @return
+	 */
 	public int whiteHeuristic(Node node) {
 		int sum = 0;
 		Position king = PawnMap.getInstance().findKingPosition(node.getState());
@@ -58,30 +63,21 @@ public class Heuristic {
 		final int kingCaptured = -2500;
 		final int win = 2000;
 		final int kingInCastle = -200;
-		
 		if(king == null) {
 			return kingCaptured;
-		}else {
-			//AVENUTA CATTURA
-			int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); 
-			int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); 
-			//RE PROTETTO aggiungo 1 unità al risultato per ogni lato su cui il re è protetto
+		}else {			
+			int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK);
+			int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE);
 			int[] valProtectedKing = kingProtected(node, king, Pawn.WHITE);
 			int valProtectedKingOneSide = valProtectedKing[0];
 			int valProtectedKingTwoSide = valProtectedKing[1];
 			int valProtectedKingThreeSide = valProtectedKing[2];
 			int valProtectedKingFourSide = valProtectedKing[3];
-			//DISTANZA DEL RE DAL PUNTO DI FUGA PIù VICINO
 			int valDistanceEscapePoint = distanceBetweenKingEscape(king);
-			//RE HA RIGA/COLONNA LIBERA VERSO UN PUNTO DI FUGA
 			int valRowColumnFree = freeEscapeRoute(node, king);
-			//RE VIENE CATTURATO
 			int valKingCaptured = kingCaptured(node);
-			//RE IN UN PUNTO DI FUGA => VITTORIA
 			int valwin = kingInEscapePoint(king);
-			/*CALCOLARE SOMMA PESATA*/
 			int valKingInCastle=0;
-			//RE NEL CASTELLO
 			if(kingInCaste(king)) {
 				valKingInCastle=1;
 			}else
@@ -94,6 +90,11 @@ public class Heuristic {
 		
 	}
 	
+	/**
+	 * This method calculates the value of the node for black player
+	 * @param node
+	 * @return
+	 */
 	public int BlackHeuristic(Node node) {
 		Position king = PawnMap.getInstance().findKingPosition(node.getState());
 		int sum = 0;
@@ -110,20 +111,15 @@ public class Heuristic {
 		if(king == null) {
 			return kingcaptured;
 		}else {
-			//AVVENUTA CATTURA
 			int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); 
 			int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); 
-			//re chiuso sui lati
 			int[] valKingTrapped = kingProtected(node, king, Pawn.BLACK);
 			int valKingTrappedOneSide = valKingTrapped[0];
 			int valKingTrappedTwoSide = valKingTrapped[1];
 			int valKingTrappedThreeSide = valKingTrapped[2];
 			int valKingTrappedFourSide = valKingTrapped[3];
-			//numeor di vie di fuga bloccate al re
 			int valEscapePointBlocked = freeEscapeRoute(node, king);
-			//vedere se ho catturato il re
 			int valKingcaptured = kingCaptured(node);
-			//vedere se il re è in un punto di fuga
 			int valKingWin = kingInEscapePoint(king);
 			int valBlackProtect = blackProtectEscape(node);
 			return capturedWhite*valCapturedWhite+capturedBlack*valCapturedBlack+kingTrappedOneSide*valKingTrappedOneSide+
@@ -132,7 +128,13 @@ public class Heuristic {
 		}
 		
 	}
-	
+	/**
+	 * This method calculates the difference between the number of pawn of root 
+	 * and the number of pawn of current node.
+	 * @param node
+	 * @param pawn
+	 * @return
+	 */
 	public int numberOfPawnCaptured(Node node, Pawn pawn) {
 		int result = 0;
 		int pawnParent = 0;
@@ -182,70 +184,75 @@ public class Heuristic {
 		}
 		return 0;
 	}
-	
-	public int freeEscapeRoute(Node node, Position king) {
-		int cont = 0;
-		boolean block = false;
-		if(king.getRow() == 1 || king.getRow() == 2 || king.getRow() == 6 || king.getRow() == 7) {
-			//verifico sinistra libera
-			for(int i = king.getColumn()-1; i >= 0; i--) {
-				Position position = new Position(king.getRow(), i);
-				if(node.getState().containsKey(position) || position.equals(new Position(1,4)) || position.equals(new Position(7,4))) {
-					//riga occupata
-					block = true;
-					break;
-				}
-			}
-			if(!block) {
-				++cont;
-			}
-			block = false;
-			//verifico destra libera
-			for(int i = king.getColumn()+1; i<=8; i++) {
-				Position position = new Position(king.getRow(), i);
-				if(node.getState().containsKey(position) || position.equals(new Position(1,4)) || position.equals(new Position(7,4))) {
-					//riga occupata
-					block = true;
-					break;
-				}
-			}
-			if(!block) {
-				++cont;
-			}
-			block = false;
-		}
-		
-		if(king.getColumn() == 1 || king.getColumn() == 2 || king.getColumn() == 6 || king.getColumn() == 7) {
-			//verifico sopra libera
-			for(int i = king.getRow()-1; i >= 0; i--) {
-				Position position = new Position(i, king.getColumn());
-				if(node.getState().containsKey(position) || position.equals(new Position(4,1)) || position.equals(new Position(4,7))) {
-					//colonna occupata
-					block = true;
-					break;
-				}
-			}
-			if(!block) {
-				++cont;
-			}
-			block = false;
-			//verifico sotto libero
-			for(int i = king.getRow()+1; i<=8; i++) {
-				Position position = new Position(i, king.getColumn());
-				if(node.getState().containsKey(position) || position.equals(new Position(4,1)) || position.equals(new Position(4,7))) {
-					//colonna occupata
-					block = true;
-					break;
-				}
-			}
-			if(!block) {
-				++cont;
-			}
-			block = false;
-		}
-		return cont;
-	}
-	
+	 
+	  public int freeEscapeRoute(Node node, Position king) {
+	    int cont = 0;
+	    boolean block = false;
+	    if(kingInEscapeRow(king)) {
+	      //veryfing if the left is free
+	      for(int i = king.getColumn()-1; i >= 0; i--) {
+	        Position position = new Position(king.getRow(), i);
+	        if(stateContainsPosition(node, position) || citadelInEscapeRow(position)) {
+	          // row occupied
+	          block = true;
+	          break;
+	        }
+	      }
+	      if(!block) {
+	        ++cont;
+	      }
+	      block = false;
+	      //veryfing if the right is free
+	      for(int i = king.getColumn()+1; i<=8; i++) {
+	        Position position = new Position(king.getRow(), i);
+	        if(stateContainsPosition(node, position) || citadelInEscapeRow(position)) {
+	          //row occupied
+	          block = true;
+	          break;
+	        }
+	      }
+	      if(!block) {
+	        ++cont;
+	      }
+	      block = false;
+	    }
+	    
+	    if(kingInEscapeColumn(king)) {
+	      //veryfing if the upside is free
+	      for(int i = king.getRow()-1; i >= 0; i--) {
+	        Position position = new Position(i, king.getColumn());
+	        if(stateContainsPosition(node, position) || citadelInEscapeColumn(position)) {
+	          //colonna occupata
+	          block = true;
+	          break;
+	        }
+	      }
+	      if(!block) {
+	        ++cont;
+	      }
+	      block = false;
+	      //veryfing if the down side is free
+	      for(int i = king.getRow()+1; i<=8; i++) {
+	        Position position = new Position(i, king.getColumn());
+	        if(stateContainsPosition(node, position) || citadelInEscapeColumn(position)) {
+	          //colonna occupata
+	          block = true;
+	          break;
+	        }
+	      }
+	      if(!block) {
+	        ++cont;
+	      }
+	      block = false;
+	    }
+	    return cont;
+	  }
+	/**
+	 * This method calculates the Manhattan distance between king position
+	 * and escape point.
+	 * @param king
+	 * @return
+	 */
 	public int distanceBetweenKingEscape(Position king) {
 		int dist = 0;
 		int distance[] = new int[escapePoints.size()];
@@ -270,24 +277,24 @@ public class Heuristic {
 		Position adjacentKingDown = new Position(king.getRow()+1, king.getColumn());
 		Position adjacentKingRight = new Position(king.getRow(), king.getColumn()+1);
 		Position adjacentKingLeft = new Position(king.getRow(), king.getColumn()-1);
-		if(node.getState().containsKey(adjacentKingUp)) {
+		if(stateContainsPosition(node, adjacentKingUp)) {
 			PawnClass p = (PawnClass) node.getState().get(adjacentKingUp);
-			if(p.getType().equalsPawn(pawn.toString()))
+			if(pawnHasColor(p, pawn))
 				var++;
 		}
-		if(node.getState().containsKey(adjacentKingDown)) {
+		if(stateContainsPosition(node, adjacentKingDown)) {
 			PawnClass p = (PawnClass) node.getState().get(adjacentKingDown);
-			if(p.getType().equalsPawn(pawn.toString()))
+			if(pawnHasColor(p, pawn))
 				var++;
 		}
-		if(node.getState().containsKey(adjacentKingRight)) {
+		if(stateContainsPosition(node, adjacentKingRight)) {
 			PawnClass p = (PawnClass) node.getState().get(adjacentKingRight);
-			if(p.getType().equalsPawn(pawn.toString()))
+			if(pawnHasColor(p, pawn))
 				var++;
 		}
-		if(node.getState().containsKey(adjacentKingLeft)) {
+		if(stateContainsPosition(node, adjacentKingLeft)) {
 			PawnClass p = (PawnClass) node.getState().get(adjacentKingLeft);
-			if(p.getType().equalsPawn(pawn.toString()))
+			if(pawnHasColor(p, pawn))
 				var++;
 		}
 		if(var == 0)
@@ -338,6 +345,17 @@ public class Heuristic {
 		return result;
 	}
 	
+	public boolean stateContainsPosition(Node node, Position position) {
+		if(node.getState().containsKey(position))
+			return true;
+		return false;
+	}
+	
+	public boolean pawnHasColor(PawnClass currentPawn, Pawn color) {
+		if(currentPawn.getType().equalsPawn(color.toString()))
+			return true;
+		return false;
+	}
 	public boolean isWhite(Pawn color) {
 		if(color.equalsPawn(Pawn.WHITE.toString()))
 			return true;
@@ -378,6 +396,29 @@ public class Heuristic {
 		}
 		return false;	
 	}
+	
+	public boolean kingInEscapeRow(Position king) {
+	    if(king.getRow() == 1 || king.getRow() == 2 || king.getRow() == 6 || king.getRow() == 7) 
+	      return true;
+	    return false;
+	  }
+	  public boolean kingInEscapeColumn(Position king) {
+	    if(king.getColumn() == 1 || king.getColumn() == 2 || king.getColumn() == 6 || king.getColumn() == 7) 
+	      return true;
+	    return false;
+	  }
+	  
+	  public boolean citadelInEscapeRow(Position position) {
+	    if(position.equals(new Position(1,4)) || position.equals(new Position(7,4)))
+	      return true;
+	    return false;
+	  }
+	  
+	  public boolean citadelInEscapeColumn(Position position) {
+	    if(position.equals(new Position(4,1)) || position.equals(new Position(4,7)))
+	      return true;
+	    return false;
+	  }
 	public void initProtectPosition() {
 		protectPosition.add(new Position(1,2));
 		protectPosition.add(new Position(2,1));
