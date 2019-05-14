@@ -10,8 +10,6 @@ import util.PawnMap;
 public class TablutAIClient extends TablutClient {
 	
 	String player;
-	long beforeUsedMemory;
-	long afterUsedMemory;
 	static Strategy strategy;
 
 	public TablutAIClient(String player, String name) throws UnknownHostException, IOException {
@@ -19,7 +17,6 @@ public class TablutAIClient extends TablutClient {
 		// TODO Auto-generated constructor stub
 		player = player.toLowerCase();
 		this.player = player;
-		beforeUsedMemory=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 	}
 	
 	//per lanciarlo inserire giocatore e nome come argomenti
@@ -133,20 +130,14 @@ public class TablutAIClient extends TablutClient {
 						this.write(action);  // la mossa viene mandata al server
 					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
 						//System.out.println("Waiting for your opponent move... ");
-					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITEWIN)) {
-						afterUsedMemory=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
-						long actualMemUsed=afterUsedMemory-beforeUsedMemory;
-						System.out.println("YOU WIN! Memoria usata: "+actualMemUsed);
+					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.WHITEWIN)) {						
+						System.out.println("YOU WIN!");
 						System.exit(0);
-					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACKWIN)) {
-						afterUsedMemory=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
-						long actualMemUsed=afterUsedMemory-beforeUsedMemory;
-						System.out.println("YOU LOSE! Memoria usata: "+actualMemUsed);
+					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACKWIN)) {						
+						System.out.println("YOU LOSE!");
 						System.exit(0);
 					} else if (this.getCurrentState().getTurn().equals(StateTablut.Turn.DRAW)) {
-						afterUsedMemory=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
-						long actualMemUsed=afterUsedMemory-beforeUsedMemory;
-						System.out.println("DRAW! Memoria usata: "+actualMemUsed);
+						System.out.println("DRAW!");
 						System.exit(0);
 					}
 								
