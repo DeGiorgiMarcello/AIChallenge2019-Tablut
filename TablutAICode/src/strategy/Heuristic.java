@@ -31,14 +31,13 @@ public class Heuristic {
 	}
 	
 	private Heuristic() {
-		/*inizializzo la lista solo la prima volta che chiamo la classse Heuristic*/
 		initEscapePoint();
 		initAdjacentPointsCaste();
 		initProtectPosition();
 	}
 	
 	public int evaluateNode(Node node,Pawn color) {
-		if(color.equalsPawn(Pawn.WHITE.toString())){
+		if(isWhite(color)){
 			return whiteHeuristic(node);
 		}else {
 			return BlackHeuristic(node);
@@ -60,12 +59,12 @@ public class Heuristic {
 		final int win = 2000;
 		final int kingInCastle = -200;
 		
-		if(king == null) { //se kingPosition è null il king non c'è, ho perso.
+		if(king == null) {
 			return kingCaptured;
 		}else {
 			//AVENUTA CATTURA
-			int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se ho mangiato pedine avversarie
-			int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se sono state mangiate delle mie pedine
+			int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); 
+			int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); 
 			//RE PROTETTO aggiungo 1 unità al risultato per ogni lato su cui il re è protetto
 			int[] valProtectedKing = kingProtected(node, king, Pawn.WHITE);
 			int valProtectedKingOneSide = valProtectedKing[0];
@@ -83,7 +82,7 @@ public class Heuristic {
 			/*CALCOLARE SOMMA PESATA*/
 			int valKingInCastle=0;
 			//RE NEL CASTELLO
-			if(king.equals(new Position(4,4))) {
+			if(kingInCaste(king)) {
 				valKingInCastle=1;
 			}else
 				valKingInCastle=-1;
@@ -100,11 +99,11 @@ public class Heuristic {
 		int sum = 0;
 		final int capturedWhite = 20;
 		final int capturedBlack = -1;
-		final int kingTrappedOneSide = 20; //c'era2
-		final int kingTrappedTwoSide = 25; //c'era2
+		final int kingTrappedOneSide = 20; 
+		final int kingTrappedTwoSide = 25; 
 		final int kingTrappedThreeSide = 35;
 		final int kingTrappedFourSide = 45;
-		final int escapePointBlocked = 900; //c'era 40
+		final int escapePointBlocked = 900; 
 		final int kingcaptured = 2000;
 		final int kingWin = -2000;
 		final int blackProtectEscape = 7;
@@ -112,8 +111,8 @@ public class Heuristic {
 			return kingcaptured;
 		}else {
 			//AVVENUTA CATTURA
-			int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); //verifica se ho catturato pedine avversarie
-			int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); //verifica se sono state catturate le mie pedine
+			int valCapturedWhite = numberOfPawnCaptured(node, Pawn.WHITE); 
+			int valCapturedBlack = numberOfPawnCaptured(node, Pawn.BLACK); 
 			//re chiuso sui lati
 			int[] valKingTrapped = kingProtected(node, king, Pawn.BLACK);
 			int valKingTrappedOneSide = valKingTrapped[0];
@@ -121,7 +120,7 @@ public class Heuristic {
 			int valKingTrappedThreeSide = valKingTrapped[2];
 			int valKingTrappedFourSide = valKingTrapped[3];
 			//numeor di vie di fuga bloccate al re
-			int valEscapePointBlocked = blockEscapeRoute(node, king);
+			int valEscapePointBlocked = freeEscapeRoute(node, king);
 			//vedere se ho catturato il re
 			int valKingcaptured = kingCaptured(node);
 			//vedere se il re è in un punto di fuga
@@ -148,15 +147,15 @@ public class Heuristic {
 	public int numberOfPawn(Map<Position, PawnClass> map, Pawn pawn) {
 		int cont = 0;
 		boolean white = false;
-		if(pawn.equalsPawn(Pawn.WHITE.toString()))
+		if(isWhite(pawn))
 			white = true;
 		for(Map.Entry<Position, PawnClass> entry: map.entrySet()) {
 			PawnClass currentPawn = entry.getValue();
 			if(white) {
-				if(currentPawn.getType().equalsPawn(Pawn.WHITE.toString()) || currentPawn.getType().equalsPawn(Pawn.KING.toString()))
+				if(pawnIsWhite(currentPawn) || pawnIsKing(currentPawn))
 					cont++;
 			}else {
-				if(currentPawn.getType().equalsPawn(Pawn.BLACK.toString())) 
+				if(pawnIsBlack(currentPawn)) 
 					cont ++;
 			}
 		}
@@ -164,12 +163,10 @@ public class Heuristic {
 	}
 	
 	public int kingCaptured(Node node) {
-		/*verifica se nella mappa c'è il re, se c'è (=> NON è STATO CATTURATO) ritorna 0
-		 * altrimenti ritorna 1*/
 		int result = 0;
 		for(Map.Entry<Position, PawnClass> entry : node.getState().entrySet()) {
 			PawnClass currentPawn = entry.getValue();
-			if(currentPawn.getType().equalsPawn(Pawn.KING.toString())) {
+			if(pawnIsKing(currentPawn)) {
 				return result;
 			}
 		}
@@ -186,87 +183,10 @@ public class Heuristic {
 		return 0;
 	}
 	
-	public int blockEscapeRoute(Node node, Position king) {
-		/*RITORNA IL NUMERO DI VIE BLOCCATE*/
-		/*devo vedere se sulla riga o colonna del re c'è una via di fuga
-		 * RIGHE VIE DI FUGA 1 2 6 7
-		 * COLONNE VIE DI FUGA 1 2 6 7*/
-		int cont = 0;
-		boolean block = false;
-		if(king.getRow() == 1 || king.getRow() == 2 || king.getRow() == 6 || king.getRow() == 7) {
-			/*il re è su una riga in corrispondenza di un punto di fuga*/
-			//verifico sinistra libera
-			for(int i = king.getColumn()-1; i >= 0; i--) {
-				Position position = new Position(king.getRow(), i);
-				if(node.getState().containsKey(position) && (node.getState().get(position).getType().equalsPawn(Pawn.BLACK.toString()) ||
-						node.getState().get(position).getType().equalsPawn(Pawn.WHITE.toString()) ||
-						position.equals(new Position(1,4)) || position.equals(new Position(7,4)))) {
-					//pedina nera sulla via di fuga del re
-					block = true;
-					break;
-				}	
-			}
-			if(block)
-				cont++;
-			block = false;
-			//verifico destra libera
-			for(int i = king.getColumn()+1; i<=8; i++) {
-				Position position = new Position(king.getRow(), i);
-				if(node.getState().containsKey(position) && (node.getState().get(position).getType().equalsPawn(Pawn.BLACK.toString()) ||
-						node.getState().get(position).getType().equalsPawn(Pawn.WHITE.toString()) ||
-						position.equals(new Position(1,4)) || position.equals(new Position(7,4)))) {
-					//riga occupata
-					block = true;
-					break;
-				}
-			}
-			if(block)
-				cont++;
-			block = false;
-		}
-		if(king.getColumn() == 1 || king.getColumn() == 2 || king.getColumn() == 6 || king.getColumn() == 7) {
-			/*il re è su una colonna in corrispondenza di un punto di fuga*/
-			//verifico sopra libera
-			for(int i = king.getRow()-1; i >= 0; i--) {
-				Position position = new Position(i, king.getColumn());
-				if(node.getState().containsKey(position) && (node.getState().get(position).getType().equalsPawn(Pawn.BLACK.toString()) ||
-						node.getState().get(position).getType().equalsPawn(Pawn.WHITE.toString()) ||
-						position.equals(new Position(4,1)) || position.equals(new Position(4,7)))) {
-					//colonna occupata
-					block = true;
-					break;
-				}	
-			}
-			if(block)
-				cont++;
-			block = false;
-			//verifico sotto libera
-			for(int i = king.getRow()+1; i<=8; i++) {
-				Position position = new Position(i, king.getColumn());
-				if(node.getState().containsKey(position) && 
-						(node.getState().get(position).getType().equalsPawn(Pawn.BLACK.toString()) ||
-								node.getState().get(position).getType().equalsPawn(Pawn.WHITE.toString()) ||
-								position.equals(new Position(4,1)) || position.equals(new Position(4,7)))) {
-					//riga occupata
-					block = true;
-				}
-			}
-			if(block)
-				cont++;
-			block = false;
-		}
-		
-		return cont;
-	}
-	
 	public int freeEscapeRoute(Node node, Position king) {
-		/*devo vedere se sulla riga o colonna del re c'è una via di fuga
-		 * RIGHE VIE DI FUGA 1 2 6 7
-		 * COLONNE VIE DI FUGA 1 2 6 7*/
 		int cont = 0;
 		boolean block = false;
 		if(king.getRow() == 1 || king.getRow() == 2 || king.getRow() == 6 || king.getRow() == 7) {
-			/*il re è su una riga in corrispondenza di un punto di fuga*/
 			//verifico sinistra libera
 			for(int i = king.getColumn()-1; i >= 0; i--) {
 				Position position = new Position(king.getRow(), i);
@@ -296,7 +216,6 @@ public class Heuristic {
 		}
 		
 		if(king.getColumn() == 1 || king.getColumn() == 2 || king.getColumn() == 6 || king.getColumn() == 7) {
-			/*il re è su una colonna in corrispondenza di un punto di fuga*/
 			//verifico sopra libera
 			for(int i = king.getRow()-1; i >= 0; i--) {
 				Position position = new Position(i, king.getColumn());
@@ -379,13 +298,6 @@ public class Heuristic {
 		}
 	}
 	
-	public int capturedPawn(Node node) {
-		if(node.getCaptured() != 0)
-			return 1;
-		else
-			return 0;
-	}
-	
 	public int blackProtectEscape(Node node) {
 		int cont = 0;
 		for(Entry<Position, PawnClass> entry : node.getState().entrySet()) {
@@ -426,6 +338,46 @@ public class Heuristic {
 		return result;
 	}
 	
+	public boolean isWhite(Pawn color) {
+		if(color.equalsPawn(Pawn.WHITE.toString()))
+			return true;
+		return false;
+	}
+	
+	public boolean isBlack(Pawn color) {
+		if(color.equalsPawn(Pawn.BLACK.toString()))
+			return true;
+		return false;
+	}
+	
+	public boolean kingInCaste(Position kingPosition) {
+		Position caste = new Position(4,4);
+		if(kingPosition.equals(caste))
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean pawnIsWhite(PawnClass pawn) {
+		Pawn type = pawn.getType();
+		if(type.equalsPawn(Pawn.WHITE.toString()))
+			return true;
+		return false;
+	}
+	
+	public boolean pawnIsBlack(PawnClass pawn) {
+		Pawn type = pawn.getType();
+		if(type.equalsPawn(Pawn.BLACK.toString()))
+				return true;
+		return false;
+	}
+	
+	public boolean pawnIsKing(PawnClass pawn) {
+		if(pawn.getType().equalsPawn(Pawn.KING.toString())) {
+			return true;
+		}
+		return false;	
+	}
 	public void initProtectPosition() {
 		protectPosition.add(new Position(1,2));
 		protectPosition.add(new Position(2,1));
