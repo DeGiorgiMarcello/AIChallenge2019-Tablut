@@ -93,7 +93,7 @@ public class TablutAIClient extends TablutClient {
 		
 		strategy = Strategy.getInstance();
 		strategy.setMAXDEPTH(maxDepth);
-		strategy.setMAXTIME(maxTime);
+		strategy.setMAXTIME(maxTime - 1);
 		TablutClient client = new TablutAIClient(player,name);
 		client.run();
 	}
