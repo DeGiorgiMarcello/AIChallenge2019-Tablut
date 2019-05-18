@@ -1,0 +1,48 @@
+mag 18, 2019 12:32:04 PM server.Server run
+BUONO: Accensione server
+mag 18, 2019 12:32:04 PM server.Server run
+BUONO: Partita di Tablut
+mag 18, 2019 12:32:37 PM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+mag 18, 2019 12:32:37 PM server.Server run
+BUONO: Lettura nome player bianco in corso..
+mag 18, 2019 12:32:38 PM server.Server run
+BUONO: White player name:	humanInter
+mag 18, 2019 12:32:38 PM server.Server run
+BUONO: Accettata connessione con client giocatore Nero
+mag 18, 2019 12:32:38 PM server.Server run
+BUONO: Lettura nome player nero in corso..
+mag 18, 2019 12:32:38 PM server.Server run
+BUONO: Black player name:	aBitBetterThanRandom
+mag 18, 2019 12:32:38 PM server.Server run
+BUONO: Invio messaggio ai giocatori
+mag 18, 2019 12:32:38 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 18, 2019 12:32:56 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from g5 to g3
+mag 18, 2019 12:32:56 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 18, 2019 12:32:56 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 18, 2019 12:33:36 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from e8 to g8
+mag 18, 2019 12:33:36 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 18, 2019 12:33:36 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 18, 2019 12:34:01 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from g3 to h3
+mag 18, 2019 12:34:01 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 18, 2019 12:34:01 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 18, 2019 12:35:01 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from a4 to a1
+mag 18, 2019 12:35:01 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 18, 2019 12:35:01 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 18, 2019 12:35:10 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from null to null
+mag 18, 2019 12:35:10 PM server.Server run
+AVVERTENZA: Chiusura sistema per troppi errori giocatore bianco

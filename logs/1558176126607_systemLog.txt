@@ -1,0 +1,30 @@
+mag 18, 2019 12:42:06 PM server.Server run
+BUONO: Accensione server
+mag 18, 2019 12:42:06 PM server.Server run
+BUONO: Partita di Tablut
+mag 18, 2019 12:42:21 PM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+mag 18, 2019 12:42:21 PM server.Server run
+BUONO: Lettura nome player bianco in corso..
+mag 18, 2019 12:42:22 PM server.Server run
+BUONO: White player name:	aBitBetter
+mag 18, 2019 12:42:24 PM server.Server run
+BUONO: Accettata connessione con client giocatore Nero
+mag 18, 2019 12:42:24 PM server.Server run
+BUONO: Lettura nome player nero in corso..
+mag 18, 2019 12:42:25 PM server.Server run
+BUONO: Black player name:	humanInterface
+mag 18, 2019 12:42:26 PM server.Server run
+BUONO: Invio messaggio ai giocatori
+mag 18, 2019 12:42:26 PM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 18, 2019 12:43:26 PM server.Server run
+BUONO: Move received.	Turn: W Pawn from e4 to d4
+mag 18, 2019 12:43:26 PM server.Server run
+BUONO: Invio messaggio ai client
+mag 18, 2019 12:43:26 PM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 18, 2019 12:43:29 PM server.Server run
+BUONO: Move received.	Turn: B Pawn from null to null
+mag 18, 2019 12:43:29 PM server.Server run
+AVVERTENZA: Chiusura sistema per troppi errori giocatore nero

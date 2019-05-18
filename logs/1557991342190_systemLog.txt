@@ -1,0 +1,102 @@
+mag 16, 2019 9:22:22 AM server.Server run
+BUONO: Accensione server
+mag 16, 2019 9:22:22 AM server.Server run
+BUONO: Partita di Tablut
+mag 16, 2019 9:22:25 AM server.Server run
+BUONO: Accettata connessione con client giocatore Bianco
+mag 16, 2019 9:22:25 AM server.Server run
+BUONO: Lettura nome player bianco in corso..
+mag 16, 2019 9:22:26 AM server.Server run
+BUONO: White player name:	aBitBetter
+mag 16, 2019 9:22:26 AM server.Server run
+BUONO: Accettata connessione con client giocatore Nero
+mag 16, 2019 9:22:26 AM server.Server run
+BUONO: Lettura nome player nero in corso..
+mag 16, 2019 9:22:26 AM server.Server run
+BUONO: Black player name:	aBitBetterThanRandom
+mag 16, 2019 9:22:27 AM server.Server run
+BUONO: Invio messaggio ai giocatori
+mag 16, 2019 9:22:27 AM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 16, 2019 9:23:27 AM server.Server run
+BUONO: Move received.	Turn: W Pawn from e4 to d4
+mag 16, 2019 9:23:27 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 16, 2019 9:23:27 AM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 16, 2019 9:24:27 AM server.Server run
+BUONO: Move received.	Turn: B Pawn from a4 to c4
+mag 16, 2019 9:24:27 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 16, 2019 9:24:27 AM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 16, 2019 9:25:27 AM server.Server run
+BUONO: Move received.	Turn: W Pawn from e5 to e4
+mag 16, 2019 9:25:27 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 16, 2019 9:25:27 AM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 16, 2019 9:26:27 AM server.Server run
+BUONO: Move received.	Turn: B Pawn from c4 to b4
+mag 16, 2019 9:26:27 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 16, 2019 9:26:27 AM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 16, 2019 9:27:27 AM server.Server run
+BUONO: Move received.	Turn: W Pawn from e4 to h4
+mag 16, 2019 9:27:27 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 16, 2019 9:27:27 AM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 16, 2019 9:28:27 AM server.Server run
+BUONO: Move received.	Turn: B Pawn from e8 to a8
+mag 16, 2019 9:28:27 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 16, 2019 9:28:27 AM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 16, 2019 9:29:27 AM server.Server run
+BUONO: Move received.	Turn: W Pawn from e6 to b6
+mag 16, 2019 9:29:27 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 16, 2019 9:29:27 AM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 16, 2019 9:30:27 AM server.Server run
+BUONO: Move received.	Turn: B Pawn from a5 to a2
+mag 16, 2019 9:30:27 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 16, 2019 9:30:27 AM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 16, 2019 9:31:27 AM server.Server run
+BUONO: Move received.	Turn: W Pawn from c5 to c1
+mag 16, 2019 9:31:27 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 16, 2019 9:31:27 AM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 16, 2019 9:32:27 AM server.Server run
+BUONO: Move received.	Turn: B Pawn from a2 to c2
+mag 16, 2019 9:32:27 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 16, 2019 9:32:27 AM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 16, 2019 9:33:27 AM server.Server run
+BUONO: Move received.	Turn: W Pawn from e7 to a7
+mag 16, 2019 9:33:27 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 16, 2019 9:33:27 AM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 16, 2019 9:34:27 AM server.Server run
+BUONO: Move received.	Turn: B Pawn from c2 to d2
+mag 16, 2019 9:34:27 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 16, 2019 9:34:27 AM server.Server run
+BUONO: Lettura mossa player W in corso..
+mag 16, 2019 9:35:27 AM server.Server run
+BUONO: Move received.	Turn: W Pawn from a7 to i7
+mag 16, 2019 9:35:27 AM server.Server run
+BUONO: Invio messaggio ai client
+mag 16, 2019 9:35:27 AM server.Server run
+BUONO: Lettura mossa player B in corso..
+mag 16, 2019 9:35:31 AM server.Server run
+BUONO: Move received.	Turn: B Pawn from null to null
+mag 16, 2019 9:35:31 AM server.Server run
+AVVERTENZA: Chiusura sistema per troppi errori giocatore nero

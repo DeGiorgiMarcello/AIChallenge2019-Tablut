@@ -79,8 +79,8 @@ public class Strategy {
 		String[] move = new String[2];
 		int depth = 0;
 		this.player = player;
-		int alfa = -3000;  //-infinito
-		int beta = 3000;   //+infinito
+		int alfa = -4000;  //-infinito
+		int beta = 4000;   //+infinito
 		Node root = new Node();
 		updateHashCodeStateList(root);
 		BestNode alphaBetaBestNode = alphaBeta(root,depth,alfa,beta,true); 
@@ -399,7 +399,7 @@ public class Strategy {
 				return bestNodeMove;
 			}
 		}
-		//System.out.println("Depth: "+depth+"Time: "+elapsedTime);
+		System.out.println("Depth: "+depth+"Time: "+elapsedTime);
 		return bestNodeMove;
 	}
 	

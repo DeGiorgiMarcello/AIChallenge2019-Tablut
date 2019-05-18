@@ -104,10 +104,10 @@ public class Heuristic {
 		final int kingTrappedTwoSide = 25; 
 		final int kingTrappedThreeSide = 35;
 		final int kingTrappedFourSide = 45;
-		final int escapePointBlocked = 900; 
+		final int escapePointBlocked = -900; 
 		final int kingcaptured = 2000;
 		final int kingWin = -2000;
-		final int blackProtectEscape = 7;
+		final int blackProtectEscape = 5;
 		if(king == null) {
 			return kingcaptured;
 		}else {
